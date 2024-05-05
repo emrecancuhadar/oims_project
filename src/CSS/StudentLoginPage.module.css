@@ -1,0 +1,52 @@
+.logincontainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url("../assets/images/iztech_background_image.jpg"); /* Replace with your actual image path */
+  background-size: cover;
+}
+
+.loginbox {
+  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+  padding: 40px;
+  border-radius: 8px;
+  width: 300px;
+
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.loginbox h1 {
+  color: #333;
+}
+
+.loginbox label {
+  display: block;
+  text-align: left;
+  margin-top: 10px;
+}
+
+.loginbox input[type="text"],
+.loginbox input[type="password"] {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+}
+
+.loginbox button {
+  width: 100%;
+  padding: 10px;
+  background-color: #3c8dbc;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.loginbox p {
+  color: #0066cc;
+  cursor: pointer;
+  margin-top: 15px;
+}

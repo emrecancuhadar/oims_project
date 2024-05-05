@@ -1,0 +1,100 @@
+.admin-homepage {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    background-color: #004d40; /* Dark Green Shade */
+    padding: 20px;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.home-icon {
+    color: white;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.sidebar-logo {
+    width: 100px;
+}
+
+.main-content {
+    flex: 1;
+    background-color: #e8f5e9; /* Light Green Shade */
+}
+
+.header {
+    background-color: #e8f5e9;
+    color: green;
+    padding: 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-icon {
+    font-size: 24px;
+    margin-right: 10px;
+}
+.user-info {
+    display: flex;
+    align-items: center;
+    color: green;
+   
+    
+}
+
+.user-name, .role {
+    font-size: 16px;
+}
+
+.announcements h1 {
+    color: green;
+    padding: 20px 20px 20px 250px;
+}
+
+.announcement-list .announcement {
+    background-color: white;
+    padding: 15px;
+    margin: 5px 20px;
+    border-left: 5px solid green;
+}
+.announcement {
+    padding: 10px;
+    display: block;
+    color: black; /* Set the color to fit the design */
+    text-decoration: none; /* Removes underline from links */
+    background-color: white; /* Background color for contrast */
+    margin: 5px 0; /* Spacing for better readability */
+    border-left: 5px solid green; /* Optional style */
+}
+
+.announcement:hover {
+    background-color: #f0f0f0; /* Light grey background on hover */
+}
+/* Keep your existing styles for layout */
+
+.btn-group button {
+    margin-right: 4px; /* Adds spacing between buttons */
+}
+
+.btn-group button:last-child {
+    margin-right: 0; /* Removes margin for the last button */
+}
+
+.header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    color: green;
+}
+
+.user-icon {
+    font-size: 24px;
+    margin-right: 10px; /* Ensure proper spacing next to the text */
+}

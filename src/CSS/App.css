@@ -1,0 +1,66 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.para {
+  text-align: center;
+  color: darkblue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.pages {
+  background-image: url("../assets/images/iztech_background_image.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh; /* Ensures it takes at least the full height of the viewport */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.login-container,
+.signup-container {
+  background-color: rgba(240, 240, 240, 0.8); /* 80% opacity */
+  padding: 20px;
+  width: 400px;
+  margin: auto;
+  border-radius: 5px;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+  display: block;
+  margin: 3px 10px 10px 0;
+  width: 90%;
+  height: 25px;
+}
+
+button {
+  width: 50%;
+  padding: 10px;
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  align-items: center;
+  margin-left: 100px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 15px;
+}
+
+button:hover {
+  background-color: darkgreen;
+}
+
+img.iyte_logo {
+  display: block; /* Removes default inline formatting */
+  margin: auto; /* Horizontally centers the image in the container */
+  max-width: 100%; /* Ensures the image is responsive and fits the container */
+  height: 300px; /* Keeps the aspect ratio of the image */
+}

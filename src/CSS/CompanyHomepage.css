@@ -1,0 +1,50 @@
+i {
+    margin: 0 15px;
+}
+
+h2 {
+    margin: 10px 0 20px;
+}
+
+.sidebar-logo {
+    width: 100px;
+}
+
+.company-homepage {
+    display: flex;
+    height: 100vh;
+}
+
+.header {
+    background-color: #e8f5e9;
+    color: green;
+    padding: 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+}
+
+.homepage h1 {
+    color: green;
+    padding: 20px 20px 20px 250px;
+}
+
+.homepage-container {
+    gap: 20px;
+    padding: 20px 250px;
+}
+
+.card {
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    margin-bottom: 30px;
+}
+
+.card-body {
+    padding: 20px 40px;
+}

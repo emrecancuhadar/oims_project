@@ -1,0 +1,62 @@
+.mainScreen {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-image: url("../assets/images/iztech_background_image.jpg");
+  background-size: cover;
+}
+
+img {
+  margin: 20px 0 40px;
+}
+
+h1 {
+  font-size: 40px;
+  font-family: "Arial";
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+h3 {
+  margin: 15px 0 30px;
+}
+
+.CenterBox {
+  width: 500px;
+  height: auto;
+  padding: 40px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background: rgb(206, 253, 212);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.userButton {
+  border: 2px solid darkgreen;
+  background-color: darkgreen;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin: 10px;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+}
+
+.userButton:hover {
+  background-color: #4caf50;
+  color: white;
+  transform: scale(1.1);
+}
