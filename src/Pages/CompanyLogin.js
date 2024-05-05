@@ -41,7 +41,7 @@ function Login() {
             <button type="submit">Login</button>
           </label>
         </form>
-        <p className="para" onClick={() => navigate("/company/sign-up")}>
+        <p className="para" onClick={() => navigate("/company/signup")}>
           Sign up now!
         </p>
         <p className="para" onClick={() => alert("Reset password logic")}>

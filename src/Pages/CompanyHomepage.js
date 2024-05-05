@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import "../CSS/CompanyHomepage.css";
 
 function CompanyHomepage() {
   const navigate = useNavigate();
@@ -8,7 +9,7 @@ function CompanyHomepage() {
       <div className="company-homepage">
         <div className="sidebar">
           <a href="/" class="sidebar-container">
-            <img class="sidebar-logo" src="OIMS.png" alt="xd"></img>
+            <img className="sidebar-logo" src="iyte_logo.png" alt="xd"></img>
           </a>
           <button
             onClick={() => navigate("/company/home")}
