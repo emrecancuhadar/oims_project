@@ -7,7 +7,7 @@ h2 {
 }
 
 
-.studenthomepage {
+.student-homepage {
     display: flex;
     height: 100vh;
 }
@@ -22,12 +22,12 @@ h2 {
     gap: 10px;
 }
 
-.homepage h1 {
+.home-page h1 {
     color: green;
     padding: 20px 20px 20px 250px;
 }
 
-.homepagecontainer {
+.homepage-container {
     gap: 20px;
     padding: 20px 250px;
 }
@@ -38,11 +38,11 @@ h2 {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.cardtitle {
+.card-title {
     margin-bottom: 30px;
 }
 
-.cardbody {
+.card-body {
     padding: 20px 40px;
 }
 

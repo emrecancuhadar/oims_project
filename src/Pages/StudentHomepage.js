@@ -1,15 +1,15 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "../CSS/StudentHomepage.module.css";
+import  "../CSS/StudentHomepage.css";
 
 function StudentHomepage() {
   const navigate = useNavigate();
 
   return (
-    <div className={styles.studenthomepage}>
-      <div className={styles.sidebar}>
-        <a href="/" className={styles.sidebarcontainer}>
-          <img class="sidebarlogo" src="OIMS.png" width={100}></img>
+    <div className="student-homepage">
+      <div className="sidebar">
+        <a href="/" className="sidebar-container">
+          <img className="sidebar-logo" src='iyte_logo.png'></img>
         </a>
         <button
           onClick={() => navigate("/student/home")}
@@ -35,11 +35,11 @@ function StudentHomepage() {
           <span className="username">Name Surname - Student</span>
           <i className="far fa-user-circle user-icon"></i>
         </div>
-        <div className={styles.homepage}>
+        <div className="home-page">
           <h1>Welcome to OIMS!</h1>
-          <div className="row homepagecontainer">
-            <div className={styles.card}>
-              <div className={styles.cardbody}>
+          <div className="row homepage-container">
+            <div className="card">
+              <div className="card-body">
                 <h2>What is OIMS?</h2>
                 <p>
                   At OIMS, we believe in fostering meaningful connections
@@ -61,8 +61,8 @@ function StudentHomepage() {
                 </p>
               </div>
             </div>
-            <div className={styles.card}>
-              <div className={styles.cardbody}>
+            <div className="card">
+              <div className="card-body">
                 <h2>Why Choose OIMS?</h2>
                 <ul>
                   <li>

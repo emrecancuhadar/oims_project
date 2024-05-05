@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PasswordChecklist from "react-password-checklist";
 import { useNavigate } from "react-router-dom";
+import "../CSS/CompanySignup.css";
 
 function Signup() {
   const [company, setCompany] = useState("");

@@ -46,7 +46,7 @@ input[type="text"] {
 .company-signup-container img.iyte_logo {
   display: block; /* Removes default inline formatting */
   margin: auto; /* Horizontally centers the image in the container */
-  max-width: 100%; /* Ensures the image is responsive and fits the container */
+  max-width: 100px; /* Ensures the image is responsive and fits the container */
   height: 300px; /* Keeps the aspect ratio of the image */
 }
 
