@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-
+import "../CSS/StudentInternshipOpportunities.css"
 const internships = [
   { id: 1, title: "Internship 1" },
   { id: 2, title: "Internship 2" },
@@ -22,7 +22,7 @@ function StudentInternshipOpportunities() {
     <div className="student-homepage">
       <div className="sidebar">
         <a href="/" className="sidebar-container">
-          <img class="sidebar-logo" src="OIMS.png"></img>
+          <img className="sidebar-logo" src="iyte_logo.png"></img>
         </a>
         <button
           onClick={() => navigate("/student/home")}
