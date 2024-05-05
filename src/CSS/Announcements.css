@@ -18,9 +18,7 @@
     margin-bottom: 20px;
 }
 
-.sidebar-logo {
-    width: 100px;
-}
+
 
 .main-content {
     flex: 1;
@@ -55,7 +53,7 @@
 
 .announcements h1 {
     color: green;
-    padding: 20px 20px 20px 250px;
+    padding: 20px;
 }
 
 .announcement-list .announcement {
@@ -81,20 +79,22 @@
 
 .btn-group button {
     margin-right: 4px; /* Adds spacing between buttons */
+    
 }
 
 .btn-group button:last-child {
     margin-right: 0; /* Removes margin for the last button */
 }
 
-.header {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    color: green;
+.sidebar-logo {
+    width: 150px;
+    height: auto;
 }
-
 .user-icon {
     font-size: 24px;
     margin-right: 10px; /* Ensure proper spacing next to the text */
+}
+.row {
+    margin-left: 0;
+    margin-right: 0;
 }

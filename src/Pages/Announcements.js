@@ -1,5 +1,5 @@
 import React from 'react';
-
+import "../CSS/Announcements.css"
 
 const announcements = [
     { id: 1, title: "Announcement 1", content: "This is the content of Announcement 1." },
@@ -21,7 +21,7 @@ function Announcements() {
         <div className="admin-homepage">
             <div className="sidebar">
                 <a href="/" class="sidebar-container">
-                    <img class="sidebar-logo" src='OIMS.png'></img>
+                    <img class="sidebar-logo" src='iyte_logo.png'></img>
                 </a>
                 <button className="btn btn-light w-100 mt-2 pt-2 pb-2">Home</button>
                 <button className="btn btn-light w-100 mt-2">Company Registration Requests</button>
@@ -43,9 +43,9 @@ function Announcements() {
                                         <p className="card-text" onClick={handleContentClick} style={{cursor: 'pointer'}}>{announcement.content}</p>
                                         <div className="btn-group">
                                             <button onClick={() => handleActionClick('Approve', announcement.id)} className="btn btn-success mr-1">Approve</button>
-                                            <button onClick={() => handleActionClick('Feedback', announcement.id)} className="btn btn-info mr-1">Feedback</button>
-                                            <button onClick={() => handleActionClick('Disapprove', announcement.id)} className="btn btn-warning mr-1">Disapprove</button>
-                                            <button onClick={() => handleActionClick('Ban', announcement.id)} className="btn btn-danger">Ban</button>
+                                            <button onClick={() => handleActionClick('Feedback', announcement.id)} className="btn btn-success mr-1">Feedback</button>
+                                            <button onClick={() => handleActionClick('Disapprove', announcement.id)} className="btn btn-success mr-1">Disapprove</button>
+                                            <button onClick={() => handleActionClick('Ban', announcement.id)} className="btn btn-success">Ban</button>
                                         </div>
                                     </div>
                                 </div>

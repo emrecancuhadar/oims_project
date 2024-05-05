@@ -21,7 +21,7 @@ function StudentInternshipOpportunities() {
   return (
     <div className="student-homepage">
       <div className="sidebar">
-        <a href="/" class="sidebar-container">
+        <a href="/" className="sidebar-container">
           <img class="sidebar-logo" src="OIMS.png"></img>
         </a>
         <button
