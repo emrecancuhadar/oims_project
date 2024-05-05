@@ -72,7 +72,7 @@ function Signup() {
             valueAgain={passwordAgain}
             onChange={(isValid) => {}}
           />
-          <button type="submit">Sign Up</button>
+          <button className="sign-up-button"type="submit">Sign Up</button>
         </form>
         <p className="para" onClick={() => navigate("/company/login")}>
           Sign in now!
