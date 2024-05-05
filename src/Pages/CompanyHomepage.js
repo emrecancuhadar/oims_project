@@ -9,7 +9,7 @@ function CompanyHomepage() {
       <div className="company-homepage">
         <div className="sidebar">
           <a href="/" class="sidebar-container">
-            <img className="sidebar-logo" src="iyte_logo.png" alt="xd"></img>
+            <img className="sidebar-logo" src={require("../assets/images/iyte_logo.png")} alt="xd"></img>
           </a>
           <button
             onClick={() => navigate("/company/home")}

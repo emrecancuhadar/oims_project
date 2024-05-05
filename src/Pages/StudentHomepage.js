@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import  "../CSS/StudentHomepage.css";
+import "../CSS/StudentHomepage.css";
 
 function StudentHomepage() {
   const navigate = useNavigate();
@@ -9,7 +9,7 @@ function StudentHomepage() {
     <div className="student-homepage">
       <div className="sidebar">
         <a href="/" className="sidebar-container">
-          <img className="sidebar-logo" src="iyte_logo.png"></img>
+          <img className="sidebar-logo" src={require("../assets/images/iyte_logo.png")}></img>
         </a>
         <button
           onClick={() => navigate("/student/home")}

@@ -14,33 +14,44 @@
   width: 400px;
   margin: auto;
   border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
 }
 
 .company-login-container input[type="email"],
 input[type="password"],
 input[type="text"] {
   display: block;
-  margin: 3px 10px 10px 0;
-  width: 90%;
+  
+  width: 100%;
   height: 25px;
 }
+.company-login-container 
+input[type="password"]
+{
+  display: block;
+  width: 100%;
+  height: 25px;
+  
+}
+
 
 .company-login-container button {
   width: 50%;
   padding: 10px;
-  background-color: green;
+  background-color: #9a0e20;
   color: white;
   border: none;
   border-radius: 5px;
   align-items: center;
-  margin-left: 100px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   margin-top: 15px;
 }
 
 .company-login-container button:hover {
-  background-color: darkgreen;
+  background-color: darkred;
 }
 
 .company-login-container img.iyte_logo {
