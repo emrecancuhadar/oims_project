@@ -39,8 +39,8 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
              
             />
-            <button type="submit">Login</button>
           </label>
+          <button type="submit">Login</button>
         </form>
         <p className="para" onClick={() => navigate("/company/signup")}>
           Sign up now!
