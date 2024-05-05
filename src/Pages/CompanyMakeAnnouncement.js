@@ -8,7 +8,7 @@ function CompanyMakeAnnouncement() {
     <div className="compmakeann">
       <div className="student-homepage">
         <div className="sidebar">
-          <a href="/" class="sidebar-container">
+          <a href="/" className="sidebar-container">
             <img className="sidebar-logo" src="iyte_logo.png"></img>
           </a>
           <button
@@ -55,15 +55,11 @@ function CompanyMakeAnnouncement() {
                   aria-describedby="inputGroup-sizing-lg"
                 ></input>
               </div>
-              <div className="input-group input-group-lg">
-                <input
-                  type="file"
-                  className="form-control"
-                  id="inputGroupFile01"
-                ></input>
-                <label className="input-group-text" for="inputGroupFile01">
-                  Upload
+              <div className="input-group input-group-lg">       
+                <label htmlFor="file-upload" className="custom-file-upload">
+                Upload File
                 </label>
+                <input id="file-upload" type="file" style={{display:"none"}}/>
               </div>
             </div>
             <div className="col-md-3 container">
