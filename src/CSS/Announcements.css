@@ -53,7 +53,9 @@
 
 .announcements h1 {
     color: green;
-    padding: 20px;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    padding-left: 20px;
 }
 
 .announcement-list .announcement {
