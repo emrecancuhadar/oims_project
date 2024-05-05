@@ -56,3 +56,10 @@ input[type="text"] {
   text-decoration: underline;
   cursor: pointer;
 }
+.company-signup-container .para {
+  text-align: center;
+  color: #ae5c53 ;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  cursor: pointer;
+}
