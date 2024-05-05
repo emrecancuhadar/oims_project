@@ -33,15 +33,11 @@ input[type="text"] {
   width: 100%;
   height: 25px;
 }
-.company-login-container 
-input[type="password"]
-{
+.company-login-container input[type="password"] {
   display: block;
   width: 100%;
   height: 25px;
-  
 }
-
 
 .company-login-container button {
   width: 50%;
@@ -53,7 +49,7 @@ input[type="password"]
   align-items: center;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-top: 15px;
+  margin: 15px 0px;
 }
 
 .company-login-container button:hover {
