@@ -22,7 +22,7 @@ function Login() {
         />
         <form onSubmit={handleLogin}>
           <label>
-            Enter your E-Mail:
+            E-mail:
             <input
               type="email"
               value={email}
@@ -31,13 +31,12 @@ function Login() {
             />
           </label>
           <label>
-            Enter your password:
+            Password:
             <input
               type="password"
               value={password}
               required
               onChange={(e) => setPassword(e.target.value)}
-             
             />
           </label>
           <button type="submit">Login</button>

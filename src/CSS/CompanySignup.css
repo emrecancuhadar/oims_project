@@ -14,10 +14,9 @@
   width: 400px;
   margin: auto;
   border-radius: 5px;
- 
- 
 }
-.company-singup-container form  {
+
+.company-signup-container form {
   display: flex;
   flex-direction: column;
 }
@@ -42,7 +41,7 @@ input[type="text"] {
   cursor: pointer;
   transition: background-color 0.3s ease;
   margin-top: 15px;
-  
+  align-self: center;
 }
 
 .company-signup-container button:hover {
@@ -58,8 +57,15 @@ input[type="text"] {
 
 .company-signup-container .para {
   text-align: center;
-  color: #ae5c53 ;
+  color: darkblue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.company-signup-container .para {
+  text-align: center;
+  color: #ae5c53;
   text-decoration: underline;
   text-underline-offset: 5px;
   cursor: pointer;
 }
+
