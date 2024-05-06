@@ -18,13 +18,13 @@ function CompanyHomepage() {
             Home
           </button>
           <button
-            onClick={() => navigate("/registrationrequests")}
+            onClick={() => navigate("/admin/registrationrequests")}
             className="btn btn-light w-100 mt-2 pt-2 pb-2"
           >
             Company Registration Requests
           </button>
           <button
-            onClick={() => navigate("/announcementrequests")}
+            onClick={() => navigate("/admin/announcementrequests")}
             className="btn btn-light w-100 mt-2 pt-2 pb-2"
           >
             Announcement Requests

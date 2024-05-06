@@ -37,7 +37,9 @@ function App() {
             path="/internship-opportunities"
             element={<StudentInternshipOpportunities />}
           />
-          <Route path="/adminannouncementrequests" element={<AdminAnnouncementRequests />} />
+          <Route path="/admin/announcementrequests" element={<AdminAnnouncementRequests />} />
+          <Route path="/admin/homepage" element={<SystemAdminHomepage />} />
+          <Route path="/admin/registrationrequestspage" element={<AdminRegistrationRequestsPage />} />
         </Routes>
       </div>
     </Router>

@@ -1,5 +1,6 @@
 import React from 'react';
 import "../CSS/AdminAnnouncementRequests.css"
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons';
 
@@ -10,6 +11,8 @@ const announcements = [
 ];
 
 function AdminAnnouncementRequests() {
+    const navigate = useNavigate();
+
     const handleActionClick = (action, id) => {
         alert(`${action} clicked for announcement ${id}`);
     };
@@ -25,14 +28,16 @@ function AdminAnnouncementRequests() {
                 <a href="/" className="sidebar-container">
                 <img className="sidebar-logo" src={require("../assets/images/iyte_logo.png")} alt="xd"></img>
                 </a>
-                <button className="btn btn-light w-100 mt-2 pt-2 pb-2">Home</button>
+                <button 
+                onClick={() => navigate("/admin/homepage")}
+                className="btn btn-light w-100 mt-2 pt-2 pb-2">Home</button>
                 <button className="btn btn-light w-100 mt-2">Company Registration Requests</button>
                 <button className="btn btn-light w-100 mt-2">Announcement Requests</button>
             </div>
             <div className="main-content">
                 <div className="header d-flex align-items-center">
                     <i className="far fa-user-circle user-icon mr-2"></i>
-                    <span className="user-name">Name Surname - System Admin</span>
+                    <span className="user-name">Iztech User - System Admin</span>
                 </div>
                 <div className="announcements align-items-center">
                     <h1>Announcement Requests</h1>
