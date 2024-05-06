@@ -6,9 +6,7 @@ function CompanySidebar () {
     const navigate = useNavigate();
     return (
         <div className={styles.companySidebar}>
-          <a href="/" class="sidebar-container">
-            <img className="sidebar-logo" src={require("../../assets/images/iyte_logo.png")} alt="xd"></img>
-          </a>
+          <img className="sidebar-logo" src={require("../../assets/images/iyte_logo.png")} alt="Problem"></img>
           <button
             onClick={() => navigate("/company/home")}
             className="btn btn-light w-100 mt-2 pt-2 pb-2"
