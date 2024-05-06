@@ -42,10 +42,10 @@ function Announcements() {
                                         <h5 className="card-title">{announcement.title}</h5>
                                         <p className="card-text" onClick={handleContentClick} style={{cursor: 'pointer'}}>{announcement.content}</p>
                                         <div className="btn-group">
-                                            <button onClick={() => handleActionClick('Approve', announcement.id)} className="btn btn-success mr-1">Approve</button>
-                                            <button onClick={() => handleActionClick('Feedback', announcement.id)} className="btn btn-success mr-1">Feedback</button>
-                                            <button onClick={() => handleActionClick('Disapprove', announcement.id)} className="btn btn-success mr-1">Disapprove</button>
-                                            <button onClick={() => handleActionClick('Ban', announcement.id)} className="btn btn-success">Ban</button>
+                                            <button onClick={() => handleActionClick('Approve', announcement.id)} className="btn btn-dark mr-1">Approve</button>
+                                            <button onClick={() => handleActionClick('Feedback', announcement.id)} className="btn btn-dark mr-1">Feedback</button>
+                                            <button onClick={() => handleActionClick('Disapprove', announcement.id)} className="btn btn-dark mr-1">Disapprove</button>
+                                            <button onClick={() => handleActionClick('Ban', announcement.id)} className="btn btn-dark">Ban</button>
                                         </div>
                                     </div>
                                 </div>

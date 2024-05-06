@@ -34,7 +34,7 @@ function CompanyMyAnnouncements() {
           </button>
           <button
             onClick={() => navigate("/my-announcements")}
-            className="btn btn-success w-100 mt-2 pt-2 pb-2"
+            className="btn btn-dark w-100 mt-2 pt-2 pb-2"
           >
             My Announcements
           </button>
@@ -79,7 +79,7 @@ function CompanyMyAnnouncements() {
                           onClick={() =>
                             handleActionClick("Edit", announcement.id)
                           }
-                          className="btn btn-success"
+                          className="btn btn-dark"
                         >
                           Edit
                         </button>

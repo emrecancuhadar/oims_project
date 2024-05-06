@@ -13,7 +13,7 @@ function CompanyHomepage() {
           </a>
           <button
             onClick={() => navigate("/company/home")}
-            className="btn btn-success w-100 mt-2 pt-2 pb-2"
+            className="btn btn-darkk w-100 mt-2 pt-2 pb-2"
           >
             Home
           </button>

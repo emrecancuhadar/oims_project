@@ -32,7 +32,7 @@ function StudentInternshipOpportunities() {
         </button>
         <button
           onClick={() => navigate("/internship-opportunities")}
-          className="btn btn-success w-100 mt-2 pt-2 pb-2"
+          className="btn btn-dark w-100 mt-2 pt-2 pb-2"
         >
           Internship Opportunities
         </button>
@@ -64,7 +64,7 @@ function StudentInternshipOpportunities() {
                     </h5>
                     <button
                       onClick={() => handleActionClick("Apply", internship.id)}
-                      className="btn btn-success"
+                      className="btn btn-dark"
                     >
                       Apply
                     </button>
