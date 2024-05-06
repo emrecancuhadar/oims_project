@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import Announcements from "./Pages/Announcements";
+import AdminAnnouncementRequests from "./Pages/AdminAnnouncementRequests";
 import CompanyHomepage from "./Pages/CompanyHomepage";
 import CompanyLogin from "./Pages/CompanyLogin";
 import CompanyMakeAnnouncement from "./Pages/CompanyMakeAnnouncement";
@@ -34,7 +34,7 @@ function App() {
             path="/internship-opportunities"
             element={<StudentInternshipOpportunities />}
           />
-          <Route path="/announcements" element={<Announcements />} />
+          <Route path="/adminannouncementrequests" element={<AdminAnnouncementRequests />} />
         </Routes>
       </div>
     </Router>

@@ -1,5 +1,5 @@
 import React from 'react';
-import "../CSS/Announcements.css"
+import "../CSS/AdminAnnouncementRequests.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons';
 
@@ -9,7 +9,7 @@ const announcements = [
     { id: 3, title: "Announcement 3", content: "Deadline: 06.05.2024" },
 ];
 
-function Announcements() {
+function AdminAnnouncementRequests() {
     const handleActionClick = (action, id) => {
         alert(`${action} clicked for announcement ${id}`);
     };
@@ -64,4 +64,4 @@ function Announcements() {
     );
 }
 
-export default Announcements;
+export default AdminAnnouncementRequests;
