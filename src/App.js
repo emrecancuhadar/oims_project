@@ -11,6 +11,9 @@ import StudentHomepage from "./Pages/StudentHomepage";
 import StudentInternshipOpportunities from "./Pages/StudentInternshipOpportunities";
 import StudentLoginPage from "./Pages/StudentLoginPage";
 import UserSelection from "./Pages/UserSelection";
+import SystemAdminHomepage from './Pages/SystemAdminHomePage' 
+import RegistrationRequestsPage from './Pages/RegistrationRequestsPage'
+
 
 function App() {
   return (
@@ -35,8 +38,11 @@ function App() {
             path="/internship-opportunities"
             element={<StudentInternshipOpportunities />}
           />
-          <Route path="/announcements" element={<Announcements />} />
+          <Route path="admin/home" element={<SystemAdminHomepage />} />
+          <Route path="registrationrequests" element={<RegistrationRequestsPage />} />
+          <Route path="/announcementrequests" element={<Announcements />} />
           <Route path="/announcement-detail" element={<AnnouncementDetail />} />
+          
         </Routes>
       </div>
     </Router>
