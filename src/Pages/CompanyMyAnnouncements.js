@@ -26,7 +26,7 @@ function CompanyMyAnnouncements() {
       <div className="student-homepage">
         <CompanySidebar />
         <div className="main-content">
-        <div className="header d-flex align-items-center">
+          <div className="header d-flex align-items-center">
             <Header username={"Sample Company"} />
           </div>
           <div className="announcements-page-container row">
@@ -44,7 +44,7 @@ function CompanyMyAnnouncements() {
                         {announcement.title}
                       </h5>
                       <div
-                        class="btn-group"
+                        className="btn-group"
                         role="group"
                         aria-label="Basic mixed styles example"
                       >

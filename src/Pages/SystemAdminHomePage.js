@@ -8,8 +8,12 @@ function CompanyHomepage() {
     <div className="adminhome">
       <div className="admin-homepage">
         <div className="admin-sidebar">
-          <a href="/" class="sidebar-container">
-            <img className="sidebar-logo" src={require("../assets/images/iyte_logo.png")} alt="xd"></img>
+          <a href="/" className="sidebar-container">
+            <img
+              className="sidebar-logo"
+              src={require("../assets/images/iyte_logo.png")}
+              alt="xd"
+            ></img>
           </a>
           <button
             onClick={() => navigate("/admin/homepage")}
@@ -21,7 +25,7 @@ function CompanyHomepage() {
             onClick={() => navigate("/admin/registrationrequests")}
             className="btn btn-light w-100 mt-2 pt-2 pb-2"
           >
-           Registration Requests
+            Registration Requests
           </button>
           <button
             onClick={() => navigate("/admin/announcementrequests")}
