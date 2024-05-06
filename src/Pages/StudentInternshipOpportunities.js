@@ -19,7 +19,7 @@ function StudentInternshipOpportunities() {
   const navigate = useNavigate();
 
   return (
-    <div className="student-homepage">
+    <div className="student-internshipOpps">
       <div className="sidebar">
         <a href="/" className="sidebar-container">
           <img className="sidebar-logo" src={require("../assets/images/iyte_logo.png")} alt="xd"></img>

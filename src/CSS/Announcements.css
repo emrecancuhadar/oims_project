@@ -4,13 +4,12 @@
 }
 
 .sidebar {
-    background-color: #9a0e20;
+    background-color: #9a0e20; /* Dark Green Shade */
     padding: 20px;
     width: 250px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 1000px;
 }
 
 .home-icon {
@@ -26,7 +25,7 @@
 
 .header {
     background-color: #e8f5e9;
-    color: darkred;
+    color: green;
     padding: 20px;
     display: flex;
     justify-content: flex-end;
@@ -41,25 +40,27 @@
 .user-info {
     display: flex;
     align-items: center;
-    color: darkred;
+    color: green;
+   
+    
 }
 
 .user-name, .role {
     font-size: 16px;
 }
 
-/*.announcements h1 {
-    color: darkred;
+.announcements h1 {
+    color: green;
     padding-top: 60px;
     padding-bottom: 60px;
     padding-left: 20px;
-}*/
+}
 
 .announcement-list .announcement {
     background-color: white;
     padding: 15px;
     margin: 5px 20px;
-    border-left: 5px solid darkred;
+    border-left: 5px solid green;
 }
 .announcement {
     padding: 10px;
@@ -68,7 +69,7 @@
     text-decoration: none; /* Removes underline from links */
     background-color: white; /* Background color for contrast */
     margin: 5px 0; /* Spacing for better readability */
-    border-left: 5px solid darkred; /* Optional style */
+    border-left: 5px solid green; /* Optional style */
 }
 
 .announcement:hover {
