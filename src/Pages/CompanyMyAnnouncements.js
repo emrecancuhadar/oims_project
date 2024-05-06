@@ -26,7 +26,9 @@ function CompanyMyAnnouncements() {
       <div className="student-homepage">
         <CompanySidebar />
         <div className="main-content">
-          <Header />
+        <div className="header d-flex align-items-center">
+            <Header username={"Sample Company"} />
+          </div>
           <div className="announcements-page-container row">
             <h1 className="page-title">My Announcements</h1>
             <div className="row announcements-container">

@@ -11,7 +11,9 @@ function CompanyHomepage() {
       <div className="company-homepage">
         <CompanySidebar />
         <div className="main-content">
-          <Header />
+        <div className="header d-flex align-items-center">
+            <Header username={"Sample Company"} />
+          </div>
           <div className="homepage row">
             <div className="title-container">
               <h1 className="page-title">Welcome to OIMS!</h1>
