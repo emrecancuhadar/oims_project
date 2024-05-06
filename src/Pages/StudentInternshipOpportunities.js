@@ -19,6 +19,7 @@ function StudentInternshipOpportunities() {
   const navigate = useNavigate();
 
   return (
+    
     <div className="student-internshipOpps">
       <div className="sidebar">
         <a href="/" className="sidebar-container">
