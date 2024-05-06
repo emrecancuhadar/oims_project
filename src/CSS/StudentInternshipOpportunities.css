@@ -8,7 +8,7 @@ i {
     flex-direction: row;
     background-color: #ffffff;  
     height: 100vh;
-    width: 95vw;
+    width: 100vw;
     
 }
 
@@ -37,6 +37,7 @@ i {
     gap: 20px;
     padding: 20px 40px;
     justify-content: center;
+    margin: 0 !important    ;
 }
 
 .card {

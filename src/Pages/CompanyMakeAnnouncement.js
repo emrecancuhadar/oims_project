@@ -7,7 +7,7 @@ function CompanyMakeAnnouncement() {
   return (
     <div className="compmakeann">
       <div className="company-homepage">
-        <div className="sidebar">
+        <div className="makeAnnouncement-sidebar">
           <a href="/" className="sidebar-container">
             <img className="sidebar-logo" src={require("../assets/images/iyte_logo.png")} alt="xd"></img>
           </a>

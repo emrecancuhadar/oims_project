@@ -7,7 +7,7 @@ function CompanyHomepage() {
   return (
     <div className="comphome">
       <div className="company-homepage">
-        <div className="sidebar">
+        <div className="company-sidebar">
           <a href="/" class="sidebar-container">
             <img className="sidebar-logo" src={require("../assets/images/iyte_logo.png")} alt="xd"></img>
           </a>
