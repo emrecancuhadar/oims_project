@@ -19,7 +19,7 @@ function formatDate(date) {
 function CompanyMakeAnnouncement() {
   const [title, setTitle] = useState("");
   const [file, setFile] = useState(null);
-  const [deadline, setDeadline] = useState(new Date());
+  const [deadline, setDeadline] = useState(formatDate(new Date()));
 
   const onSend = () => {
     const formData = new FormData();
@@ -83,7 +83,7 @@ function CompanyMakeAnnouncement() {
                   onChange={(e) => setFile(e.target.files[0])}
                 />
               </div>
-              <button className="send-btn btn" onClick={onSend}>
+              <button className="send-btn btn" onClick={() => onSend()}>
                 Send Announcement Request
               </button>
             </div>
