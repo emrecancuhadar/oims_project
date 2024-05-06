@@ -1,7 +1,7 @@
 import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../CSS/AdminAnnouncementRequests.css";
 import Header from "../components/Header";
 import SystemAdminSidebar from "../components/SystemAdminSidebar";
