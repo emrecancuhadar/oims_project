@@ -11,7 +11,7 @@ import StudentInternshipOpportunities from "./Pages/StudentInternshipOpportuniti
 import StudentLoginPage from "./Pages/StudentLoginPage";
 import UserSelection from "./Pages/UserSelection";
 import SystemAdminHomepage from './Pages/SystemAdminHomePage' 
-import RegistrationRequestsPage from './Pages/RegistrationRequestsPage'
+import AdminRegistrationRequestsPage from './Pages/AdminRegistrationRequestsPage'
 
 
 function App() {
