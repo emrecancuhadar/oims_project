@@ -11,7 +11,7 @@ import StudentInternshipOpportunities from "./Pages/StudentInternshipOpportuniti
 import StudentLoginPage from "./Pages/StudentLoginPage";
 import UserSelection from "./Pages/UserSelection";
 import SystemAdminHomepage from './Pages/SystemAdminHomePage' 
-import AdminRegistrationRequestsPage from './Pages/AdminRegistrationRequestsPage'
+import AdminRegistrationRequests from './Pages/AdminRegistrationRequests'
 
 
 function App() {
@@ -39,7 +39,7 @@ function App() {
           />
           <Route path="/admin/announcementrequests" element={<AdminAnnouncementRequests />} />
           <Route path="/admin/homepage" element={<SystemAdminHomepage />} />
-          <Route path="/admin/registrationrequestspage" element={<AdminRegistrationRequestsPage />} />
+          <Route path="/admin/registrationrequests" element={<AdminRegistrationRequests />} />
         </Routes>
       </div>
     </Router>
