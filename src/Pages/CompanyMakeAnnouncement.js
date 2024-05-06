@@ -6,10 +6,10 @@ function CompanyMakeAnnouncement() {
   const navigate = useNavigate();
   return (
     <div className="compmakeann">
-      <div className="student-homepage">
+      <div className="company-homepage">
         <div className="sidebar">
           <a href="/" className="sidebar-container">
-            <img className="sidebar-logo" src="iyte_logo.png"></img>
+            <img className="sidebar-logo" src={require("../assets/images/iyte_logo.png")} alt="xd"></img>
           </a>
           <button
             onClick={() => navigate("/company/home")}
@@ -25,7 +25,7 @@ function CompanyMakeAnnouncement() {
           </button>
           <button
             onClick={() => navigate("/make-announcement")}
-            className="btn btn-success w-100 mt-2 pt-2 pb-2"
+            className="btn btn-dark w-100 mt-2 pt-2 pb-2"
           >
             Make Announcement
           </button>
@@ -42,7 +42,7 @@ function CompanyMakeAnnouncement() {
             <i className="far fa-user-circle user-icon"></i>
           </div>
           <div className="announcements container">
-            <h1>Make Announcement</h1>
+            <h1 className="page-title">Make Announcement</h1>
             <div className="row announcement-container">
               <div className="input-group input-group-lg">
                 <span className="input-group-text" id="inputGroup-sizing-lg">
@@ -55,15 +55,12 @@ function CompanyMakeAnnouncement() {
                   aria-describedby="inputGroup-sizing-lg"
                 ></input>
               </div>
-              <div className="input-group input-group-lg">       
-                <label htmlFor="file-upload" className="custom-file-upload">
-                Upload File
-                </label>
-                <input id="file-upload" type="file" style={{display:"none"}}/>
+              <div className="input-group input-group-lg">
+                <input id="file-upload" type="file" className="form-control" />
               </div>
             </div>
             <div className="col-md-3 container">
-              <button className="btn btn-success send-btn">
+              <button className="btn btn-dark send-btn">
                 Send Announcement Request
               </button>
             </div>

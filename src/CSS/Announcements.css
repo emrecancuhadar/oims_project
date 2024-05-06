@@ -25,7 +25,7 @@
 
 .header {
     background-color: #e8f5e9;
-    color: green;
+    color: darkred;
     padding: 20px;
     display: flex;
     justify-content: flex-end;
@@ -40,9 +40,7 @@
 .user-info {
     display: flex;
     align-items: center;
-    color: green;
-   
-    
+    color: darkred;
 }
 
 .user-name, .role {
@@ -50,7 +48,7 @@
 }
 
 .announcements h1 {
-    color: green;
+    color: darkred;
     padding-top: 60px;
     padding-bottom: 60px;
     padding-left: 20px;
@@ -60,7 +58,7 @@
     background-color: white;
     padding: 15px;
     margin: 5px 20px;
-    border-left: 5px solid green;
+    border-left: 5px solid darkred;
 }
 .announcement {
     padding: 10px;
@@ -69,7 +67,7 @@
     text-decoration: none; /* Removes underline from links */
     background-color: white; /* Background color for contrast */
     margin: 5px 0; /* Spacing for better readability */
-    border-left: 5px solid green; /* Optional style */
+    border-left: 5px solid darkred; /* Optional style */
 }
 
 .announcement:hover {

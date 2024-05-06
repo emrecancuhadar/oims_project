@@ -14,7 +14,7 @@ h2 {
 
 .student-homepage .header  {
     background-color: #ffffff;
-    color: green;
+    color: darkred;
     padding: 20px;
     display: flex;
     justify-content: flex-end;
@@ -23,7 +23,7 @@ h2 {
 }
 
 .home-page h1 {
-    color: green;
+    color: darkred;
     padding: 20px 20px 20px 250px;
 }
 

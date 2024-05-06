@@ -9,7 +9,7 @@ i {
 
 .header {
     background-color: #e8f5e9;
-    color: green;
+    color: darkred;
     padding: 20px;
     display: flex;
     justify-content: flex-end;
@@ -22,7 +22,7 @@ i {
 }
 
 .announcements h1 {
-    color: green;
+    color: darkred;
     padding: 20px 20px 20px 50px;
 }
 

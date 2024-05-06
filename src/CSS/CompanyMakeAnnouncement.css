@@ -2,9 +2,18 @@ i {
   margin: 0 15px;
 }
 
-.student-homepage {
+.sidebar-logo {
+  width: 100px;
+}
+
+.company-homepage {
   display: flex;
   height: 100vh;
+}
+
+.page-title {
+  color: darkred;
+  padding: 20px 20px 20px 250px;
 }
 
 .header {
