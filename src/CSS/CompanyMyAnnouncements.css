@@ -2,11 +2,6 @@ i {
     margin: 0 15px;
 }
 
-.student-homepage {
-    display: flex;
-    height: 100vh;
-}
-
 .header {
     background-color: #ffffff;
     color: darkred;
