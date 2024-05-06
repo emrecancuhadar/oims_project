@@ -10,7 +10,7 @@ function UserSelection() {
         <img
           src={require("../assets/images/iyte_logo.png")}
           alt="OIMS Logo"
-          width="130"
+          width="250"
         />
         <h1>Welcome to OIMS!</h1>
         <h3>Please select your user type</h3>
