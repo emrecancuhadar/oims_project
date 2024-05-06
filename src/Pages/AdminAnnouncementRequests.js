@@ -31,8 +31,10 @@ function AdminAnnouncementRequests() {
                 <button 
                 onClick={() => navigate("/admin/homepage")}
                 className="btn btn-light w-100 mt-2 pt-2 pb-2">Home</button>
-                <button className="btn btn-light w-100 mt-2">Company Registration Requests</button>
-                <button className="btn btn-light w-100 mt-2">Announcement Requests</button>
+                <button 
+                onClick={() => navigate("/admin/registrationrequests")}
+                className="btn btn-light w-100 mt-2 pt-2 pb-2">Registration Requests</button>
+                <button className="btn btn-dark w-100 mt-2 pt-2 pb-2">Announcement Requests</button>
             </div>
             <div className="main-content">
                 <div className="header d-flex align-items-center">
