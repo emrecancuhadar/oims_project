@@ -1,34 +1,41 @@
-import React from 'react';
-import "../CSS/AdminAnnouncementRequests.css"
-import { useNavigate } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons';
-import SystemAdminSidebar from '../components/SystemAdminSidebar';
+import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios";
+import React from "react";
+import "../CSS/AdminAnnouncementRequests.css";
 import Header from "../components/Header";
-
-const announcements = [
-    { id: 1, title: "Announcement 1", content: "Deadline: 06.05.2024" },
-    { id: 2, title: "Announcement 2", content: "Deadline: 06.05.2024" },
-    { id: 3, title: "Announcement 3", content: "Deadline: 06.05.2024" },
-];
+import SystemAdminSidebar from "../components/SystemAdminSidebar";
 
 function AdminAnnouncementRequests() {
-    const navigate = useNavigate();
+  const [announcements, setAnnouncements] = useState([]);
 
-    const handleActionClick = (action, id) => {
-        alert(`${action} clicked for announcement ${id}`);
-    };
+  const handleActionClick = (action, id) => {
+    alert(`${action} clicked for announcement ${id}`);
+  };
 
-    const handleContentClick = () => {
-        // Placeholder for opening PDF
-        alert('Content Clicked!');
-    };
+  const handleContentClick = () => {
+    // Placeholder for opening PDF
+    alert("Content Clicked!");
+  };
 
-    return (
-        <div className="admin-annoRequest">
-            <SystemAdminSidebar/>
-            <div className="main-content">
-            <div className="header d-flex align-items-center">
+  useEffect(() => {
+    axios.get("http://localhost:8081/announcements/list").then((response) => {
+      const announcementRequests = response.data;
+      setAnnouncements(
+        announcementRequests.map(({ title, deadline, content }) => ({
+          title,
+          deadline,
+          content,
+        }))
+      );
+    });
+  }, []);
+
+  return (
+    <div className="admin-annoRequest">
+      <SystemAdminSidebar />
+      <div className="main-content">
+        <div className="header d-flex align-items-center">
           <Header username={"System Admin"} />
         </div>
                 <div className="announcements align-items-center">
@@ -38,20 +45,19 @@ function AdminAnnouncementRequests() {
                             <div key={announcement.id} className="col-sm-6 col-md-4">
                                 <div className="card">
                                     <div className="card-body">
-                                        <div className="announcement-details">
+                                        <div className="announcement-details d-flex">
                                             <h5 className="card-title">{announcement.title}</h5>
+                                        </div>
+                                        <div className="announcement-text">
                                             <p className="card-text" onClick={handleContentClick} style={{cursor: 'pointer'}}>{announcement.content}</p>
+                                            <FontAwesomeIcon icon= {faCheck} color="green" size='2x' onClick={() => handleContentClick()} style={{cursor: 'pointer'}}/>
+                                            <FontAwesomeIcon icon= {faXmark} color="red" size='2x' onClick={() => handleContentClick()} style={{cursor: 'pointer'}}/>    
                                         </div>
                                         <div className="btn-group">
                                                 <button onClick={() => handleActionClick('Feedback', announcement.id)} className="btn btn-primary mr-1">Feedback</button>
                                                 <button onClick={() => handleActionClick('Ban', announcement.id)} className="btn btn-danger">Ban</button>
-                                        </div>
-                                        </div>
-                                        <div className="announcement-text">
-                                            <FontAwesomeIcon icon= {faCheck} color="green" size='2x' onClick={() => handleContentClick()} style={{cursor: 'pointer'}}/>
-                                            <FontAwesomeIcon icon= {faXmark} color="red" size='2x' onClick={() => handleContentClick()} style={{cursor: 'pointer'}}/>    
-                                        </div>
-                                    
+                                            </div>
+                                    </div>
                                 </div>
                             </div>
                         ))}
