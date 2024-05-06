@@ -3,6 +3,7 @@ import "../CSS/AdminAnnouncementRequests.css"
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons';
+import SystemAdminSidebar from '../components/SystemAdminSidebar';
 
 const announcements = [
     { id: 1, title: "Announcement 1", content: "Deadline: 06.05.2024" },
@@ -24,18 +25,7 @@ function AdminAnnouncementRequests() {
 
     return (
         <div className="admin-homepage">
-            <div className="sidebar">
-                <a href="/" className="sidebar-container">
-                <img className="sidebar-logo" src={require("../assets/images/iyte_logo.png")} alt="xd"></img>
-                </a>
-                <button 
-                onClick={() => navigate("/admin/homepage")}
-                className="btn btn-light w-100 mt-2 pt-2 pb-2">Home</button>
-                <button 
-                onClick={() => navigate("/admin/registrationrequests")}
-                className="btn btn-light w-100 mt-2 pt-2 pb-2">Registration Requests</button>
-                <button className="btn btn-dark w-100 mt-2 pt-2 pb-2">Announcement Requests</button>
-            </div>
+            <SystemAdminSidebar/>
             <div className="main-content">
                 <div className="header d-flex align-items-center">
                     <i className="far fa-user-circle user-icon mr-2"></i>

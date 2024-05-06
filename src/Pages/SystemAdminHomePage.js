@@ -1,39 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../CSS/SystemAdminHomepage.css";
+import SystemAdminSidebar from "../components/SystemAdminSidebar";
 
 function CompanyHomepage() {
   const navigate = useNavigate();
   return (
     <div className="adminhome">
       <div className="admin-homepage">
-        <div className="admin-sidebar">
-          <a href="/" className="sidebar-container">
-            <img
-              className="sidebar-logo"
-              src={require("../assets/images/iyte_logo.png")}
-              alt="xd"
-            ></img>
-          </a>
-          <button
-            onClick={() => navigate("/admin/homepage")}
-            className="btn btn-dark w-100 mt-2 pt-2 pb-2"
-          >
-            Home
-          </button>
-          <button
-            onClick={() => navigate("/admin/registrationrequests")}
-            className="btn btn-light w-100 mt-2 pt-2 pb-2"
-          >
-            Registration Requests
-          </button>
-          <button
-            onClick={() => navigate("/admin/announcementrequests")}
-            className="btn btn-light w-100 mt-2 pt-2 pb-2"
-          >
-            Announcement Requests
-          </button>
-        </div>
+        <SystemAdminSidebar />
         <div className="main-content">
           <div className="header d-flex align-items-center">
             <span className="user-name">Iztech User - System Admin</span>

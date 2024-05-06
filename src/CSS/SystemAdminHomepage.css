@@ -53,18 +53,6 @@ h2 {
     padding: 20px 40px;
 }
 
-.admin-sidebar {
-    background-color: #9a0e20; /* Dark Green Shade */
-    padding: 20px;
-    width: 250px; /* Fixed width */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-shrink: 0;
-
-    height: auto; /* Adjust height automatically */
-}
-
 .main-content {
     flex-grow: 1; /* Takes the remaining space */
     overflow: auto; /* Adds scroll if content overflows */
