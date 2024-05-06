@@ -42,19 +42,36 @@
     align-items: center;
     color: green;
    
-    
 }
 
 .user-name, .role {
     font-size: 16px;
 }
 
+
 .announcements h1 {
-    color: green;
-    padding-top: 60px;
-    padding-bottom: 60px;
-    padding-left: 20px;
+    color: darkred;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: 3%;
+    margin-top: 3%;
 }
+
+.announcement-text {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    width: 119%;
+}
+.approve-disapprove {
+   display: flex;
+   flex-direction: row;
+   justify-self: center;
+   
+}
+
 
 .announcement-list .announcement {
     background-color: white;
@@ -78,7 +95,7 @@
 /* Keep your existing styles for layout */
 
 .btn-group button {
-    margin-right: 4px; /* Adds spacing between buttons */
+    margin-right: 3%; /* Adds spacing between buttons */
     
 }
 
@@ -97,4 +114,11 @@
 .row {
     margin-left: 0;
     margin-right: 0;
+}
+
+
+.announcements {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }

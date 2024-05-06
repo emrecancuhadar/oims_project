@@ -1,6 +1,5 @@
 import React from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import AnnouncementDetail from "./Pages/AnnouncementDetail";
 import Announcements from "./Pages/Announcements";
 import CompanyHomepage from "./Pages/CompanyHomepage";
 import CompanyLogin from "./Pages/CompanyLogin";
@@ -36,7 +35,6 @@ function App() {
             element={<StudentInternshipOpportunities />}
           />
           <Route path="/announcements" element={<Announcements />} />
-          <Route path="/announcement-detail" element={<AnnouncementDetail />} />
         </Routes>
       </div>
     </Router>
