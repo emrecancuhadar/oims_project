@@ -24,7 +24,7 @@ function CompanyMyAnnouncements() {
       <div className="student-homepage">
         <div className="sidebar">
           <a href="/" class="sidebar-container">
-            <img className="sidebar-logo" src="iyte_logo.png"></img>
+            <img className="sidebar-logo" src={require("../assets/images/iyte_logo.png")}></img>
           </a>
           <button
             onClick={() => navigate("/company/home")}
