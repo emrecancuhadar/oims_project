@@ -12,6 +12,8 @@ import StudentHomepage from "./Pages/StudentHomepage";
 import StudentInternshipOpportunities from "./Pages/StudentInternshipOpportunities";
 import SystemAdminHomepage from "./Pages/SystemAdminHomePage";
 import UserSelection from "./Pages/UserSelection";
+import ResetPassword from "./Pages/ResetPassword";
+import SetNewPassword from "./Pages/SetNewPassword";
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
           <Route path="company/login" element={<CompanyLogin />} />
           <Route path="company/signup" element={<CompanySignup />} />
           <Route path="/company/home" element={<CompanyHomepage />} />
+          <Route path="/company/resetpassword" element={<ResetPassword />} />
+          <Route path="/company/setnewpassword" element={<SetNewPassword />} />
           <Route
             path="/make-announcement"
             element={<CompanyMakeAnnouncement />}
