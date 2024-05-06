@@ -1,0 +1,19 @@
+.header {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.username {
+  color: #9a0e20;
+  font-size: 18px;
+}
+
+.logoutBtn {
+  border: 1px solid #9a0e20;
+  outline: none;
+  background: none;
+  border-radius: 5px;
+  color: #9a0e20;
+  font-size: 18px;
+}

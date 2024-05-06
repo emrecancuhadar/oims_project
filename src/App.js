@@ -1,18 +1,17 @@
 import React from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import AdminAnnouncementRequests from "./Pages/AdminAnnouncementRequests";
+import AdminRegistrationRequests from "./Pages/AdminRegistrationRequests";
 import CompanyHomepage from "./Pages/CompanyHomepage";
 import CompanyLogin from "./Pages/CompanyLogin";
 import CompanyMakeAnnouncement from "./Pages/CompanyMakeAnnouncement";
 import CompanyMyAnnouncements from "./Pages/CompanyMyAnnouncements";
 import CompanySignup from "./Pages/CompanySignup";
+import IztechUserLoginPage from "./Pages/IztechUserLoginPage";
 import StudentHomepage from "./Pages/StudentHomepage";
 import StudentInternshipOpportunities from "./Pages/StudentInternshipOpportunities";
-import StudentLoginPage from "./Pages/StudentLoginPage";
+import SystemAdminHomepage from "./Pages/SystemAdminHomePage";
 import UserSelection from "./Pages/UserSelection";
-import SystemAdminHomepage from './Pages/SystemAdminHomePage' 
-import AdminRegistrationRequests from './Pages/AdminRegistrationRequests'
-
 
 function App() {
   return (
@@ -31,15 +30,21 @@ function App() {
             path="/my-announcements"
             element={<CompanyMyAnnouncements />}
           />
-          <Route path="/iztech-user/login" element={<StudentLoginPage />} />
+          <Route path="/iztech-user/login" element={<IztechUserLoginPage />} />
           <Route path="/student/home" element={<StudentHomepage />} />
           <Route
             path="/internship-opportunities"
             element={<StudentInternshipOpportunities />}
           />
-          <Route path="/admin/announcementrequests" element={<AdminAnnouncementRequests />} />
+          <Route
+            path="/admin/announcementrequests"
+            element={<AdminAnnouncementRequests />}
+          />
           <Route path="/admin/homepage" element={<SystemAdminHomepage />} />
-          <Route path="/admin/registrationrequests" element={<AdminRegistrationRequests />} />
+          <Route
+            path="/admin/registrationrequests"
+            element={<AdminRegistrationRequests />}
+          />
         </Routes>
       </div>
     </Router>

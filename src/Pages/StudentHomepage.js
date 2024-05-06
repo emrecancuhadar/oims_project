@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../CSS/StudentHomepage.css";
+import Header from "../components/Header";
 
 function StudentHomepage() {
   const navigate = useNavigate();
@@ -9,7 +10,10 @@ function StudentHomepage() {
     <div className="student-homepage">
       <div className="sidebar">
         <a href="/" className="sidebar-container">
-          <img className="sidebar-logo" src={require("../assets/images/iyte_logo.png")}></img>
+          <img
+            className="sidebar-logo"
+            src={require("../assets/images/iyte_logo.png")}
+          ></img>
         </a>
         <button
           onClick={() => navigate("/student/home")}
@@ -32,8 +36,7 @@ function StudentHomepage() {
       </div>
       <div className="maincontent">
         <div className="header d-flex align-items-center">
-          <span className="username">Name Surname - Student</span>
-          <i className="far fa-user-circle user-icon"></i>
+          <Header username={"Test Student"} />
         </div>
         <div className="homepage row">
           <div className="container">

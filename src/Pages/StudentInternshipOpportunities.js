@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "../CSS/StudentInternshipOpportunities.css"
+import "../CSS/StudentInternshipOpportunities.css";
+import Header from "../components/Header";
 const internships = [
   { id: 1, title: "Internship 1" },
   { id: 2, title: "Internship 2" },
@@ -19,11 +20,14 @@ function StudentInternshipOpportunities() {
   const navigate = useNavigate();
 
   return (
-    
     <div className="student-internshipOpps">
       <div className="sidebar">
         <a href="/" className="sidebar-container">
-          <img className="sidebar-logo" src={require("../assets/images/iyte_logo.png")} alt="xd"></img>
+          <img
+            className="sidebar-logo"
+            src={require("../assets/images/iyte_logo.png")}
+            alt="xd"
+          ></img>
         </a>
         <button
           onClick={() => navigate("/student/home")}
@@ -46,8 +50,7 @@ function StudentInternshipOpportunities() {
       </div>
       <div className="main-content">
         <div className="header d-flex align-items-center">
-          <span className="user-name">Name Surname - Student</span>
-          <i className="far fa-user-circle user-icon"></i>
+          <Header username={"Test Student"} />
         </div>
         <div className="internships">
           <div className="title-container">
