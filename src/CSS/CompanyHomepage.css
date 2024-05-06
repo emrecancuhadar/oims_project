@@ -10,11 +10,17 @@ h2 {
     display: flex;
     height: 100vh;
 }
-
+.company-homepage .homepage {
+    display: flex;
+    /* gap: 10px; */
+    justify-content: center;
+    align-items: center;
+    margin: 0 !important;
+}
 .header {
     background-color: #e8f5e9;
     color: green;
-    padding: 20px;
+    padding: 10px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -22,8 +28,9 @@ h2 {
 }
 
 .homepage-container {
-    gap: 20px;
-    padding: 20px 250px;
+    gap: 10px;
+    padding: 0 !important;
+    margin: 0 !important;
 }
 
 .card {
