@@ -7,8 +7,8 @@ i {
     height: 100vh;
 }
 
-.header {
-    background-color: #e8f5e9;
+.student-homepage .header {
+    background-color: #ffffff;
     color: green;
     padding: 20px;
     display: flex;
@@ -41,4 +41,8 @@ i {
 
 .card-title {
     margin-bottom: 30px;
+}
+
+.student-homepage {
+    background-color: #ffffff;
 }

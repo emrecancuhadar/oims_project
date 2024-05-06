@@ -4,7 +4,7 @@
 }
 
 .sidebar {
-    background-color: #004d40; /* Dark Green Shade */
+    background-color: #9a0e20; /* Dark Green Shade */
     padding: 20px;
     width: 250px;
     display: flex;
@@ -18,11 +18,9 @@
     margin-bottom: 20px;
 }
 
-
-
 .main-content {
     flex: 1;
-    background-color: #e8f5e9; /* Light Green Shade */
+    background-color: white; /* Light Green Shade */
 }
 
 .header {

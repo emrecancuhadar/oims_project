@@ -12,8 +12,8 @@ h2 {
     height: 100vh;
 }
 
-.header {
-    background-color: #e8f5e9;
+.student-homepage .header  {
+    background-color: #ffffff;
     color: green;
     padding: 20px;
     display: flex;

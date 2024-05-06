@@ -22,7 +22,7 @@ function StudentInternshipOpportunities() {
     <div className="student-homepage">
       <div className="sidebar">
         <a href="/" className="sidebar-container">
-          <img className="sidebar-logo" src="iyte_logo.png"></img>
+          <img className="sidebar-logo" src="/oims_project/static/media/iyte_logo.0497b97e16064e353423.png"></img>
         </a>
         <button
           onClick={() => navigate("/student/home")}

@@ -13,7 +13,7 @@ function StudentLoginPage() {
         <img
           src={require("../assets/images/iyte_logo.png")}
           alt="IYTE Logo"
-          width="130"
+          width="200"
         />
         <label>
           Student ID:
