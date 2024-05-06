@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../CSS/SystemAdminHomepage.css";
 import SystemAdminSidebar from "../components/SystemAdminSidebar";
+import Header from "../components/Header";
 
 function CompanyHomepage() {
   const navigate = useNavigate();
@@ -10,10 +11,9 @@ function CompanyHomepage() {
       <div className="admin-homepage">
         <SystemAdminSidebar />
         <div className="main-content">
-          <div className="header d-flex align-items-center">
-            <span className="user-name">Iztech User - System Admin</span>
-            <i className="far fa-user-circle user-icon"></i>
-          </div>
+        <div className="header d-flex align-items-center">
+          <Header username={"System Admin"} />
+        </div>
           <div className="homepage row">
             <div className="title-container">
               <h1 className="page-title">Welcome to OIMS!</h1>

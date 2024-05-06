@@ -3,6 +3,13 @@
     height: 100vh;
 }
 
+.admin-companyRequest {
+    display: flex;
+    flex-direction: row; /* Ensure it's set to row for horizontal layout */
+    height: 100vh; /* Full height of the viewport */
+    align-items: stretch; /* Ensures children stretch to fill the container */
+    width: 100%; /* Ensure it takes full width */
+}
 .announcement .sidebar {
     background-color: #9a0e20; /* Dark Green Shade */
     padding: 20px;
@@ -11,13 +18,6 @@
     flex-direction: column;
     align-items: center;
     flex-shrink: 0;
-}
-.admin-annoRequest {
-    display: flex;
-    flex-direction: row; /* Ensure it's set to row for horizontal layout */
-    height: 100vh; /* Full height of the viewport */
-    align-items: stretch; /* Ensures children stretch to fill the container */
-    width: 100%; /* Ensure it takes full width */
 }
 
 .home-icon {
@@ -131,7 +131,7 @@
     justify-content: center;
 }
 
-.admin-annoRequest .card {
+.admin-companyRequest .card {
     padding: 10px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);

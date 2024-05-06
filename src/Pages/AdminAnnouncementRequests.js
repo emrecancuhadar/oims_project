@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons';
 import SystemAdminSidebar from '../components/SystemAdminSidebar';
+import Header from "../components/Header";
 
 const announcements = [
     { id: 1, title: "Announcement 1", content: "Deadline: 06.05.2024" },
@@ -24,13 +25,12 @@ function AdminAnnouncementRequests() {
     };
 
     return (
-        <div className="admin-homepage">
+        <div className="admin-annoRequest">
             <SystemAdminSidebar/>
             <div className="main-content">
-                <div className="header d-flex align-items-center">
-                    <i className="far fa-user-circle user-icon mr-2"></i>
-                    <span className="user-name">Iztech User - System Admin</span>
-                </div>
+            <div className="header d-flex align-items-center">
+          <Header username={"System Admin"} />
+        </div>
                 <div className="announcements align-items-center">
                     <h1>Announcement Requests</h1>
                     <div className="row">

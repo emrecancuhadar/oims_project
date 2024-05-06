@@ -1,14 +1,15 @@
 import React from 'react';
-import "../CSS/AdminAnnouncementRequests.css"
+import "../CSS/AdminRegistrationRequests.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from "react-router-dom";
 import SystemAdminSidebar from '../components/SystemAdminSidebar';
+import Header from "../components/Header";
 
 const announcements = [
-    { id: 1, title: "Announcement 1", content: "Deadline: 06.05.2024" },
-    { id: 2, title: "Announcement 2", content: "Deadline: 06.05.2024" },
-    { id: 3, title: "Announcement 3", content: "Deadline: 06.05.2024" },
+    { id: 1, title: "Company 1"},
+    { id: 2, title: "Company 2"},
+    { id: 3, title: "Company 3"},
 ];
 
 function AdminRegistrationRequests() {
@@ -24,12 +25,11 @@ function AdminRegistrationRequests() {
     };
 
     return (
-        <div className="admin-homepage">
+        <div className="admin-companyRequest">
             <SystemAdminSidebar />
             <div className="main-content">
                 <div className="header d-flex align-items-center">
-                    <i className="far fa-user-circle user-icon mr-2"></i>
-                    <span className="user-name">Iztech User - System Admin</span>
+                <Header username={"System Admin"} />
                 </div>
                 <div className="announcements align-items-center">
                     <h1>Announcement Requests</h1>
@@ -41,16 +41,15 @@ function AdminRegistrationRequests() {
                                         <div className="announcement-details d-flex">
                                             <h5 className="card-title">{announcement.title}</h5>
                                         </div>
-                                        <div className="announcement-text">
-                                            <p className="card-text" onClick={handleContentClick} style={{cursor: 'pointer'}}>{announcement.content}</p>
-                                            <FontAwesomeIcon icon= {faCheck} color="green" size='2x' onClick={() => handleContentClick()} style={{cursor: 'pointer'}}/>
-                                            <FontAwesomeIcon icon= {faXmark} color="red" size='2x' onClick={() => handleContentClick()} style={{cursor: 'pointer'}}/>    
-                                        </div>
                                         <div className="btn-group">
                                                 <button onClick={() => handleActionClick('Feedback', announcement.id)} className="btn btn-primary mr-1">Feedback</button>
                                                 <button onClick={() => handleActionClick('Ban', announcement.id)} className="btn btn-danger">Ban</button>
                                             </div>
                                     </div>
+                                    <div className="announcement-text">
+                                            <FontAwesomeIcon icon= {faCheck} color="green" size='2x' onClick={() => handleContentClick()} style={{cursor: 'pointer'}}/>
+                                            <FontAwesomeIcon icon= {faXmark} color="red" size='2x' onClick={() => handleContentClick()} style={{cursor: 'pointer'}}/>    
+                                        </div>
                                 </div>
                             </div>
                         ))}
