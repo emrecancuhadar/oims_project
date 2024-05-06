@@ -4,7 +4,7 @@
 }
 
 .sidebar {
-    background-color: #9a0e20; /* Dark Green Shade */
+    background-color: #9a0e20;
     padding: 20px;
     width: 250px;
     display: flex;
@@ -48,12 +48,12 @@
     font-size: 16px;
 }
 
-.announcements h1 {
+/*.announcements h1 {
     color: darkred;
     padding-top: 60px;
     padding-bottom: 60px;
     padding-left: 20px;
-}
+}*/
 
 .announcement-list .announcement {
     background-color: white;

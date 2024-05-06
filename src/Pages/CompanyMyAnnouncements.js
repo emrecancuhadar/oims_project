@@ -56,8 +56,8 @@ function CompanyMyAnnouncements() {
             <span className="user-name">Company Name - Company</span>
             <i className="far fa-user-circle user-icon"></i>
           </div>
-          <div className="announcements">
-            <h1>My Announcements</h1>
+          <div className="announcements-page-container row">
+            <h1 className="page-title">My Announcements</h1>
             <div className="row announcements-container">
               {announcements.map((announcement) => (
                 <div key={announcement.id} className="col-md-3">

@@ -21,9 +21,17 @@ i {
     width: 100px;
 }
 
-.announcements h1 {
+.page-title {
     color: darkred;
-    padding: 20px 20px 20px 50px;
+}
+
+.announcements-page-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 50px;
+    text-align: center;
+    justify-content: center;
 }
 
 .announcements-container {
@@ -31,6 +39,7 @@ i {
     flex-wrap: wrap;
     gap: 20px;
     padding: 20px 40px;
+    justify-content: center;
 }
 
 .card {

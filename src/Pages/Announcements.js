@@ -21,7 +21,7 @@ function Announcements() {
         <div className="admin-homepage">
             <div className="sidebar">
                 <a href="/" class="sidebar-container">
-                    <img class="sidebar-logo" src='iyte_logo.png'></img>
+                <img className="sidebar-logo" src={require("../assets/images/iyte_logo.png")} alt="xd"></img>
                 </a>
                 <button className="btn btn-light w-100 mt-2 pt-2 pb-2">Home</button>
                 <button className="btn btn-light w-100 mt-2">Company Registration Requests</button>

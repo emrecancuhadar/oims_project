@@ -6,6 +6,10 @@ h2 {
     margin: 10px 0 20px;
 }
 
+.container {
+    justify-content: center;
+    text-align: center;
+}
 
 .student-homepage {
     display: flex;
@@ -22,18 +26,26 @@ h2 {
     gap: 10px;
 }
 
-.home-page h1 {
+.page-title {
     color: darkred;
-    padding: 20px 20px 20px 250px;
+
 }
 
 .homepage-container {
     gap: 20px;
     padding: 20px 250px;
+    width: 60% !important;
+}
+
+.homepage {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
 }
 
 .card {
-    padding: 10px;
+    padding: 20px 35px !important;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }

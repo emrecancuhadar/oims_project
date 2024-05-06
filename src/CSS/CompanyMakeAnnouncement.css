@@ -2,10 +2,6 @@ i {
   margin: 0 15px;
 }
 
-.sidebar-logo {
-  width: 100px;
-}
-
 .company-homepage {
   display: flex;
   height: 100vh;
@@ -13,7 +9,6 @@ i {
 
 .page-title {
   color: darkred;
-  padding: 20px 20px 20px 250px;
 }
 
 .header {
@@ -30,15 +25,20 @@ i {
   width: 100px;
 }
 
-.announcements h1 {
-  padding-left: 430px;
-}
-
-.announcement-container {
+.announcements-page-container {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  padding: 20px 150px;
+  padding: 50px 150px;
+  text-align: center;
+  justify-content: center;
+}
+
+.announcements-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px !important;
+  padding: 20px 40px;
 }
 
 .card {
@@ -52,10 +52,18 @@ i {
 }
 
 .send-btn {
-  padding: 10px 20px;
+  padding: 30px 20px;
   border: none;
   border-radius: 5px;
+  margin-top: 10px;
+  color: white !important;
+  background-color: darkred !important;
 }
+
+.send-btn:hover {
+  background-color: red !important;
+}
+
 .custom-file-upload {
   border: 1px solid #ccc;
   display: inline-block;

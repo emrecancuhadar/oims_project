@@ -22,7 +22,7 @@ function StudentInternshipOpportunities() {
     <div className="student-homepage">
       <div className="sidebar">
         <a href="/" className="sidebar-container">
-          <img className="sidebar-logo" src="/oims_project/static/media/iyte_logo.0497b97e16064e353423.png"></img>
+          <img className="sidebar-logo" src={require("../assets/images/iyte_logo.png")} alt="xd"></img>
         </a>
         <button
           onClick={() => navigate("/student/home")}
@@ -49,7 +49,9 @@ function StudentInternshipOpportunities() {
           <i className="far fa-user-circle user-icon"></i>
         </div>
         <div className="internships">
-          <h1>Internship Opportunities</h1>
+          <div className="title-container">
+            <h1 className="page-title">Internship Opportunities</h1>
+          </div>
           <div className="row internships-container">
             {internships.map((internship) => (
               <div key={internship.id} className="col-md-3">

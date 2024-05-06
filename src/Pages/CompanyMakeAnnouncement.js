@@ -41,9 +41,9 @@ function CompanyMakeAnnouncement() {
             <span className="user-name">Company Name - Company</span>
             <i className="far fa-user-circle user-icon"></i>
           </div>
-          <div className="announcements container">
+          <div className="announcements-page-container row">
             <h1 className="page-title">Make Announcement</h1>
-            <div className="row announcement-container">
+            <div className="announcements-container col-md-6">
               <div className="input-group input-group-lg">
                 <span className="input-group-text" id="inputGroup-sizing-lg">
                   Title
@@ -58,9 +58,7 @@ function CompanyMakeAnnouncement() {
               <div className="input-group input-group-lg">
                 <input id="file-upload" type="file" className="form-control" />
               </div>
-            </div>
-            <div className="col-md-3 container">
-              <button className="btn btn-dark send-btn">
+              <button className="send-btn btn">
                 Send Announcement Request
               </button>
             </div>
