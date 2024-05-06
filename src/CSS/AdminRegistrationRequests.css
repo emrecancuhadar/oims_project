@@ -146,3 +146,10 @@
     align-items: left;
     gap: 20px;
 }
+
+.admin-companyRequest .announcement-text {
+    display: flex;
+    flex-direction: row;
+    align-items: left;
+    gap: 20px;
+}
