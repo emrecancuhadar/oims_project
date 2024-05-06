@@ -10,11 +10,32 @@ function Signup() {
   const [passwordAgain, setPasswordAgain] = useState("");
   const navigate = useNavigate();
 
-  const handleSignup = (event) => {
-    event.preventDefault();
-    console.log("Signing up with:", company, email, password);
-    navigate("/company/home");
+  const handleSignup = async (e) => {
+    e.preventDefault();
+    try {
+      
+      const response = await fetch("http://localhost:8081/company/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (response.ok) {
+        navigate("/company/signup");
+      } else {
+        const errorMessage = await response.text();
+        alert(errorMessage); 
+      }
+      
+    } catch (error) {
+      console.error("Error:", error);
+      
+      alert("An unexpected error occurred. Please try again later.");
+    }
   };
+  
 
   return (
     <div className="pages">

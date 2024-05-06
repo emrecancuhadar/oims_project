@@ -6,10 +6,31 @@ function Login() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = (event) => {
-    event.preventDefault();
-    console.log("Logging in with:", email, password);
-    navigate("/company/home");
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+      
+      const response = await fetch("http://localhost:8081/company/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (response.ok) {
+        navigate("/company/home");
+      } else {
+        const errorMessage = await response.text();
+        alert(errorMessage); 
+      }
+      
+    } catch (error) {
+      console.error("Error:", error);
+      
+      alert("An unexpected error occurred. Please try again later.");
+    }
   };
 
   return (
