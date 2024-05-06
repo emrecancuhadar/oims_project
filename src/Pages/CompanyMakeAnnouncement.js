@@ -1,17 +1,56 @@
+import axios from "axios";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../CSS/CompanyMakeAnnouncement.css";
-import CompanySidebar from "../components/CompanySidebar";
-import CompanyHeadbar from "../components/CompanyHeadbar";
+import Header from "../components/Header";
 
 function CompanyMakeAnnouncement() {
   const navigate = useNavigate();
+
+  const onSend = () => {
+    axios.post("http://localhost:8081/announcements/upload");
+  };
+
   return (
     <div className="compmakeann">
       <div className="company-homepage">
-        <CompanySidebar />
+        <div className="makeAnnouncement-sidebar">
+          <a href="/" className="sidebar-container">
+            <img
+              className="sidebar-logo"
+              src={require("../assets/images/iyte_logo.png")}
+              alt="xd"
+            ></img>
+          </a>
+          <button
+            onClick={() => navigate("/company/home")}
+            className="btn btn-light w-100 mt-2 pt-2 pb-2"
+          >
+            Home
+          </button>
+          <button
+            onClick={() => navigate("/my-announcements")}
+            className="btn btn-light w-100 mt-2 pt-2 pb-2"
+          >
+            My Announcements
+          </button>
+          <button
+            onClick={() => navigate("/make-announcement")}
+            className="btn btn-dark w-100 mt-2 pt-2 pb-2"
+          >
+            Make Announcement
+          </button>
+          <button className="btn btn-light w-100 mt-2 pt-2 pb-2">
+            Internship Applications
+          </button>
+          <button className="btn btn-light w-100 mt-2 pt-2 pb-2">
+            My Interns
+          </button>
+        </div>
         <div className="main-content">
-          <CompanyHeadbar />
+          <div className="header d-flex align-items-center">
+            <Header username={"Sample Company"} />
+          </div>
           <div className="announcements-page-container row">
             <h1 className="page-title">Make Announcement</h1>
             <div className="announcements-container col-md-6">
@@ -29,7 +68,7 @@ function CompanyMakeAnnouncement() {
               <div className="input-group input-group-lg">
                 <input id="file-upload" type="file" className="form-control" />
               </div>
-              <button className="send-btn btn">
+              <button className="send-btn btn" onClick={onSend}>
                 Send Announcement Request
               </button>
             </div>

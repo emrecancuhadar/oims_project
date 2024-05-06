@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../CSS/CompanyMyAnnouncements.css";
-import CompanySidebar from "../components/CompanySidebar"
-import CompanyHeadbar from "../components/CompanyHeadbar";
+import CompanySidebar from "../components/CompanySidebar";
+import Header from "../components/Header";
 
 const announcements = [
   { id: 1, title: "Announcement 1" },
@@ -26,7 +26,7 @@ function CompanyMyAnnouncements() {
       <div className="student-homepage">
         <CompanySidebar />
         <div className="main-content">
-          <CompanyHeadbar />
+          <Header />
           <div className="announcements-page-container row">
             <h1 className="page-title">My Announcements</h1>
             <div className="row announcements-container">

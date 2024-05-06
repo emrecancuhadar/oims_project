@@ -2,16 +2,16 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../CSS/CompanyHomepage.css";
 import CompanySidebar from "../components/CompanySidebar";
-import CompanyHeadbar from "../components/CompanyHeadbar";
+import Header from "../components/Header";
 
 function CompanyHomepage() {
   const navigate = useNavigate();
   return (
     <div className="comphome">
       <div className="company-homepage">
-        <CompanySidebar/>
+        <CompanySidebar />
         <div className="main-content">
-          <CompanyHeadbar />
+          <Header />
           <div className="homepage row">
             <div className="title-container">
               <h1 className="page-title">Welcome to OIMS!</h1>
