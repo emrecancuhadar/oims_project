@@ -48,3 +48,12 @@ h2 {
 .card-body {
     padding: 20px 40px;
 }
+.company-sidebar {
+    background-color: #9a0e20; /* Dark Green Shade */
+    padding: 20px;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+}
