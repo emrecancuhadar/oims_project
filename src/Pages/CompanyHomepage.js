@@ -41,8 +41,10 @@ function CompanyHomepage() {
             <span className="user-name">Company Name - Company</span>
             <i className="far fa-user-circle user-icon"></i>
           </div>
-          <div className="homepage">
-            <h1>Welcome to OIMS!</h1>
+          <div className="homepage row">
+            <div className="title-container">
+              <h1 className="page-title">Welcome to OIMS!</h1>
+            </div>
             <div className="row homepage-container">
               <div className="card">
                 <div className="card-body">
