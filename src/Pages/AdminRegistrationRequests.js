@@ -32,7 +32,7 @@ function AdminRegistrationRequests() {
                 <Header username={"System Admin"} />
                 </div>
                 <div className="announcements align-items-center">
-                    <h1>Announcement Requests</h1>
+                    <h1>Company Registration Requests</h1>
                     <div className="row">
                         {announcements.map((announcement) => (
                             <div key={announcement.id} className="col-sm-6 col-md-4">
