@@ -13,7 +13,7 @@ function CompanyHomepage() {
           </a>
           <button
             onClick={() => navigate("/company/home")}
-            className="btn btn-darkk w-100 mt-2 pt-2 pb-2"
+            className="btn btn-dark w-100 mt-2 pt-2 pb-2"
           >
             Home
           </button>
@@ -38,7 +38,7 @@ function CompanyHomepage() {
         </div>
         <div className="main-content">
           <div className="header d-flex align-items-center">
-            <span className="user-name">Name Surname - Company</span>
+            <span className="user-name">Company Name - Company</span>
             <i className="far fa-user-circle user-icon"></i>
           </div>
           <div className="homepage">

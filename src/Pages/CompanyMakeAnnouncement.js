@@ -38,7 +38,7 @@ function CompanyMakeAnnouncement() {
         </div>
         <div className="main-content">
           <div className="header d-flex align-items-center">
-            <span className="user-name">Name Surname - Company</span>
+            <span className="user-name">Company Name - Company</span>
             <i className="far fa-user-circle user-icon"></i>
           </div>
           <div className="announcements container">
