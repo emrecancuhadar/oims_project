@@ -56,7 +56,7 @@ function AdminAnnouncementRequests() {
                                         <div className="btn-group">
                                                 <button onClick={() => handleActionClick('Feedback', announcement.id)} className="btn btn-primary mr-1">Feedback</button>
                                                 <button onClick={() => handleActionClick('Ban', announcement.id)} className="btn btn-danger">Ban</button>
-                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
