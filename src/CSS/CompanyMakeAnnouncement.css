@@ -11,19 +11,8 @@ i {
   color: darkred;
 }
 
-.header {
-  background-color: #e8f5e9;
-  color: green;
-  padding: 20px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 10px;
-}
 
-.sidebar-logo {
-  width: 100px;
-}
+
 
 .announcements-page-container {
   display: flex;

@@ -6,10 +6,6 @@ h2 {
     margin: 10px 0 20px;
 }
 
-.sidebar-logo {
-    width: 100px;
-}
-
 .company-homepage {
     display: flex;
     height: 100vh;
@@ -24,11 +20,6 @@ h2 {
     align-items: center;
     gap: 10px;
 }
-
-/*.homepage h1 {
-    color: darkred;
-    padding: 20px 20px 20px 250px;
-}*/
 
 .homepage-container {
     gap: 20px;
@@ -47,13 +38,4 @@ h2 {
 
 .card-body {
     padding: 20px 40px;
-}
-.company-sidebar {
-    background-color: #9a0e20; /* Dark Green Shade */
-    padding: 20px;
-    width: 250px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-shrink: 0;
 }

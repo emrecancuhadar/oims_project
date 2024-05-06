@@ -14,7 +14,7 @@ function Signup() {
     e.preventDefault();
     try {
       
-      const response = await fetch("http://localhost:8081/company/signup", {
+      const response = await fetch("http://localhost:8081/company/signUp", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -23,7 +23,7 @@ function Signup() {
       });
 
       if (response.ok) {
-        navigate("/company/signup");
+        navigate("/company/login");
       } else {
         const errorMessage = await response.text();
         alert(errorMessage); 
