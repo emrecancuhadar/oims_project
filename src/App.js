@@ -1,7 +1,6 @@
 import React from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import AnnouncementDetail from "./Pages/AnnouncementDetail";
-import Announcements from "./Pages/Announcements";
+import AdminAnnouncementRequests from "./Pages/AdminAnnouncementRequests";
 import CompanyHomepage from "./Pages/CompanyHomepage";
 import CompanyLogin from "./Pages/CompanyLogin";
 import CompanyMakeAnnouncement from "./Pages/CompanyMakeAnnouncement";
@@ -38,11 +37,7 @@ function App() {
             path="/internship-opportunities"
             element={<StudentInternshipOpportunities />}
           />
-          <Route path="admin/home" element={<SystemAdminHomepage />} />
-          <Route path="registrationrequests" element={<RegistrationRequestsPage />} />
-          <Route path="/announcementrequests" element={<Announcements />} />
-          <Route path="/announcement-detail" element={<AnnouncementDetail />} />
-          
+          <Route path="/adminannouncementrequests" element={<AdminAnnouncementRequests />} />
         </Routes>
       </div>
     </Router>
