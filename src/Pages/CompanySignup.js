@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "../CSS/CompanySignup.css";
 
 function Signup() {
-  const [company, setCompany] = useState("");
+  const [companyName, setCompanyName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordAgain, setPasswordAgain] = useState("");
@@ -13,29 +13,26 @@ function Signup() {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      
       const response = await fetch("http://localhost:8081/company/signUp", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ companyName, email, password }),
       });
 
       if (response.ok) {
         navigate("/company/login");
       } else {
         const errorMessage = await response.text();
-        alert(errorMessage); 
+        alert(errorMessage);
       }
-      
     } catch (error) {
       console.error("Error:", error);
-      
+
       alert("An unexpected error occurred. Please try again later.");
     }
   };
-  
 
   return (
     <div className="pages">
@@ -49,9 +46,9 @@ function Signup() {
           <label>Name of Company:</label>
           <input
             type="text"
-            value={company}
+            value={companyName}
             required
-            onChange={(e) => setCompany(e.target.value)}
+            onChange={(e) => setCompanyName(e.target.value)}
           />
           <label>E-mail:</label>
           <input
@@ -93,7 +90,9 @@ function Signup() {
             valueAgain={passwordAgain}
             onChange={(isValid) => {}}
           />
-          <button className="sign-up-button"type="submit">Sign Up</button>
+          <button className="sign-up-button" type="submit">
+            Sign Up
+          </button>
         </form>
         <p className="para" onClick={() => navigate("/company/login")}>
           Sign in now!

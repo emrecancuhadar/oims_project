@@ -5,7 +5,6 @@ import React from "react";
 import styles from "./company-request.module.css";
 
 function CompanyRequest({ companyRequest }) {
-  
   const approveCompanyRequest = () => {
     axios
       .put(
@@ -26,7 +25,14 @@ function CompanyRequest({ companyRequest }) {
       })
       .catch((error) => console.log(error));
   };
-  const banCompany = () => {};
+  const banCompany = () => {
+    axios
+      .put(`http://localhost:8081/systemadmin/company/${companyRequest.id}/ban`)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => console.log(error));
+  };
   const giveFeedback = () => {};
 
   return (
@@ -39,7 +45,13 @@ function CompanyRequest({ companyRequest }) {
           <button className={styles.feedbackBtn} onClick={giveFeedback}>
             Feedback
           </button>
-          <button className={styles.banBtn} onClick={banCompany}>
+          <button
+            className={styles.banBtn}
+            onClick={(event) => {
+              event.stopPropagation();
+              banCompany();
+            }}
+          >
             Ban
           </button>
         </div>
