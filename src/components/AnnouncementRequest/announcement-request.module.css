@@ -1,0 +1,53 @@
+.card {
+  display: flex;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  background: #fff;
+  margin: 20px;
+  gap: 20px;
+}
+
+.card h2 {
+  font-size: 24px;
+  margin: 0;
+}
+
+.card p {
+  margin: 0 0 20px 0;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+}
+
+.right {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 15px;
+}
+
+.buttons button {
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.feedbackBtn {
+  background-color: #0d6efd;
+}
+
+.banBtn {
+  background-color: #dc3545;
+}
+
+.buttons button:last-child {
+  margin-right: 0;
+}
