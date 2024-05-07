@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../CSS/ResetPassword.css";
@@ -22,6 +23,18 @@ function ResetPassword() {
     console.log("Password reset request for:", email);
     setSubmitted(true);
     setError("");
+
+    const formData = new FormData();
+    formData.append("email", email);
+
+    axios
+      .post("http://localhost:8081/company/resetPassword", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((response) => console.log(response.data))
+      .catch((error) => console.log(error));
   };
 
   return (
@@ -33,8 +46,8 @@ function ResetPassword() {
         {submitted ? (
           <div>
             <p>
-              A password reset link has been sent to {email}. Please check your
-              inbox.
+              A password reset link will be sent to {email} if it is associated
+              with an account. Please check your inbox.
             </p>
           </div>
         ) : (

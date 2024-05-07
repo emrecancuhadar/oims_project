@@ -22,6 +22,7 @@ function CompanyMakeAnnouncement() {
   const [title, setTitle] = useState("");
   const [file, setFile] = useState(null);
   const [deadline, setDeadline] = useState(formatDate(new Date()));
+  const [error, setError] = useState("");
   const { user } = useContext(UserContext);
   const navigate = useNavigate();
 
@@ -43,6 +44,9 @@ function CompanyMakeAnnouncement() {
         navigate("/company/my-announcements");
       })
       .catch((error) => {
+        if (error.response.status == 400) {
+          setError(error.response.data);
+        }
         console.error("Error uploading the announcement:", error);
       });
   };
@@ -74,6 +78,8 @@ function CompanyMakeAnnouncement() {
                   type="date"
                   name="deadline"
                   value={deadline}
+                  minLength={3}
+                  maxLength={30}
                   onChange={(e) => setDeadline(e.target.value)}
                 />
               </div>
@@ -85,7 +91,15 @@ function CompanyMakeAnnouncement() {
                   onChange={(e) => setFile(e.target.files[0])}
                 />
               </div>
-              <button className="send-btn btn" onClick={() => onSend()}>
+              <div>
+                <p style={{ margin: 0 }}>{error}</p>
+              </div>
+              <button
+                className="send-btn btn"
+                type="submit"
+                onClick={() => onSend()}
+                disabled={!title || !file || !deadline}
+              >
                 Send Announcement Request
               </button>
             </div>

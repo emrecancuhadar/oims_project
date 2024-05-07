@@ -1,7 +1,8 @@
+import axios from "axios";
 import React, { useState } from "react";
 import PasswordChecklist from "react-password-checklist";
-import "../CSS/SetNewPassword.css";
 import { useNavigate } from "react-router-dom";
+import "../CSS/SetNewPassword.css";
 
 function SetNewPassword() {
   const navigate = useNavigate();
@@ -35,8 +36,22 @@ function SetNewPassword() {
     }
     // Assuming password setting logic is successful here
     console.log("New password is set:", password);
-    setSuccess(true);
-    setError("");
+
+    const formData = new FormData();
+    formData.append("password", password);
+
+    axios
+      .post("http://localhost:8081/security/company/savePassword", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((response) => {
+        setSuccess(true);
+        setError("");
+        console.log(response.data);
+      })
+      .catch((error) => console.log(error));
   };
 
   return (
