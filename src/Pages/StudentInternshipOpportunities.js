@@ -1,9 +1,7 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import "../CSS/StudentInternshipOpportunities.css";
 import Header from "../components/Header";
 import StudentSidebar from "../components/StudentSidebar";
-
 
 const internships = [
   { id: 1, title: "Internship 1" },
@@ -20,7 +18,6 @@ function StudentInternshipOpportunities() {
     // Placeholder for opening PDF
     alert("Content Clicked!");
   };
-  const navigate = useNavigate();
 
   return (
     <div className="student-internshipOpps">

@@ -1,17 +1,15 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import "../CSS/CompanyHomepage.css";
 import CompanySidebar from "../components/CompanySidebar";
 import Header from "../components/Header";
 
 function CompanyHomepage() {
-  const navigate = useNavigate();
   return (
     <div className="comphome">
       <div className="company-homepage">
         <CompanySidebar />
         <div className="main-content">
-        <div className="header d-flex align-items-center">
+          <div className="header d-flex align-items-center">
             <Header username={"Sample Company"} />
           </div>
           <div className="homepage row">

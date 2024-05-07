@@ -1,12 +1,9 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import "../CSS/StudentHomepage.css";
 import Header from "../components/Header";
 import StudentSidebar from "../components/StudentSidebar";
 
 function StudentHomepage() {
-  const navigate = useNavigate();
-
   return (
     <div className="student-homepage">
       <StudentSidebar />

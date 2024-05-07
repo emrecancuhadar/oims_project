@@ -4,13 +4,12 @@ import "../CSS/AdminAnnouncementRequests.css";
 import AnnouncementRequest from "../components/AnnouncementRequest";
 import Header from "../components/Header";
 import SystemAdminSidebar from "../components/SystemAdminSidebar";
-import Popup from "../components/Popup";
 
 function AdminAnnouncementRequests() {
   const [announcementRequests, setAnnouncementRequests] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:8081/announcements/list").then((response) => {
+    axios.get("http://localhost:8081/announcements").then((response) => {
       const data = response.data;
       setAnnouncementRequests(
         data.map(

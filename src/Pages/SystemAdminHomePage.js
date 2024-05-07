@@ -1,19 +1,17 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import "../CSS/SystemAdminHomepage.css";
-import SystemAdminSidebar from "../components/SystemAdminSidebar";
 import Header from "../components/Header";
+import SystemAdminSidebar from "../components/SystemAdminSidebar";
 
 function CompanyHomepage() {
-  const navigate = useNavigate();
   return (
     <div className="adminhome">
       <div className="admin-homepage">
         <SystemAdminSidebar />
         <div className="main-content">
-        <div className="header d-flex align-items-center">
-          <Header username={"System Admin"} />
-        </div>
+          <div className="header d-flex align-items-center">
+            <Header username={"System Admin"} />
+          </div>
           <div className="homepage row">
             <div className="title-container">
               <h1 className="page-title">Welcome to OIMS!</h1>

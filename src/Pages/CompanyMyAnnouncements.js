@@ -1,28 +1,70 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import React, { useContext, useEffect, useState } from "react";
 import "../CSS/CompanyMyAnnouncements.css";
+import CompanyAnnouncement from "../components/CompanyAnnouncement";
 import CompanySidebar from "../components/CompanySidebar";
 import Header from "../components/Header";
-
-const announcements = [
-  { id: 1, title: "Announcement 1" },
-  { id: 2, title: "Announcement 2" },
-  { id: 3, title: "Announcement 3" },
-];
+import { UserContext } from "../context/UserProvider";
 
 function CompanyMyAnnouncements() {
-  const handleActionClick = (action, id) => {
-    alert(`${action} clicked for announcements ${id}`);
-  };
+  const [announcements, setAnnouncements] = useState([]);
+  const { user } = useContext(UserContext);
 
-  const handleContentClick = () => {
-    // Placeholder for opening PDF
-    alert("Content Clicked!");
-  };
-  const navigate = useNavigate();
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8081/announcements/company/${user.id}`)
+      .then((response) => {
+        const data = response.data;
+        setAnnouncements(
+          data.map(
+            ({ title, deadline, document: { documentId, content } }) => ({
+              id: documentId,
+              title,
+              deadline,
+              content,
+            })
+          )
+        );
+      })
+      .catch((error) => {
+        console.error("Error fetching announcements:", error);
+      });
+  }, []);
 
   return (
     <div className="compmyann">
+      <div class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Modal title</h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Modal body text goes here.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary">
+                Save changes
+              </button>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
       <div className="student-homepage">
         <CompanySidebar />
         <div className="main-content">
@@ -31,42 +73,10 @@ function CompanyMyAnnouncements() {
           </div>
           <div className="announcements-page-container row">
             <h1 className="page-title">My Announcements</h1>
-            <div className="row announcements-container">
-              {announcements.map((announcement) => (
-                <div key={announcement.id} className="col-md-3">
-                  <div className="card">
-                    <div className="card-body">
-                      <h5
-                        className="card-title"
-                        onClick={handleContentClick}
-                        style={{ cursor: "pointer" }}
-                      >
-                        {announcement.title}
-                      </h5>
-                      <div
-                        className="btn-group"
-                        role="group"
-                        aria-label="Basic mixed styles example"
-                      >
-                        <button
-                          onClick={() =>
-                            handleActionClick("Edit", announcement.id)
-                          }
-                          className="btn btn-dark"
-                        >
-                          Edit
-                        </button>
-                        <button
-                          onClick={() =>
-                            handleActionClick("Delete", announcement.id)
-                          }
-                          className="btn btn-danger"
-                        >
-                          Delete
-                        </button>
-                      </div>
-                    </div>
-                  </div>
+            <div className="announcements-container">
+              {announcements.map((announcement, index) => (
+                <div key={index}>
+                  <CompanyAnnouncement announcement={announcement} />
                 </div>
               ))}
             </div>

@@ -11,9 +11,6 @@ i {
   color: darkred;
 }
 
-
-
-
 .announcements-page-container {
   display: flex;
   flex-wrap: wrap;
@@ -24,10 +21,8 @@ i {
 }
 
 .announcements-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px !important;
-  padding: 20px 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .card {
@@ -41,9 +36,9 @@ i {
 }
 
 .send-btn {
-  padding: 30px 20px;
+  padding: 15px 20px;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   margin-top: 10px;
   color: white !important;
   background-color: darkred !important;
@@ -67,19 +62,18 @@ i {
 
 .form-control {
   margin: 0px !important;
-  height: 100% !important;
 }
 
 .makeAnnouncement-sidebar {
   background-color: #9a0e20; /* Dark Green Shade */
-    padding: 20px;
-    width: 250px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-shrink: 0;
+  padding: 20px;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
 }
 
 .compmakeann .send-btn .btn {
   padding: 0 !important;
-} 
+}
