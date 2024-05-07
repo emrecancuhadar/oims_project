@@ -77,3 +77,16 @@ i {
 .compmakeann .send-btn .btn {
   padding: 0 !important;
 }
+
+/* .compmakeann .input-group-text {
+  position: relative;
+  width: 50%;
+} */
+
+#inputGroup-sizing-lg1 {
+  height: 50px;
+}
+
+.compmakeann input[type="text"] {
+  height: 100%;
+}

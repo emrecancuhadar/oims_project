@@ -56,14 +56,13 @@ function CompanyMakeAnnouncement() {
             <h1 className="page-title">Make Announcement</h1>
             <div className="announcements-container col-md-6">
               <div className="input-group input-group-lg">
-                <span className="input-group-text" id="inputGroup-sizing-lg">
+                <div className="input-group-text" >
                   Title
-                </span>
+                </div>
                 <input
+                  id="file-upload"
                   type="text"
                   className="form-control"
-                  aria-label="Sizing example input"
-                  aria-describedby="inputGroup-sizing-lg"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                 />

@@ -38,7 +38,7 @@ function SetNewPassword() {
   };
 
   return (
-    <div className="page">
+    <div className="setNewPasswordPage">
       <div className="set-new-password-container">
         <img src={require("../assets/images/iyte_logo.png")} alt="IYTE Logo" />
         <h2>Set New Password</h2>
