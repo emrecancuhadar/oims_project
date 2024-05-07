@@ -34,7 +34,6 @@ function AdminAnnouncementRequests() {
   return (
     <div className="admin-annoRequest">
       <SystemAdminSidebar />
-      <Popup/>
       <div className="main-content">
         <div className="header d-flex align-items-center">
           <Header username={"System Admin"} />

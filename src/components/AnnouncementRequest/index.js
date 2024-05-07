@@ -40,6 +40,7 @@ function AnnouncementRequest({ announcementRequest }) {
         `http://localhost:8081/systemadmin/document/${announcementRequest.id}/approve`
       )
       .then((response) => {
+        alert("Announcement is approved");
         console.log(response);
       })
       .catch((error) => console.log(error));
@@ -50,15 +51,21 @@ function AnnouncementRequest({ announcementRequest }) {
         `http://localhost:8081/systemadmin/document/${announcementRequest.id}/disapprove`
       )
       .then((response) => {
+        alert("Announcement is disapproved");
         console.log(response);
       })
       .catch((error) => console.log(error));
   };
   const banCompany = () => {
     axios.put(
-      `http://localhost:8081/systemadmin/company/${announcementRequest.companyId}/ban`
-    );
+      `http://localhost:8081/systemadmin/company/${announcementRequest.companyId}/ban`)
+      .then((response) => {
+        alert("Company is banned");
+        console.log(response);
+      })
+      .catch((error) => console.log(error));
   };
+  
   const giveFeedback = () => {};
 
   return (

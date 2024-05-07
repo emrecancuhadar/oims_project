@@ -70,7 +70,7 @@ function Login() {
         <p className="para" onClick={() => navigate("/company/signup")}>
           Sign up now!
         </p>
-        <p className="para" onClick={() => alert("Reset password logic")}>
+        <p className="para" onClick={() => navigate("/company/resetpassword")}>
           Forgot my password
         </p>
       </div>

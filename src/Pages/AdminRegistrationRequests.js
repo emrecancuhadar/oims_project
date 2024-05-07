@@ -7,6 +7,7 @@ import SystemAdminSidebar from "../components/SystemAdminSidebar";
 
 function AdminRegistrationRequests() {
   const [companyRequests, setCompanyRequests] = useState([]);
+  
 
   useEffect(() => {
     axios.get("http://localhost:8081/company/list").then((response) => {

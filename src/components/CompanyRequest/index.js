@@ -3,10 +3,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import React from "react";
 import styles from "./company-request.module.css";
-import Popup from "../Popup";
+
 
 
 function CompanyRequest({ companyRequest }) {
+    
   const approveCompanyRequest = () => {
     axios
       .put(
@@ -14,6 +15,7 @@ function CompanyRequest({ companyRequest }) {
       )
       .then((response) => {
         console.log(response);
+        alert("Company is approved");
       })
       .catch((error) => console.log(error));
   };
@@ -23,6 +25,7 @@ function CompanyRequest({ companyRequest }) {
         `http://localhost:8081/systemadmin/company/${companyRequest.id}/disapprove`
       )
       .then((response) => {
+        alert("Company is disapproved");
         console.log(response);
       })
       .catch((error) => console.log(error));
@@ -31,6 +34,7 @@ function CompanyRequest({ companyRequest }) {
     axios
       .put(`http://localhost:8081/systemadmin/company/${companyRequest.id}/ban`)
       .then((response) => {
+        alert("Company is banned");
         console.log(response);
       })
       .catch((error) => console.log(error));
