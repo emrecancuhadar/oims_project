@@ -28,7 +28,7 @@ function ResetPassword() {
     return (
         <div className='page'>
         <div className="reset-password-container">
-            <img src='iyte_logo.png'/>
+            <img src={require("../assets/images/iyte_logo.png")}/>
             <h2 style={{textAlign: 'center'}}>Reset Your Password</h2>
             <p>We will email you instructions to reset your password.</p>
             {submitted ? (
