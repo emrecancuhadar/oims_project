@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import PasswordChecklist from "react-password-checklist";
 import "../CSS/SetNewPassword.css";
+import { useNavigate } from "react-router-dom";
 
 function SetNewPassword() {
+  const navigate = useNavigate();
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
@@ -43,10 +45,7 @@ function SetNewPassword() {
         <img src={require("../assets/images/iyte_logo.png")} alt="IYTE Logo" />
         <h2>Set New Password</h2>
         {success ? (
-          <div className="success-message">
-            <p>Your password has been updated successfully!</p>
-            <p>You will be directed to the Login Page.</p>
-          </div>
+          navigate("/company/login")
         ) : (
           <form onSubmit={handleSubmit}>
             <div className="form-group">
