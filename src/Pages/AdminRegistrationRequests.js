@@ -1,29 +1,24 @@
-import React from 'react';
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import "../CSS/AdminRegistrationRequests.css"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from "react-router-dom";
 import SystemAdminSidebar from '../components/SystemAdminSidebar';
 import Header from "../components/Header";
-
-const announcements = [
-    { id: 1, title: "Company 1"},
-    { id: 2, title: "Company 2"},
-    { id: 3, title: "Company 3"},
-];
+import CompanyRequest from '../components/CompanyRequest';
 
 function AdminRegistrationRequests() {
-    const navigate = useNavigate();
+const [companyRequests, setCompanyRequests] = useState([]);
 
-    const handleActionClick = (action, id) => {
-        alert(`${action} clicked for announcement ${id}`);
-    };
-
-    const handleContentClick = () => {
-        // Placeholder for opening PDF
-        alert('Content Clicked!');
-    };
-
+  useEffect(() => {
+    axios.get("http://localhost:8081/company/list").then((response) => {
+      const data = response.data;
+      setCompanyRequests(
+        data.map(({ companyName }) => ({
+          companyName
+        }))
+      );
+    });
+  }, []);
     return (
         <div className="admin-companyRequest">
             <SystemAdminSidebar />
@@ -33,27 +28,15 @@ function AdminRegistrationRequests() {
                 </div>
                 <div className="announcements align-items-center">
                     <h1>Company Registration Requests</h1>
-                    <div className="row">
-                        {announcements.map((announcement) => (
-                            <div key={announcement.id} className="col-sm-6 col-md-4">
-                                <div className="card">
-                                    <div className="card-body">
-                                        <div className="announcement-details d-flex">
-                                            <h5 className="card-title">{announcement.title}</h5>
-                                        </div>
-                                        <div className="btn-group">
-                                                <button onClick={() => handleActionClick('Feedback', announcement.id)} className="btn btn-primary mr-1">Feedback</button>
-                                                <button onClick={() => handleActionClick('Ban', announcement.id)} className="btn btn-danger">Ban</button>
-                                            </div>
-                                    </div>
-                                    <div className="announcement-text">
-                                            <FontAwesomeIcon icon= {faCheck} color="green" size='2x' onClick={() => handleContentClick()} style={{cursor: 'pointer'}}/>
-                                            <FontAwesomeIcon icon= {faXmark} color="red" size='2x' onClick={() => handleContentClick()} style={{cursor: 'pointer'}}/>    
-                                        </div>
-                                </div>
-                            </div>
-                        ))}
+                    <div className="announcement-requests-container">
+                        {companyRequests.map((companyRequest, index) => (
+                        <div key={index}>
+                            <CompanyRequest
+                             companyRequest={companyRequest}
+                        />
                     </div>
+                    ))}
+                </div>
                 </div>
             </div>
         </div>
