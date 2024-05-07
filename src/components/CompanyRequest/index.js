@@ -40,6 +40,7 @@ function CompanyRequest({ companyRequest }) {
       <div className={styles.left}>
         <div>
           <h2>{companyRequest.companyName}</h2>
+          <p>{companyRequest.email}</p>
         </div>
         <div className={styles.buttons}>
           <button className={styles.feedbackBtn} onClick={giveFeedback}>

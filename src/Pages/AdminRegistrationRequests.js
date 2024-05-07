@@ -12,9 +12,10 @@ function AdminRegistrationRequests() {
     axios.get("http://localhost:8081/company/list").then((response) => {
       const data = response.data;
       setCompanyRequests(
-        data.map(({ id, companyName }) => ({
+        data.map(({ id, companyName, email }) => ({
           id,
           companyName,
+          email
         }))
       );
     });
