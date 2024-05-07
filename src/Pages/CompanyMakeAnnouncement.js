@@ -1,8 +1,9 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "../CSS/CompanyMakeAnnouncement.css";
 import CompanySidebar from "../components/CompanySidebar";
 import Header from "../components/Header";
+import { UserContext } from "../context/UserProvider";
 
 function formatDate(date) {
   const year = date.getFullYear();
@@ -20,13 +21,14 @@ function CompanyMakeAnnouncement() {
   const [title, setTitle] = useState("");
   const [file, setFile] = useState(null);
   const [deadline, setDeadline] = useState(formatDate(new Date()));
+  const { user } = useContext(UserContext);
 
   const onSend = () => {
     const formData = new FormData();
     formData.append("title", title);
     formData.append("file", file);
-    formData.append("publishDate", formatDate(new Date()));
     formData.append("deadline", deadline);
+    formData.append("companyId", user.id);
 
     axios
       .post("http://localhost:8081/announcements/upload", formData, {

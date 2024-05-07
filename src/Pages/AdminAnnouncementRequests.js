@@ -12,12 +12,20 @@ function AdminAnnouncementRequests() {
     axios.get("http://localhost:8081/announcements/list").then((response) => {
       const data = response.data;
       setAnnouncementRequests(
-        data.map(({ title, deadline, document: { documentId, content } }) => ({
-          id: documentId,
-          title,
-          deadline,
-          content,
-        }))
+        data.map(
+          ({
+            title,
+            deadline,
+            document: { documentId, content },
+            company: { id: companyId },
+          }) => ({
+            id: documentId,
+            title,
+            deadline,
+            content,
+            companyId,
+          })
+        )
       );
     });
   }, []);

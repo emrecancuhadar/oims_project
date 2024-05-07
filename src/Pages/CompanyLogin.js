@@ -1,35 +1,39 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../CSS/CompanyLogin.css";
+import { UserContext } from "../context/UserProvider";
+
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const { loginUser } = useContext(UserContext);
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
     try {
-      
       const response = await fetch("http://localhost:8081/company/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          
         },
         body: JSON.stringify({ email, password }),
       });
 
       if (response.ok) {
+        response.json().then((data) => {
+          console.log(data);
+          loginUser({ id: data.id, email: data.email });
+        });
         navigate("/company/home");
       } else {
         const errorMessage = await response.text();
-        alert(errorMessage); 
+        alert(errorMessage);
       }
-      
     } catch (error) {
       console.error("Error:", error);
-      
+
       alert("An unexpected error occurred. Please try again later.");
     }
   };

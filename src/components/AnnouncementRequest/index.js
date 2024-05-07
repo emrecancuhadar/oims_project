@@ -54,7 +54,11 @@ function AnnouncementRequest({ announcementRequest }) {
       })
       .catch((error) => console.log(error));
   };
-  const banCompany = () => {};
+  const banCompany = () => {
+    axios.put(
+      `http://localhost:8081/systemadmin/company/${announcementRequest.companyId}/ban`
+    );
+  };
   const giveFeedback = () => {};
 
   return (
@@ -68,7 +72,13 @@ function AnnouncementRequest({ announcementRequest }) {
           <button className={styles.feedbackBtn} onClick={giveFeedback}>
             Feedback
           </button>
-          <button className={styles.banBtn} onClick={banCompany}>
+          <button
+            className={styles.banBtn}
+            onClick={(event) => {
+              event.stopPropagation();
+              banCompany();
+            }}
+          >
             Ban
           </button>
         </div>
