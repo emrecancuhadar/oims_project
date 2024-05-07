@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import "../CSS/StudentHomepage.css";
 import Header from "../components/Header";
 import StudentSidebar from "../components/StudentSidebar";
+import { UserContext } from "../context/UserProvider";
 
 function StudentHomepage() {
+  const { user } = useContext(UserContext);
+
   return (
     <div className="student-homepage">
       <StudentSidebar />
       <div className="maincontent">
         <div className="header d-flex align-items-center">
-          <Header username={"Test Student"} />
+          <Header username={user.name} />
         </div>
         <div className="homepage row">
           <div className="container">

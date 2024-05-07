@@ -57,7 +57,7 @@ function CompanyMakeAnnouncement() {
         <CompanySidebar />
         <div className="main-content">
           <div className="header d-flex align-items-center">
-            <Header username={"Sample Company"} />
+            <Header username={user.name} />
           </div>
           <div className="announcements-page-container row">
             <h1 className="page-title">Make Announcement</h1>
@@ -91,7 +91,7 @@ function CompanyMakeAnnouncement() {
                   onChange={(e) => setFile(e.target.files[0])}
                 />
               </div>
-              <div>
+              <div style={{ width: "100%" }}>
                 <p style={{ margin: 0 }}>{error}</p>
               </div>
               <button

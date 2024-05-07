@@ -24,7 +24,12 @@ function Login() {
       if (response.ok) {
         response.json().then((data) => {
           console.log(data);
-          loginUser({ id: data.id, name: data.companyName, email: data.email });
+          loginUser({
+            id: data.id,
+            name: data.companyName,
+            email: data.email,
+            registrationStatus: data.registrationStatus,
+          });
         });
         navigate("/company/home");
       } else {

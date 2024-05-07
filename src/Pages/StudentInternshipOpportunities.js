@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import "../CSS/StudentInternshipOpportunities.css";
 import Header from "../components/Header";
 import StudentSidebar from "../components/StudentSidebar";
+import { UserContext } from "../context/UserProvider";
 
 const internships = [
   { id: 1, title: "Internship 1" },
@@ -10,6 +11,8 @@ const internships = [
 ];
 
 function StudentInternshipOpportunities() {
+  const { user } = useContext(UserContext);
+
   const handleActionClick = (action, id) => {
     alert(`${action} clicked for internships ${id}`);
   };
@@ -24,7 +27,7 @@ function StudentInternshipOpportunities() {
       <StudentSidebar />
       <div className="main-content">
         <div className="header d-flex align-items-center">
-          <Header username={"Test Student"} />
+          <Header username={user.name} />
         </div>
         <div className="internships">
           <div className="title-container">

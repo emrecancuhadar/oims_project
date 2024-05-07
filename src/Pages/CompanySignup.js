@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PasswordChecklist from "react-password-checklist";
 import { useNavigate } from "react-router-dom";
 import "../CSS/CompanySignup.css";
 
@@ -60,7 +61,7 @@ function Signup() {
           <input
             type="password"
             value={password}
-            // minLength={8}
+            minLength={8}
             maxLength={28}
             required
             onChange={(e) => setPassword(e.target.value)}
@@ -69,12 +70,12 @@ function Signup() {
           <input
             type="password"
             value={passwordAgain}
-            // minLength={8}
+            minLength={8}
             maxLength={28}
             required
             onChange={(e) => setPasswordAgain(e.target.value)}
           />
-          {/* <PasswordChecklist
+          <PasswordChecklist
             className="passwordcheck"
             rules={[
               "minLength",
@@ -88,7 +89,7 @@ function Signup() {
             value={password}
             valueAgain={passwordAgain}
             onChange={(isValid) => {}}
-          /> */}
+          />
           <button className="sign-up-button" type="submit">
             Sign Up
           </button>

@@ -42,7 +42,7 @@ function CompanyMyAnnouncements() {
         <CompanySidebar />
         <div className="main-content">
           <div className="header d-flex align-items-center">
-            <Header username={"Sample Company"} />
+            <Header username={user.name} />
           </div>
           <div className="announcements-page-container row">
             <h1 className="page-title">My Announcements</h1>

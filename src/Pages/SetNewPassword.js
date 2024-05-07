@@ -1,16 +1,30 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PasswordChecklist from "react-password-checklist";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "../CSS/SetNewPassword.css";
 
 function SetNewPassword() {
   const navigate = useNavigate();
+  const location = useLocation(); // Use location hook here
+
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [passwordIsValid, setPasswordIsValid] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [token, setToken] = useState(""); // State to hold the token
+
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    const tokenParam = queryParams.get("token"); // Get the token from the URL
+    if (tokenParam) {
+      setToken(tokenParam);
+    } else {
+      setError("No token provided.");
+      navigate("/"); // Redirect if no token is found
+    }
+  }, [location, navigate]);
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
@@ -34,11 +48,10 @@ function SetNewPassword() {
       setError("Password does not meet all requirements.");
       return;
     }
-    // Assuming password setting logic is successful here
-    console.log("New password is set:", password);
 
     const formData = new FormData();
-    formData.append("password", password);
+    formData.append("newPassword", password);
+    formData.append("token", token); // Include the token in your request
 
     axios
       .post("http://localhost:8081/security/company/savePassword", formData, {
@@ -51,7 +64,10 @@ function SetNewPassword() {
         setError("");
         console.log(response.data);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log(error);
+        setError("Failed to update password. Please try again.");
+      });
   };
 
   return (

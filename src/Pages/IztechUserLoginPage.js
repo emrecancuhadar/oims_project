@@ -1,12 +1,14 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "../CSS/IztechUserLoginPage.module.css";
+import { UserContext } from "../context/UserProvider";
 
 function IztechUserLoginPage() {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+  const { loginUser } = useContext(UserContext);
 
   const login = (credentials) => {
     if (username.includes("@")) {
@@ -19,6 +21,7 @@ function IztechUserLoginPage() {
       .post("http://localhost:8081/iztech-user/login", credentials)
       .then((response) => {
         const role = response.data.role;
+        loginUser({ id: response.data.id, name: response.data.fullName });
         switch (role) {
           case "STUDENT":
             navigate("/student/home");

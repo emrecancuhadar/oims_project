@@ -1,13 +1,14 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../CSS/AdminRegistrationRequests.css";
 import CompanyRequest from "../components/CompanyRequest";
 import Header from "../components/Header";
 import SystemAdminSidebar from "../components/SystemAdminSidebar";
+import { UserContext } from "../context/UserProvider";
 
 function AdminRegistrationRequests() {
   const [companyRequests, setCompanyRequests] = useState([]);
-  
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
     axios.get("http://localhost:8081/company/list").then((response) => {
@@ -16,7 +17,7 @@ function AdminRegistrationRequests() {
         data.map(({ id, companyName, email }) => ({
           id,
           companyName,
-          email
+          email,
         }))
       );
     });
@@ -26,7 +27,7 @@ function AdminRegistrationRequests() {
       <SystemAdminSidebar />
       <div className="main-content">
         <div className="header d-flex align-items-center">
-          <Header username={"System Admin"} />
+          <Header username={user.name} />
         </div>
         <div className="announcements align-items-center">
           <h1>Company Registration Requests</h1>
