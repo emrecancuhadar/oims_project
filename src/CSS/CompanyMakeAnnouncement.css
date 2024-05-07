@@ -79,3 +79,7 @@ i {
     align-items: center;
     flex-shrink: 0;
 }
+
+.compmakeann .send-btn .btn {
+  padding: 0 !important;
+} 

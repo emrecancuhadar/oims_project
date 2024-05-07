@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import React from "react";
 import styles from "./company-request.module.css";
+import Popup from "../Popup";
+
 
 function CompanyRequest({ companyRequest }) {
   const approveCompanyRequest = () => {

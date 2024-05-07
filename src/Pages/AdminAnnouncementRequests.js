@@ -4,6 +4,7 @@ import "../CSS/AdminAnnouncementRequests.css";
 import AnnouncementRequest from "../components/AnnouncementRequest";
 import Header from "../components/Header";
 import SystemAdminSidebar from "../components/SystemAdminSidebar";
+import Popup from "../components/Popup";
 
 function AdminAnnouncementRequests() {
   const [announcementRequests, setAnnouncementRequests] = useState([]);
@@ -33,6 +34,7 @@ function AdminAnnouncementRequests() {
   return (
     <div className="admin-annoRequest">
       <SystemAdminSidebar />
+      <Popup/>
       <div className="main-content">
         <div className="header d-flex align-items-center">
           <Header username={"System Admin"} />
