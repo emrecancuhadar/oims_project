@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../CSS/CompanyMakeAnnouncement.css";
 import CompanySidebar from "../components/CompanySidebar";
 import Header from "../components/Header";
@@ -22,6 +23,7 @@ function CompanyMakeAnnouncement() {
   const [file, setFile] = useState(null);
   const [deadline, setDeadline] = useState(formatDate(new Date()));
   const { user } = useContext(UserContext);
+  const navigate = useNavigate();
 
   const onSend = () => {
     const formData = new FormData();
@@ -38,6 +40,7 @@ function CompanyMakeAnnouncement() {
       })
       .then((response) => {
         console.log("Announcement Created:", response.data);
+        navigate("/company/my-announcements");
       })
       .catch((error) => {
         console.error("Error uploading the announcement:", error);
@@ -56,9 +59,7 @@ function CompanyMakeAnnouncement() {
             <h1 className="page-title">Make Announcement</h1>
             <div className="announcements-container col-md-6">
               <div className="input-group input-group-lg">
-                <div className="input-group-text" >
-                  Title
-                </div>
+                <div className="input-group-text">Title</div>
                 <input
                   id="file-upload"
                   type="text"

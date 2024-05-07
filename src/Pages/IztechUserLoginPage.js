@@ -56,7 +56,9 @@ function IztechUserLoginPage() {
           />
         </label>
         <button onClick={() => login({ username, password })}>Login</button>
-        <p onClick={() => alert("Reset Password Clicked")}>Reset password?</p>
+        <p onClick={() => alert("Reset Password Clicked")}>
+          Forgot my password
+        </p>
       </div>
     </div>
   );

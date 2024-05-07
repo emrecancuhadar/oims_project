@@ -1,10 +1,13 @@
 import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
+import FeedbackModal from "../FeedbackModal";
 import styles from "./announcement-request.module.css";
 
 function AnnouncementRequest({ announcementRequest }) {
+  const [isModalOpen, setModalOpen] = useState(false);
+
   const showAnnouncementRequest = () => {
     const documentBase64 = announcementRequest.content;
 
@@ -57,62 +60,79 @@ function AnnouncementRequest({ announcementRequest }) {
       .catch((error) => console.log(error));
   };
   const banCompany = () => {
-    axios.put(
-      `http://localhost:8081/systemadmin/company/${announcementRequest.companyId}/ban`)
+    axios
+      .put(
+        `http://localhost:8081/systemadmin/company/${announcementRequest.companyId}/ban`
+      )
       .then((response) => {
         alert("Company is banned");
         console.log(response);
       })
       .catch((error) => console.log(error));
   };
-  
-  const giveFeedback = () => {};
+
+  const giveFeedback = () => {
+    setModalOpen(true);
+  };
 
   return (
-    <div className={styles.card} onClick={() => showAnnouncementRequest()}>
-      <div className={styles.left}>
-        <div>
-          <h2>{announcementRequest.title}</h2>
-          <p>{announcementRequest.deadline}</p>
+    <>
+      <div className={styles.card} onClick={() => showAnnouncementRequest()}>
+        <div className={styles.left}>
+          <div>
+            <h2>{announcementRequest.title}</h2>
+            <p>{announcementRequest.deadline}</p>
+          </div>
+          <div className={styles.buttons}>
+            <button
+              className={styles.feedbackBtn}
+              onClick={(event) => {
+                event.stopPropagation();
+                giveFeedback();
+              }}
+            >
+              Feedback
+            </button>
+            <button
+              className={styles.banBtn}
+              onClick={(event) => {
+                event.stopPropagation();
+                banCompany();
+              }}
+            >
+              Ban
+            </button>
+          </div>
         </div>
-        <div className={styles.buttons}>
-          <button className={styles.feedbackBtn} onClick={giveFeedback}>
-            Feedback
-          </button>
-          <button
-            className={styles.banBtn}
+        <div className={styles.right}>
+          <FontAwesomeIcon
+            icon={faCheck}
+            color="green"
+            size="2x"
+            style={{ cursor: "pointer" }}
             onClick={(event) => {
-              event.stopPropagation();
-              banCompany();
+              event.stopPropagation(); // Stop event propagation
+              approveAnnouncementRequest();
             }}
-          >
-            Ban
-          </button>
+          />
+          <FontAwesomeIcon
+            icon={faXmark}
+            color="red"
+            size="2x"
+            style={{ cursor: "pointer" }}
+            onClick={(event) => {
+              event.stopPropagation(); // Stop event propagation
+              disapproveAnnouncementRequest();
+            }}
+          />
         </div>
       </div>
-      <div className={styles.right}>
-        <FontAwesomeIcon
-          icon={faCheck}
-          color="green"
-          size="2x"
-          style={{ cursor: "pointer" }}
-          onClick={(event) => {
-            event.stopPropagation(); // Stop event propagation
-            approveAnnouncementRequest();
-          }}
-        />
-        <FontAwesomeIcon
-          icon={faXmark}
-          color="red"
-          size="2x"
-          style={{ cursor: "pointer" }}
-          onClick={(event) => {
-            event.stopPropagation(); // Stop event propagation
-            disapproveAnnouncementRequest();
-          }}
-        />
-      </div>
-    </div>
+      <FeedbackModal
+        isModalOpen={isModalOpen}
+        closeModal={() => setModalOpen(false)}
+        receiver={{ id: announcementRequest.id, name: "announcement" }}
+      />
+    </>
   );
 }
 

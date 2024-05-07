@@ -37,6 +37,7 @@ function CompanyAnnouncement({ announcement }) {
         <div>
           <h2>{announcement.title}</h2>
           <p>{announcement.deadline}</p>
+          <p>{announcement.status}</p>
         </div>
         <div className={styles.buttons}>
           <button className={styles.feedbackBtn}>Edit</button>

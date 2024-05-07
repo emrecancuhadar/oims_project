@@ -17,11 +17,16 @@ function CompanyMyAnnouncements() {
         const data = response.data;
         setAnnouncements(
           data.map(
-            ({ title, deadline, document: { documentId, content } }) => ({
+            ({
+              title,
+              deadline,
+              document: { documentId, content, status },
+            }) => ({
               id: documentId,
               title,
               deadline,
               content,
+              status,
             })
           )
         );
