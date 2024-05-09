@@ -1,0 +1,49 @@
+.companyMyAnnouncements{
+  display: flex;
+  flex-direction: row;
+  background-color: #ffffff;
+  height: 100vh;
+  width: 100vw;
+}
+
+.sidebarLogo {
+  width: 100px;
+}
+
+.pageTitle {
+  color: darkred;
+  text-align: center;
+  width: 100%;
+}
+
+.announcementsPageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 50px;
+}
+
+.announcementsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  width: 100%;
+}
+
+.card {
+  flex: 1 1 150px;  /* Adjust card size as needed */
+  height: 300px;  /* Set a fixed height */
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cardTitle {
+  margin-bottom: 10px;
+}

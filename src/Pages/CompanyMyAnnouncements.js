@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
-import "../CSS/CompanyMyAnnouncements.css";
+import styles from "../CSS/CompanyMyAnnouncements.module.css";
 import CompanyAnnouncement from "../components/CompanyAnnouncement";
 import CompanySidebar from "../components/CompanySidebar";
 import Header from "../components/Header";
@@ -16,43 +16,31 @@ function CompanyMyAnnouncements() {
       .then((response) => {
         const data = response.data;
         setAnnouncements(
-          data.map(
-            ({
-              title,
-              deadline,
-              document: { documentId, content, status },
-            }) => ({
-              id: documentId,
-              title,
-              deadline,
-              content,
-              status,
-            })
-          )
+          data.map(({ title, deadline, document }) => ({
+            id: document.documentId,
+            title,
+            deadline,
+            content: document.content,
+            status: document.status,
+          }))
         );
       })
       .catch((error) => {
         console.error("Error fetching announcements:", error);
       });
-  }, []);
+  }, [user.id]);
 
   return (
-    <div className="compmyann">
-      <div className="student-homepage">
-        <CompanySidebar />
-        <div className="main-content">
-          <div className="header d-flex align-items-center">
-            <Header username={user.name} />
-          </div>
-          <div className="announcements-page-container row">
-            <h1 className="page-title">My Announcements</h1>
-            <div className="announcements-container">
-              {announcements.map((announcement, index) => (
-                <div key={index}>
-                  <CompanyAnnouncement announcement={announcement} />
-                </div>
-              ))}
-            </div>
+    <div className={styles.companyMyAnnouncements}>
+      <CompanySidebar />
+      <div className={styles.mainContent}>
+          <Header username={user.name} />
+        <div className={styles.announcementsPageContainer}>
+          <h1 className={styles.pageTitle}>My Announcements</h1>
+          <div className={styles.announcementsContainer}>
+            {announcements.map((announcement, index) => (
+              <CompanyAnnouncement key={index} announcement={announcement} />
+            ))}
           </div>
         </div>
       </div>
