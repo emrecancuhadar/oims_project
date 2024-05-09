@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import "../CSS/SystemAdminHomepage.css";
+import styles from "../CSS/SystemAdminHomepage.module.css";
 import Header from "../components/Header";
 import SystemAdminSidebar from "../components/SystemAdminSidebar";
 import { UserContext } from "../context/UserProvider";
@@ -8,20 +8,18 @@ function CompanyHomepage() {
   const { user } = useContext(UserContext);
 
   return (
-    <div className="adminhome">
-      <div className="admin-homepage">
+    <div className={styles.adminHome}>
+      <div className={styles.adminHomepage}>
         <SystemAdminSidebar />
-        <div className="main-content">
-          <div className="header d-flex align-items-center">
+        <div className={styles.mainContent}>
             <Header username={user.name} />
-          </div>
-          <div className="homepage row">
-            <div className="title-container">
-              <h1 className="page-title">Welcome to OIMS!</h1>
+          <div className={styles.homepage}>
+            <div className={styles.titleContainer}>
+              <h1>Welcome to OIMS!</h1>
             </div>
-            <div className="row homepage-container">
-              <div className="card">
-                <div className="card-body">
+            <div className={styles.homepageContainer}>
+              <div className={styles.card}>
+                <div className={styles.cardBody}>
                   <h2>What is OIMS?</h2>
                   <p>
                     At OIMS, we believe in fostering meaningful connections
@@ -44,8 +42,8 @@ function CompanyHomepage() {
                   </p>
                 </div>
               </div>
-              <div className="card">
-                <div className="card-body">
+              <div className={styles.card}>
+                <div className={styles.cardBody}>
                   <h2>Why Choose OIMS?</h2>
                   <ul>
                     <li>
