@@ -1,29 +1,25 @@
-
-
-.adminHomepage {
+.companyHomepage {
     display: flex;
     min-height: 100vh;
 }
 
 .mainContent {
-    flex: 1;
+    flex-grow: 1;
     padding: 20px;
     display: flex;
     flex-direction: column;
-}
-
-
-
-.homepage {
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 20px;
 }
 
 .titleContainer {
     width: 100%;
     text-align: center;
     color: red;
+}
+
+.homepage {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
 }
 
 .homepageContainer {
@@ -46,3 +42,4 @@
     padding: 10px;
 
 }
+
