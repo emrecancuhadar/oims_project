@@ -10,6 +10,13 @@
   width: 100px;
 }
 
+.mainContent {
+  flex-grow: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
 .pageTitle {
   color: darkred;
   text-align: center;

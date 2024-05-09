@@ -40,12 +40,9 @@ function CompanyMakeAnnouncement() {
 
   return (
     <div className={styles.companyMakeAnnouncement}>
-      <CompanySidebar />
-      <div className={styles.companyHomepage}>
+      <CompanySidebar /> 
         <div className={styles.mainContent}>
-          <div className={styles.header}>
             <Header username={user.name} />
-          </div>
           <div className={styles.announcementsPageContainer}>
             <h1 className={styles.pageTitle}>Make Announcement</h1>
             <div className={styles.announcementsContainer}>
@@ -59,7 +56,7 @@ function CompanyMakeAnnouncement() {
                 />
               </div>
               <div className={styles.inputGroup}>
-                <label htmlFor="deadline">Deadline:</label>
+                <label className={styles.deadline} htmlFor="deadline">Deadline:</label>
                 <input
                   type="date"
                   className={styles.formControl}
@@ -87,8 +84,7 @@ function CompanyMakeAnnouncement() {
             </div>
           </div>
         </div>
-      </div>
-    </div>
+        </div>
   );
 }
 
