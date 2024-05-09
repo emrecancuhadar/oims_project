@@ -69,8 +69,8 @@ function SetNewPassword() {
   };
 
   return (
-    <div className={styles.setNewPasswordPage}>
-      <div className={styles.setNewPasswordContainer}>
+    <div className={styles.cmpSetNewPasswordContainer}>
+      <div className={styles.cmpSetNewPasswordBox}>
         <img
           className={styles.logoImage}
           src={require("../assets/images/iyte_logo.png")}
@@ -81,8 +81,7 @@ function SetNewPassword() {
           navigate("/company/login")
         ) : (
           <form onSubmit={handleSubmit} className={styles.formContainer}>
-            <div className="form-group">
-              <label htmlFor="password">New Password:</label>
+              <label htmlFor="password">New Password:
               <input
                 type="password"
                 id="password"
@@ -91,9 +90,9 @@ function SetNewPassword() {
                 onChange={handlePasswordChange}
                 required
               />
-            </div>
-            <div className="form-group">
-              <label htmlFor="confirmPassword">Confirm Password:</label>
+              </label>
+
+              <label htmlFor="confirmPassword">Confirm Password:
               <input
                 type="password"
                 id="confirmPassword"
@@ -102,7 +101,7 @@ function SetNewPassword() {
                 onChange={handleConfirmPasswordChange}
                 required
               />
-            </div>
+              </label>
             {error && <div className="error-message">{error}</div>}
             <PasswordChecklist
               className="passwordcheck"
