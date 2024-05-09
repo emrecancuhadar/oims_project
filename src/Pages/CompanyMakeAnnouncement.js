@@ -1,27 +1,15 @@
 import axios from "axios";
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../CSS/CompanyMakeAnnouncement.css";
+import styles from "../CSS/CompanyMakeAnnouncement.module.css";
 import CompanySidebar from "../components/CompanySidebar";
 import Header from "../components/Header";
 import { UserContext } from "../context/UserProvider";
 
-function formatDate(date) {
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1; // getMonth() is zero-indexed
-  const day = date.getDate();
-
-  // Pad the month and day with leading zeros if necessary
-  const formattedMonth = month < 10 ? `0${month}` : month;
-  const formattedDay = day < 10 ? `0${day}` : day;
-
-  return `${year}-${formattedMonth}-${formattedDay}`;
-}
-
 function CompanyMakeAnnouncement() {
   const [title, setTitle] = useState("");
   const [file, setFile] = useState(null);
-  const [deadline, setDeadline] = useState(formatDate(new Date()));
+  const [deadline, setDeadline] = useState(new Date().toISOString().split('T')[0]);
   const [error, setError] = useState("");
   const { user } = useContext(UserContext);
   const navigate = useNavigate();
@@ -33,71 +21,65 @@ function CompanyMakeAnnouncement() {
     formData.append("deadline", deadline);
     formData.append("companyId", user.id);
 
-    axios
-      .post("http://localhost:8081/announcements/upload", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
-      .then((response) => {
-        console.log("Announcement Created:", response.data);
-        navigate("/company/my-announcements");
-      })
-      .catch((error) => {
-        if (error.response.status == 400) {
-          setError(error.response.data);
-        }
-        console.error("Error uploading the announcement:", error);
-      });
+    axios.post("http://localhost:8081/announcements/upload", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    })
+    .then((response) => {
+      console.log("Announcement Created:", response.data);
+      navigate("/company/my-announcements");
+    })
+    .catch((error) => {
+      if (error.response && error.response.status === 400) {
+        setError(error.response.data);
+      }
+      console.error("Error uploading the announcement:", error);
+    });
   };
 
   return (
-    <div className="compmakeann">
-      <div className="company-homepage">
-        <CompanySidebar />
-        <div className="main-content">
-          <div className="header d-flex align-items-center">
+    <div className={styles.companyMakeAnnouncement}>
+      <CompanySidebar />
+      <div className={styles.companyHomepage}>
+        <div className={styles.mainContent}>
+          <div className={styles.header}>
             <Header username={user.name} />
           </div>
-          <div className="announcements-page-container row">
-            <h1 className="page-title">Make Announcement</h1>
-            <div className="announcements-container col-md-6">
-              <div className="input-group input-group-lg">
-                <div className="input-group-text">Title</div>
+          <div className={styles.announcementsPageContainer}>
+            <h1 className={styles.pageTitle}>Make Announcement</h1>
+            <div className={styles.announcementsContainer}>
+              <div className={styles.inputGroup}>
+                <span className={styles.inputGroupText}>Title</span>
                 <input
-                  id="file-upload"
                   type="text"
-                  className="form-control"
+                  className={styles.formControl}
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                 />
               </div>
-              <div>
+              <div className={styles.inputGroup}>
                 <label htmlFor="deadline">Deadline:</label>
                 <input
                   type="date"
+                  className={styles.formControl}
                   name="deadline"
                   value={deadline}
-                  minLength={3}
-                  maxLength={30}
                   onChange={(e) => setDeadline(e.target.value)}
                 />
               </div>
-              <div className="input-group input-group-lg">
+              <div className={styles.inputGroup}>
                 <input
-                  id="file-upload"
                   type="file"
-                  className="form-control"
+                  className={styles.formControl}
                   onChange={(e) => setFile(e.target.files[0])}
                 />
               </div>
-              <div style={{ width: "100%" }}>
-                <p style={{ margin: 0 }}>{error}</p>
-              </div>
+              {error && <p style={{ color: 'red' }}>{error}</p>}
               <button
-                className="send-btn btn"
-                type="submit"
-                onClick={() => onSend()}
+                className={styles.sendBtn}
+                type="button"
+                onClick={onSend}
                 disabled={!title || !file || !deadline}
               >
                 Send Announcement Request
