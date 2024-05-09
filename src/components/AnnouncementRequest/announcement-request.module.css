@@ -52,3 +52,11 @@
 .buttons button:last-child {
   margin-right: 0;
 }
+
+.feedbackBtn:hover {
+  background-color: rgb(238, 109, 3);
+}
+
+.feedbackBtn {
+  background-color: rgb(238, 109, 3);
+}

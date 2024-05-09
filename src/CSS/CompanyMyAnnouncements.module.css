@@ -55,3 +55,7 @@
 .cardTitle {
   margin-bottom: 10px;
 }
+
+.feedbackBtn:hover {
+  background-color: rgb(238, 109, 3);
+}

@@ -81,14 +81,14 @@
   border: none;
   border-radius: 8px;
   color: white;
-  background-color: darkred;
+  background-color: #dc3545;
   cursor: pointer;
   margin-top: 20px;
   width: 50%;
 }
 
 .sendBtn:hover {
-  background-color: red;
+  background-color: d12d2d;
 }
 
 .customFileUpload {

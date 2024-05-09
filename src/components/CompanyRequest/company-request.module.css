@@ -41,7 +41,7 @@
   }
   
   .feedbackBtn {
-    background-color: #0d6efd;
+    background-color: rgb(238, 109, 3);
   }
   
   .banBtn {
@@ -51,4 +51,5 @@
   .buttons button:last-child {
     margin-right: 0;
   }
+
   
