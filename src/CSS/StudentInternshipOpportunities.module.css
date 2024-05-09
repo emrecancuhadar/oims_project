@@ -59,7 +59,7 @@
 
 .actionButton {
     padding: 10px;
-    background-color: black; /* Bootstrap primary blue */
+    background-color: #9a0e20; /* Bootstrap primary blue */
     color: white;
     border: none;
     border-radius: 5px;
@@ -69,7 +69,5 @@
 
 }
 
-.actionButton:hover {
-    background-color: grey; /* Darker blue on hover */
-}
+
 
