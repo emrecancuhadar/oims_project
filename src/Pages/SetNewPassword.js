@@ -1,28 +1,27 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
-import PasswordChecklist from "react-password-checklist";
 import { useLocation, useNavigate } from "react-router-dom";
-import "../CSS/SetNewPassword.css";
+import styles from "../CSS/SetNewPassword.module.css";
+import PasswordChecklist from "react-password-checklist";
+import axios from "axios";
 
 function SetNewPassword() {
   const navigate = useNavigate();
-  const location = useLocation(); // Use location hook here
-
+  const location = useLocation();
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [passwordIsValid, setPasswordIsValid] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [token, setToken] = useState(""); // State to hold the token
+  const [token, setToken] = useState("");
 
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
-    const tokenParam = queryParams.get("token"); // Get the token from the URL
+    const tokenParam = queryParams.get("token");
     if (tokenParam) {
       setToken(tokenParam);
     } else {
       setError("No token provided.");
-      navigate("/"); // Redirect if no token is found
+      navigate("/");
     }
   }, [location, navigate]);
 
@@ -51,40 +50,43 @@ function SetNewPassword() {
 
     const formData = new FormData();
     formData.append("newPassword", password);
-    formData.append("token", token); // Include the token in your request
+    formData.append("token", token);
 
-    axios
-      .post("http://localhost:8081/security/company/savePassword", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
-      .then((response) => {
-        setSuccess(true);
-        setError("");
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-        setError("Failed to update password. Please try again.");
-      });
+    axios.post("http://localhost:8081/security/company/savePassword", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    })
+    .then((response) => {
+      setSuccess(true);
+      setError("");
+      console.log(response.data);
+    })
+    .catch((error) => {
+      console.log(error);
+      setError("Failed to update password. Please try again.");
+    });
   };
 
   return (
-    <div className="setNewPasswordPage">
-      <div className="set-new-password-container">
-        <img src={require("../assets/images/iyte_logo.png")} alt="IYTE Logo" />
+    <div className={styles.setNewPasswordPage}>
+      <div className={styles.setNewPasswordContainer}>
+        <img
+          className={styles.logoImage}
+          src={require("../assets/images/iyte_logo.png")}
+          alt="IYTE Logo"
+        />
         <h2>Set New Password</h2>
         {success ? (
           navigate("/company/login")
         ) : (
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className={styles.formContainer}>
             <div className="form-group">
               <label htmlFor="password">New Password:</label>
               <input
                 type="password"
                 id="password"
-                className="form-control"
+                className={styles.inputField}
                 value={password}
                 onChange={handlePasswordChange}
                 required
@@ -95,7 +97,7 @@ function SetNewPassword() {
               <input
                 type="password"
                 id="confirmPassword"
-                className="form-control"
+                className={styles.inputField}
                 value={confirmPassword}
                 onChange={handleConfirmPasswordChange}
                 required
@@ -110,7 +112,7 @@ function SetNewPassword() {
               valueAgain={confirmPassword}
               onChange={(isValid) => setPasswordIsValid(isValid)}
             />
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className={styles.submitButton}>
               Update Password
             </button>
           </form>

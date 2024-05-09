@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import PasswordChecklist from "react-password-checklist";
 import { useNavigate } from "react-router-dom";
-import "../CSS/CompanySignup.css";
+import styles from "../CSS/CompanySignup.module.css";
+import PasswordChecklist from "react-password-checklist";
 
 function Signup() {
   const [companyName, setCompanyName] = useState("");
@@ -29,22 +29,22 @@ function Signup() {
       }
     } catch (error) {
       console.error("Error:", error);
-
       alert("An unexpected error occurred. Please try again later.");
     }
   };
 
   return (
-    <div className="pages">
-      <div className="company-signup-container">
+    <div className={styles.pages}>
+      <div className={styles.companySignupContainer}>
         <img
-          className="iyte_logo"
+          className={styles.logoImage}
           src={require("../assets/images/iyte_logo.png")}
           alt="IYTE Logo"
         />
-        <form onSubmit={handleSignup}>
+        <form className={styles.formContainer} onSubmit={handleSignup}>
           <label>Name of Company:</label>
           <input
+            className={styles.inputField}
             type="text"
             value={companyName}
             required
@@ -52,6 +52,7 @@ function Signup() {
           />
           <label>E-mail:</label>
           <input
+            className={styles.inputField}
             type="email"
             value={email}
             required
@@ -59,6 +60,7 @@ function Signup() {
           />
           <label>Password:</label>
           <input
+            className={styles.inputField}
             type="password"
             value={password}
             minLength={8}
@@ -68,6 +70,7 @@ function Signup() {
           />
           <label>Confirm Password:</label>
           <input
+            className={styles.inputField}
             type="password"
             value={passwordAgain}
             minLength={8}
@@ -77,24 +80,15 @@ function Signup() {
           />
           <PasswordChecklist
             className="passwordcheck"
-            rules={[
-              "minLength",
-              "specialChar",
-              "number",
-              "capital",
-              "match",
-              "",
-            ]}
+            rules={["minLength", "specialChar", "number", "capital", "match"]}
             minLength={8}
             value={password}
             valueAgain={passwordAgain}
             onChange={(isValid) => {}}
           />
-          <button className="sign-up-button" type="submit">
-            Sign Up
-          </button>
+          <button className={styles.signUpButton} type="submit">Sign Up</button>
         </form>
-        <p className="para" onClick={() => navigate("/company/login")}>
+        <p className={styles.para} onClick={() => navigate("/company/login")}>
           Sign in now!
         </p>
       </div>
