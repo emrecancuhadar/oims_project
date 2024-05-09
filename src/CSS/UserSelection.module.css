@@ -59,7 +59,5 @@
 }
 
 .userButton:hover {
-  background-color: #9a0e20;
   color: white;
-  transform: scale(1.1);
 }

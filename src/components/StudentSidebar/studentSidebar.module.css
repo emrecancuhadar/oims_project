@@ -7,3 +7,7 @@
     align-items: center;
     flex-shrink: 0;
 }
+
+.sidebarLogo{
+    width: 100px;
+}

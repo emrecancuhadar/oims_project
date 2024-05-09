@@ -16,8 +16,8 @@
   text-align: center;
 }
 .image {
-  margin: 5%;
-  width: 250px;
+  object-fit: contain;
+  max-width: 100% ;
 }
 
 /*.loginbox h1 {
@@ -51,4 +51,5 @@
   color: #9a0e20;
   cursor: pointer;
   margin-top: 15px;
+  text-decoration: underline;
 }

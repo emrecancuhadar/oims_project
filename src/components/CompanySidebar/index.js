@@ -14,7 +14,7 @@ function CompanySidebar() {
   return (
     <div className={styles.companySidebar}>
       <img
-        className="sidebar-logo"
+        className={styles.sidebarLogo}
         src={require("../../assets/images/iyte_logo.png")}
         alt="xd"
       ></img>
