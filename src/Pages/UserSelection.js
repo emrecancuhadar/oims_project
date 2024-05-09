@@ -8,12 +8,13 @@ function UserSelection() {
     <div className={styles.mainScreen}>
       <div className={styles.CenterBox}>
         <img
+          className={styles.image}
           src={require("../assets/images/iyte_logo.png")}
           alt="OIMS Logo"
           width="250"
         />
         <h1>Welcome to OIMS!</h1>
-        <h3>Please select your user type</h3>
+        <h4>Please select your user type</h4>
         <div className={styles.buttonContainer}>
           <button
             className={styles.userButton}

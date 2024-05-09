@@ -38,6 +38,7 @@ function IztechUserLoginPage() {
     <div className={styles.logincontainer}>
       <div className={styles.loginbox}>
         <img
+          className={styles.image}
           src={require("../assets/images/iyte_logo.png")}
           alt="IYTE Logo"
           width="200"
