@@ -57,6 +57,7 @@
 .logoImage {
   display: block;
   margin: auto;
+  object-fit: contain;
   max-width: 100%;
   height: 45%;
 }
