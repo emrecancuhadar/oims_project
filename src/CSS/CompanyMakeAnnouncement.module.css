@@ -1,0 +1,93 @@
+.companyMakeAnnouncement{
+  display: flex;
+  flex-direction: row;
+  background-color: #ffffff;
+  height: 100vh;
+  width: 100vh;
+}
+
+.companyHomepage {
+  display: flex;
+  height: 100vh;
+}
+
+.pageTitle {
+  color: darkred;
+  text-align: center;
+  width: 100%;
+  padding: 20px 0;
+}
+
+.announcementsPageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.announcementsContainer {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr); /* Adjusted for a single column layout */
+  gap: 20px;
+  width: 100%; /* Adjust width as necessary */
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.inputGroupText {
+  background-color: #f8f9fa;
+  border: 1px solid #ced4da;
+  padding: 0.375rem 0.75rem;
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+.formControl {
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}
+
+.sendBtn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  background-color: darkred;
+  cursor: pointer;
+  margin-top: 20px;
+  width: 50%;
+}
+
+.sendBtn:hover {
+  background-color: red;
+}
+
+.customFileUpload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  background-color: #fff;
+}
+
+.customFileUpload:hover {
+  background-color: #f0f0f0;
+}
+
+.makeAnnouncementSidebar {
+  background-color: #9a0e20; /* Adjust color if necessary */
+  padding: 20px;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
