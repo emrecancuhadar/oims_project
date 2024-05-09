@@ -34,15 +34,15 @@ function Signup() {
   };
 
   return (
-    <div className={styles.pages}>
-      <div className={styles.companySignupContainer}>
+    <div className={styles.cmpSignUpContainer}>
+      <div className={styles.cmpSignupBox}>
         <img
           className={styles.logoImage}
           src={require("../assets/images/iyte_logo.png")}
           alt="IYTE Logo"
         />
         <form className={styles.formContainer} onSubmit={handleSignup}>
-          <label>Name of Company:</label>
+          <label>Name of Company:
           <input
             className={styles.inputField}
             type="text"
@@ -50,7 +50,8 @@ function Signup() {
             required
             onChange={(e) => setCompanyName(e.target.value)}
           />
-          <label>E-mail:</label>
+          </label>
+          <label>E-mail:
           <input
             className={styles.inputField}
             type="email"
@@ -58,7 +59,8 @@ function Signup() {
             required
             onChange={(e) => setEmail(e.target.value)}
           />
-          <label>Password:</label>
+          </label>
+          <label>Password:
           <input
             className={styles.inputField}
             type="password"
@@ -68,7 +70,8 @@ function Signup() {
             required
             onChange={(e) => setPassword(e.target.value)}
           />
-          <label>Confirm Password:</label>
+          </label>
+          <label>Confirm Password:
           <input
             className={styles.inputField}
             type="password"
@@ -78,6 +81,7 @@ function Signup() {
             required
             onChange={(e) => setPasswordAgain(e.target.value)}
           />
+          </label>
           <PasswordChecklist
             className="passwordcheck"
             rules={["minLength", "specialChar", "number", "capital", "match"]}

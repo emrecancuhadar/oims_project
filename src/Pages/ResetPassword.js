@@ -37,8 +37,8 @@ function ResetPassword() {
   };
 
   return (
-    <div className={styles.page}>
-      <div className={styles.resetPasswordContainer}>
+    <div className={styles.cmpResetPasswordContainer}>
+      <div className={styles.resetPasswordBox}>
         <img
           className={styles.logoImage}
           src={require("../assets/images/iyte_logo.png")}
@@ -55,8 +55,8 @@ function ResetPassword() {
           </div>
         ) : (
           <form onSubmit={handleSubmit} className={styles.formContainer}>
-            <div className="form-group">
-              <label htmlFor="email">Email:</label>
+            <div>
+              <label className={styles.cmpLabelContainer} htmlFor="email">Email:
               <input
                 type="email"
                 id="email"
@@ -65,6 +65,7 @@ function ResetPassword() {
                 onChange={handleEmailChange}
                 required
               />
+              </label>
             </div>
             {error && <div className="error">{error}</div>}
             <button type="submit" className={styles.submitButton}>

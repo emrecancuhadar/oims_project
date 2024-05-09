@@ -10,6 +10,8 @@
 
 .image {
   margin: 3%; 
+  height: 55%;
+  width: auto;
 }
 
 .centerBox h1 {
