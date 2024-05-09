@@ -31,7 +31,10 @@ function IztechUserLoginPage() {
             break;
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log(error);
+        alert("Login credentials are not correct!")
+  });
   };
 
   return (

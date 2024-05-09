@@ -10,10 +10,13 @@
 }
 
 .companyLoginBox {
+  display: flex;
+  flex-direction: column;
   background-color: rgba(240, 240, 240, 0.8);
-  padding: 2%;
+  padding: 0 2% 2%  2%;
   width: 20%;
   border-radius: 5px;
+  gap: 4px;
 }
 
 .formContainer {
@@ -23,8 +26,6 @@
   align-items: center;
 }
   
-
-
 .inputField {
   width: 100%;  /* Full width */
   margin-top: 3%;
@@ -44,8 +45,8 @@
   align-items: center;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-top: 8%;
-  margin-bottom: 8%;
+  margin-top: 25px;
+  margin-bottom: 12px;
   justify-self: center;
 }
 
@@ -65,4 +66,5 @@
   color: darkred;
   text-decoration: underline;
   cursor: pointer;
+  margin: 5px 0;
 }
