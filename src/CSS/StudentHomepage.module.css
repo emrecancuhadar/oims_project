@@ -1,34 +1,37 @@
-.adminHome {
+.studentHomepage {
     display: flex;
-    flex-direction: column;
+    
     min-height: 100vh;
 }
 
-.adminHomepage {
-    flex: 1;
-    display: flex;
-    width: 100%;
-}
-
 .mainContent {
-    flex: 1;
+    flex-grow: 1;
     padding: 20px;
     display: flex;
     flex-direction: column;
 }
 
-
-
-.homepage {
+.header {
     display: flex;
-    flex-wrap: wrap;
-    margin-top: 20px;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
 }
 
-.titleContainer {
+.titleContainer{
     width: 100%;
     text-align: center;
     color: red;
+}
+
+.homepage {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.container {
+    width: 100%;
 }
 
 .homepageContainer {
@@ -49,5 +52,4 @@
 
 .cardBody {
     padding: 10px;
-
 }

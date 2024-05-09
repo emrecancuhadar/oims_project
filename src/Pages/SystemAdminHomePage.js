@@ -8,7 +8,7 @@ function CompanyHomepage() {
   const { user } = useContext(UserContext);
 
   return (
-    <div className={styles.adminHome}>
+    
       <div className={styles.adminHomepage}>
         <SystemAdminSidebar />
         <div className={styles.mainContent}>
@@ -79,7 +79,7 @@ function CompanyHomepage() {
           </div>
         </div>
       </div>
-    </div>
+  
   );
 }
 
