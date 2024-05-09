@@ -6,7 +6,7 @@ function UserSelection() {
   const navigate = useNavigate();
   return (
     <div className={styles.mainScreen}>
-      <div className={styles.CenterBox}>
+      <div className={styles.centerBox}>
         <img
           className={styles.image}
           src={require("../assets/images/iyte_logo.png")}

@@ -12,7 +12,7 @@
   margin: 3%; 
 }
 
-h1 {
+.centerBox h1 {
   font-size: 40px;
   font-family: "Sans-serif";
   font-weight: 900;
@@ -20,12 +20,12 @@ h1 {
   
 }
 
-h4 {
+.centerBox h4 {
   font-family: "Sans-serif";
   
 }
 
-.CenterBox {
+.centerBox {
   width: 500px;
   height: 500px;
   padding-top: 5px;
