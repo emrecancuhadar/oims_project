@@ -7,7 +7,7 @@ function SystemAdminSidebar() {
     return (
         <div className={styles.systemAdminSidebar}>
           <img
-            className="sidebar-logo"
+            className={styles.sidebarLogo}
             src={require("../../assets/images/iyte_logo.png")}
             alt="Problem"
           ></img>
