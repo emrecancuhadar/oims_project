@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import "../CSS/StudentInternshipOpportunities.css";
+import styles from "../CSS/StudentInternshipOpportunities.module.css";
 import Header from "../components/Header";
 import StudentSidebar from "../components/StudentSidebar";
 import { UserContext } from "../context/UserProvider";
@@ -14,45 +14,39 @@ function StudentInternshipOpportunities() {
   const { user } = useContext(UserContext);
 
   const handleActionClick = (action, id) => {
-    alert(`${action} clicked for internships ${id}`);
+    alert(`${action} clicked for internship ${id}`);
   };
 
   const handleContentClick = () => {
-    // Placeholder for opening PDF
     alert("Content Clicked!");
   };
 
   return (
-    <div className="student-internshipOpps">
+    <div className={styles.studentInternshipOpps}>
       <StudentSidebar />
-      <div className="main-content">
-        <div className="header d-flex align-items-center">
+      <div className={styles.mainContent}>
+
           <Header username={user.name} />
-        </div>
-        <div className="internships">
-          <div className="title-container">
-            <h1 className="page-title">Internship Opportunities</h1>
+
+        <div className={styles.internships}>
+          <div className={styles.titleContainer}>
+            <h1>Internship Opportunities</h1>
           </div>
-          <div className="row internships-container">
+          <div className={styles.internshipsContainer}>
             {internships.map((internship) => (
-              <div key={internship.id} className="col-md-3">
-                <div className="card">
-                  <div className="card-body">
-                    <h5
-                      className="card-title"
-                      onClick={handleContentClick}
-                      style={{ cursor: "pointer" }}
-                    >
-                      {internship.title}
-                    </h5>
-                    <button
-                      onClick={() => handleActionClick("Apply", internship.id)}
-                      className="btn btn-dark"
-                    >
-                      Apply
-                    </button>
-                  </div>
-                </div>
+              <div key={internship.id} className={styles.card}>
+                <h5
+                  className={styles.cardTitle}
+                  onClick={handleContentClick}
+                >
+                  {internship.title}
+                </h5>
+                <button
+                  className={styles.actionButton}
+                  onClick={() => handleActionClick("Apply", internship.id)}
+                >
+                  Apply
+                </button>
               </div>
             ))}
           </div>
