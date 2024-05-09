@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../CSS/CompanyLogin.css";
+import styles from "../CSS/CompanyLogin.module.css"; // Updated import
 import { UserContext } from "../context/UserProvider";
 
 function Login() {
@@ -23,7 +23,6 @@ function Login() {
 
       if (response.ok) {
         response.json().then((data) => {
-          console.log(data);
           loginUser({
             id: data.id,
             name: data.companyName,
@@ -38,23 +37,23 @@ function Login() {
       }
     } catch (error) {
       console.error("Error:", error);
-
       alert("An unexpected error occurred. Please try again later.");
     }
   };
 
   return (
-    <div className="pages">
-      <div className="company-login-container">
+    <div className={styles.pages}>
+      <div className={styles.companyLoginContainer}>
         <img
-          className="iyte_logo"
+          className={styles.logoImage}
           src={require("../assets/images/iyte_logo.png")}
           alt="IYTE Logo"
         />
-        <form onSubmit={handleLogin}>
+        <form className={styles.formContainer} onSubmit={handleLogin}>
           <label>
             E-mail:
             <input
+              className={styles.inputField}
               type="email"
               value={email}
               required
@@ -64,18 +63,19 @@ function Login() {
           <label>
             Password:
             <input
+              className={styles.inputField}
               type="password"
               value={password}
               required
               onChange={(e) => setPassword(e.target.value)}
             />
           </label>
-          <button type="submit">Login</button>
+          <button className={styles.button} type="submit">Login</button>
         </form>
-        <p className="para" onClick={() => navigate("/company/signup")}>
+        <p className={styles.para} onClick={() => navigate("/company/signup")}>
           Sign up now!
         </p>
-        <p className="para" onClick={() => navigate("/company/resetpassword")}>
+        <p className={styles.para} onClick={() => navigate("/company/resetpassword")}>
           Forgot my password
         </p>
       </div>
