@@ -42,15 +42,15 @@ function Login() {
   };
 
   return (
-    <div className={styles.pages}>
-      <div className={styles.companyLoginContainer}>
+    <div className={styles.companyLoginContainer}>
+      <div className={styles.companyLoginBox}>
         <img
           className={styles.logoImage}
           src={require("../assets/images/iyte_logo.png")}
           alt="IYTE Logo"
         />
         <form className={styles.formContainer} onSubmit={handleLogin}>
-          <label>
+          <label className={styles.cmpLabelContainer}>
             E-mail:
             <input
               className={styles.inputField}
@@ -60,7 +60,7 @@ function Login() {
               onChange={(e) => setEmail(e.target.value)}
             />
           </label>
-          <label>
+          <label className={styles.cmpLabelContainer}>
             Password:
             <input
               className={styles.inputField}

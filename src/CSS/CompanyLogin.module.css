@@ -1,4 +1,4 @@
-.pages {
+.companyLoginContainer {
   background-image: url("../assets/images/iztech_background_image.jpg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -6,30 +6,33 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
-.companyLoginContainer {
+.companyLoginBox {
   background-color: rgba(240, 240, 240, 0.8);
-  padding: 20px;
-  width: 400px;
-  margin: auto;
+  padding: 2%;
+  width: 20%;
   border-radius: 5px;
-  display: flex;
-  flex-direction: column;
   align-items: center;
 }
 
 .formContainer {
   display: flex;
   flex-direction: column;
+    /* Updated to align items to the left */
   align-items: center;
 }
+  
+
 
 .inputField {
-  display: block;
-  margin: 3px 10px 10px 0;
+  width: 100%;  /* Full width */
+  margin-top: 3%;
+}
+
+.cmpLabelContainer {
   width: 100%;
-  height: 25px;
 }
 
 .button {
@@ -42,7 +45,9 @@
   align-items: center;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin: 15px 0px;
+  margin-top: 8%;
+  margin-bottom: 8%;
+  justify-self: center;
 }
 
 .buttonHover:hover {
@@ -53,12 +58,12 @@
   display: block;
   margin: auto;
   max-width: 100%;
-  height: 300px;
+  height: 45%;
 }
 
 .para {
   text-align: center;
-  color: darkblue;
+  color: darkred;
   text-decoration: underline;
   cursor: pointer;
 }

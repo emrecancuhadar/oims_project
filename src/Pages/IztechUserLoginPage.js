@@ -41,7 +41,7 @@ function IztechUserLoginPage() {
           className={styles.image}
           src={require("../assets/images/iyte_logo.png")}
           alt="IYTE Logo"
-          width="200"
+         
         />
         <label>
           ID or E-mail:
