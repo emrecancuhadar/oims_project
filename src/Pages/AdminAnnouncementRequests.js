@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
-import "../CSS/AdminAnnouncementRequests.css";
+import styles from "../CSS/AdminAnnouncementRequests.module.css";
 import AnnouncementRequest from "../components/AnnouncementRequest";
 import Header from "../components/Header";
 import SystemAdminSidebar from "../components/SystemAdminSidebar";
@@ -14,40 +14,27 @@ function AdminAnnouncementRequests() {
     axios.get("http://localhost:8081/announcements").then((response) => {
       const data = response.data;
       setAnnouncementRequests(
-        data.map(
-          ({
-            title,
-            deadline,
-            document: { documentId, content },
-            company: { id: companyId },
-          }) => ({
-            id: documentId,
-            title,
-            deadline,
-            content,
-            companyId,
-          })
-        )
+        data.map(({ title, deadline, document, company }) => ({
+          id: document.documentId,
+          title,
+          deadline,
+          content: document.content,
+          companyId: company.id,
+        }))
       );
     });
   }, []);
 
   return (
-    <div className="admin-annoRequest">
+    <div className={styles.adminAnnoRequest}>
       <SystemAdminSidebar />
-      <div className="main-content">
-        <div className="header d-flex align-items-center">
+      <div className={styles.mainContent}>
           <Header username={user.name} />
-        </div>
-        <div className="announcements align-items-center">
-          <h1>Announcement Requests</h1>
-          <div className="announcement-requests-container">
+        <div className={styles.announcements}>
+          <h1 className={styles.pageTitle}>Announcement Requests</h1>
+          <div className={styles.announcementRequestsContainer}>
             {announcementRequests.map((announcementRequest, index) => (
-              <div key={index}>
-                <AnnouncementRequest
-                  announcementRequest={announcementRequest}
-                />
-              </div>
+              <AnnouncementRequest key={index} announcementRequest={announcementRequest} />
             ))}
           </div>
         </div>

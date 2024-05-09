@@ -7,7 +7,7 @@ function StudentSidebar() {
   return (
     <div className={styles.studentSidebar}>
       <img
-        className="sidebar-logo"
+        className={styles.sidebarLogo}
         alt="IYTE Logo"
         src={require("../../assets/images/iyte_logo.png")}
       ></img>

@@ -22,9 +22,9 @@ function AdminRegistrationRequests() {
       <SystemAdminSidebar />
       <div className={styles.mainContent}>
           <Header username={user.name} />
-        <div className={styles.announcements}>
+        <div className={styles.registrations}>
           <h1 className={styles.pageTitle}>Company Registration Requests</h1>
-          <div className={styles.announcementRequestsContainer}>
+          <div className={styles.registrationRequestsContainer}>
             {companyRequests.map((companyRequest, index) => (
               <CompanyRequest key={index} companyRequest={companyRequest} />
             ))}

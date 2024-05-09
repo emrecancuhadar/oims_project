@@ -18,22 +18,18 @@
     padding: 20px;
 }
 
-
-.announcements {
+.registrations {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    
 }
 
-.announcementRequestsContainer {
+.registrationRequestsContainer {
     display: flex;
     flex-direction: row;
     justify-content: center;
     gap: 25px;
-
 }
 
 .card {
@@ -52,14 +48,6 @@
     margin: 20px 0;
     color: #9a0e20;
     margin-bottom: 4%;
-}
-
-.announcementText {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    align-items: center;
-    width: 100%;
 }
 
 .approveDisapprove {

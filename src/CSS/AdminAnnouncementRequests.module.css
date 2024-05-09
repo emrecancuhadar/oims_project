@@ -1,0 +1,66 @@
+.adminHomepage {
+  display: flex;
+  height: 100vh;
+}
+
+.adminAnnoRequest {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  align-items: stretch;
+  width: 100%;
+}
+
+.mainContent {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.announcements {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.announcementRequestsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 25px;
+}
+
+.card {
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 30px;
+  margin: 0 2% 0 2%;
+}
+
+.pageTitle {
+  text-align: center;
+  margin: 20px 0;
+  color: #9a0e20;
+  margin-bottom: 4%;
+}
+
+.announcementText {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.approveDisapprove {
+  display: flex;
+  flex-direction: row;
+  justify-self: center;
+  gap: 10px;
+}
