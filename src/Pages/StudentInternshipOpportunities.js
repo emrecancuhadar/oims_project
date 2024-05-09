@@ -25,9 +25,7 @@ function StudentInternshipOpportunities() {
     <div className={styles.studentInternshipOpps}>
       <StudentSidebar />
       <div className={styles.mainContent}>
-
           <Header username={user.name} />
-
         <div className={styles.internships}>
           <div className={styles.titleContainer}>
             <h1>Internship Opportunities</h1>
