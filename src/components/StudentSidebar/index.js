@@ -23,12 +23,18 @@ function StudentSidebar() {
       >
         Internship Opportunities
       </button>
-      {/* <button className="btn btn-light w-100 mt-2 pt-2 pb-2">
-            Applied Internships
-            </button>
-            <button className="btn btn-light w-100 mt-2 pt-2 pb-2">
-            My Documents
-            </button> */}
+      <button 
+        onClick={() => navigate("/student/applied-internships")}
+        className="btn btn-light w-100 mt-2 pt-2 pb-2"
+      >
+        Applied Internships
+      </button>
+      <button 
+        onClick={() => navigate("/student/my-documents")}
+        className="btn btn-light w-100 mt-2 pt-2 pb-2"
+      >
+        My Documents
+      </button> 
     </div>
   );
 }

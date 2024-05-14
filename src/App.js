@@ -14,6 +14,15 @@ import StudentHomepage from "./Pages/StudentHomepage";
 import StudentInternshipOpportunities from "./Pages/StudentInternshipOpportunities";
 import SystemAdminHomepage from "./Pages/SystemAdminHomePage";
 import UserSelection from "./Pages/UserSelection";
+import CompanyMyInterns from "./Pages/CompanyMyInterns";
+import CompanyInternshipApplications from "./Pages/CompanyInternshipApplications";
+import StudentAppliedInternships from "./Pages/StudentAppliedInternships";
+import StudentMyDocuments from "./Pages/StudentMyDocuments";
+import SPCHomepage from "./Pages/SPCHomepage";
+import SPCApplicationForms from "./Pages/SPCApplicationForms";
+import DepSecHomepage from "./Pages/DepSecHomepage";
+import DepSecEligibleStudents from "./Pages/DepSecEligibleStudents";
+import DepSecUploadCertificate from "./Pages/DepSecUploadCertificate";
 
 function App() {
   return (
@@ -34,12 +43,27 @@ function App() {
             path="/company/my-announcements"
             element={<CompanyMyAnnouncements />}
           />
+          <Route 
+            path="/company/internship-applications" 
+            element={<CompanyInternshipApplications />}
+          />
+          <Route 
+            path="/company/my-interns"
+            element={<CompanyMyInterns />}
+          />
           <Route path="/iztech-user/login" element={<IztechUserLoginPage />} />
           <Route path="/student/home" element={<StudentHomepage />} />
           <Route
             path="/student/internship-opportunities"
             element={<StudentInternshipOpportunities />}
           />
+          <Route 
+            path="/student/applied-internships" 
+            element={<StudentAppliedInternships />}
+          />
+          <Route 
+            path="/student/my-documents"
+            element= {<StudentMyDocuments />} />
           <Route
             path="/admin/announcementrequests"
             element={<AdminAnnouncementRequests />}
@@ -49,6 +73,22 @@ function App() {
             path="/admin/registrationrequests"
             element={<AdminRegistrationRequests />}
           />
+          <Route
+            path="/spc/home" element={<SPCHomepage />}/>   
+          <Route
+            path="/spc/application-forms"
+            element={<SPCApplicationForms />}
+          />
+          <Route
+            path="/depsec/home" element={<DepSecHomepage />}/>
+          <Route
+            path="/depsec/eligible-students"
+            element={<DepSecEligibleStudents />}
+          />
+          <Route
+            path="/depsec/upload-certificates"
+            element={<DepSecUploadCertificate />}
+          />                                    
         </Routes>
       </div>
     </Router>
