@@ -33,7 +33,6 @@ function CompanyAnnouncement({ announcement }) {
 
   return (
     <div className={styles.card} onClick={() => showAnnouncement()}>
-      <div className={styles.left}>
         <div>
           <h2>{announcement.title}</h2>
           <p>{announcement.deadline}</p>
@@ -44,7 +43,6 @@ function CompanyAnnouncement({ announcement }) {
           <button className={styles.banBtn}>Delete</button>
         </div>
       </div>
-    </div>
   );
 }
 

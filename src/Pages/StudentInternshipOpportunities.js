@@ -1,17 +1,19 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styles from "../CSS/StudentInternshipOpportunities.module.css";
 import Header from "../components/Header";
 import StudentSidebar from "../components/StudentSidebar";
 import { UserContext } from "../context/UserProvider";
+import InternshipOpportunity from "../components/InternshipOpportunity";
 
-const internships = [
-  { id: 1, title: "Internship 1" },
-  { id: 2, title: "Internship 2" },
-  { id: 3, title: "Internship 3" },
-];
 
 function StudentInternshipOpportunities() {
   const { user } = useContext(UserContext);
+  const [opportunities, setOpportunities] = useState([
+    {id: 1, title: 'Internship 1', content: 'Backend Developer'},
+    {id: 2, title: 'Internship 2', content: 'Frontend Developer'},
+    {id: 3, title: 'Internship 3', content: 'SUBMARINER'},
+    {id: 4, title: 'Internship 4', content: 'Arabada bulututum yok ama kızlar'},
+  ])
 
   const handleActionClick = (action, id) => {
     alert(`${action} clicked for internship ${id}`);
@@ -31,21 +33,8 @@ function StudentInternshipOpportunities() {
             <h1>Internship Opportunities</h1>
           </div>
           <div className={styles.internshipsContainer}>
-            {internships.map((internship) => (
-              <div key={internship.id} className={styles.card}>
-                <h5
-                  className={styles.cardTitle}
-                  onClick={handleContentClick}
-                >
-                  {internship.title}
-                </h5>
-                <button
-                  className={styles.actionButton}
-                  onClick={() => handleActionClick("Apply", internship.id)}
-                >
-                  Apply
-                </button>
-              </div>
+            {opportunities.map((opportunity) => (
+              <InternshipOpportunity key={opportunity.id} opportunity={opportunity}/>
             ))}
           </div>
         </div>
