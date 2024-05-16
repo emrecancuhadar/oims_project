@@ -7,6 +7,12 @@
     background: #fff;
     margin: 20px;
     gap: 40px;
+    transition: scale 0.2s;
+  }
+
+  .card:hover{
+    background-color: gainsboro;
+    scale: 1.03;
   }
   
   .card h2 {
@@ -47,9 +53,9 @@
   .feedbackBtn {
     background-color: rgb(238, 109, 3);
   }
-  
-  .showApplicationFormBtn {
-    background-color: green;
+
+  .feedbackBtn:hover{
+    background-color: orange;
   }
   
   .buttons button:last-child {

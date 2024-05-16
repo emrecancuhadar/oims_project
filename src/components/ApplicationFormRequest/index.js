@@ -32,47 +32,43 @@ function ApplicationFormRequest({ applicationFormRequest }) {
   };
   const giveFeedback = () => {};
   return (
-    <div className={styles.card}>
-      <div className={styles.left}>
-        <div>
-          <h2 className={styles.formOwnerTitle}>Student Name Example</h2>
+    <div className={styles.cardContainer}>
+      <div className={styles.card} onClick={(event) => {
+        event.stopPropagation();
+        /* download form kısmı eklenecek */
+      }}>
+        <div className={styles.left}>
+          <div>
+            <h2 className={styles.formOwnerTitle}>Student Name Example</h2>
+          </div>
+          <div className={styles.buttons}>
+            <button className={styles.feedbackBtn} onClick={giveFeedback}>
+              Feedback
+            </button>
+          </div>
         </div>
-        <div className={styles.buttons}>
-          <button
-            className={styles.showApplicationFormBtn}
+        <div className={styles.right}>
+          <FontAwesomeIcon
+            icon={faCheck}
+            color="green"
+            size="2x"
+            style={{ cursor: "pointer" }}
             onClick={(event) => {
-              event.stopPropagation();
-              /* download form kısmı eklenecek */
+              event.stopPropagation(); // Stop event propagation
+              approveApplicationFormRequest();
             }}
-          >
-            Show Form
-          </button>
-          <button className={styles.feedbackBtn} onClick={giveFeedback}>
-            Feedback
-          </button>
+          />
+          <FontAwesomeIcon
+            icon={faXmark}
+            color="red"
+            size="2x"
+            style={{ cursor: "pointer" }}
+            onClick={(event) => {
+              event.stopPropagation(); // Stop event propagation
+              disapproveApplicationFormRequest();
+            }}
+          />
         </div>
-      </div>
-      <div className={styles.right}>
-        <FontAwesomeIcon
-          icon={faCheck}
-          color="green"
-          size="2x"
-          style={{ cursor: "pointer" }}
-          onClick={(event) => {
-            event.stopPropagation(); // Stop event propagation
-            approveApplicationFormRequest();
-          }}
-        />
-        <FontAwesomeIcon
-          icon={faXmark}
-          color="red"
-          size="2x"
-          style={{ cursor: "pointer" }}
-          onClick={(event) => {
-            event.stopPropagation(); // Stop event propagation
-            disapproveApplicationFormRequest();
-          }}
-        />
       </div>
     </div>
   );
