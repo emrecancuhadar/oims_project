@@ -1,13 +1,16 @@
 .systemAdminSidebar {
-    background-color: #9a0e20; /* Dark Green Shade */
-    padding: 20px;
-    width: 250px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-shrink: 0;
+  background-color: #9a0e20; /* Dark Green Shade */
+  padding: 20px;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  left: 0;
+  flex-shrink: 0;
 }
 
-.sidebarLogo{
-    width: 100px;
+.sidebarLogo {
+  width: 100px;
 }
