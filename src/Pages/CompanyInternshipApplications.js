@@ -62,7 +62,7 @@ function CompanyInternshipApplications() {
           <Header username={user.name} />
           <div className={styles.homepage}>
             <div className={styles.titleContainer}>
-              <h1>InternshipApplications</h1>
+              <h1>Internship Applications</h1>
             </div>
             <div className={styles.homepageContainer}>
             {studentData.map(student => (
