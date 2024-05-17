@@ -10,7 +10,7 @@
     flex-direction: column;
 }
 
-.titleContainer{
+.titleContainer {
     width: 100%;
     text-align: center;
     color: #9a0e20;
@@ -41,4 +41,6 @@
 
 .cardBody {
     padding: 10px;
+
 }
+
