@@ -15,14 +15,6 @@ function StudentInternshipOpportunities() {
     {id: 4, title: 'Internship 4', content: 'Arabada bulututum yok ama kızlar'},
   ])
 
-  const handleActionClick = (action, id) => {
-    alert(`${action} clicked for internship ${id}`);
-  };
-
-  const handleContentClick = () => {
-    alert("Content Clicked!");
-  };
-
   return (
     <div className={styles.studentInternshipOpps}>
       <StudentSidebar />

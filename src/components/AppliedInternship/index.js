@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import styles from './internship-opportunity.module.css';
+import styles from './applied-internship.module.css';
 import Modal from "@mui/material/Modal";
 import Popup from '../Popup';
 
-function InternshipOpportunity({ opportunity }) {
+function InternshipOpportunity({ internship }) {
   const [open, setOpen] = useState(false);  // Controls the modal
   const [email, setEmail] = useState("");  // State to store the email
   const [popupOpen, setPopupOpen] = useState(false);  // State to control the popup
@@ -40,14 +40,11 @@ function InternshipOpportunity({ opportunity }) {
       {open && <div className={styles.backdrop}></div>}
       <div className={styles.card} onClick={handleContentClick}>
         <div className={styles.content}>
-          <h2>{opportunity.title}</h2>
-          <h1>{opportunity.content}</h1>
-          <button 
-            onClick={handleOpen} 
-            className={styles.applyBtn}
-          >
-          Apply
-          </button>
+            <h2>{internship.title}</h2>
+            <h1>{internship.content}</h1>
+            {internship.status === 'accepted' && (
+            <button onClick={handleOpen} className={styles.registerBtn}>Register</button>
+      )}
         </div>
         <Modal open={open} onClose={handleClose} onClick={handleModalClick}>
           <div className={styles.modal}>
@@ -67,7 +64,7 @@ function InternshipOpportunity({ opportunity }) {
             >
               Send E-Mail
             </button>
-            {popupOpen && <Popup content={"Application letter is sent"} isOpen={popupOpen} setIsOpen={setPopupOpen}/>}
+            {popupOpen && <Popup content={"Application form is sent"} isOpen={popupOpen} setIsOpen={setPopupOpen}/>}
           </div>
         </Modal>
       </div>

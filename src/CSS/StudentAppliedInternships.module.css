@@ -1,0 +1,74 @@
+.appliedInternships {
+    display: flex;
+    flex-direction: row;
+    background-color: #ffffff;
+    min-height: 100vh;
+}
+
+.mainContent {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.titleContainer {
+    text-align: center;
+    margin: 20px 0;
+    color: #9a0e20;
+}
+
+.appliedContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 0 10% 0 10%;
+    justify-content: flex-start;
+}
+
+
+.card {
+    flex: 1 1 150px; /* Adjust flex-basis to make cards narrower */
+    height: auto; /* Set a fixed height to make cards taller */
+    display: flex;
+    flex-direction: column;
+    padding: 2%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    align-items: center;
+    margin: 0 2% 0 2%;
+    box-shadow: 0 0 10px;
+}
+
+.cardTitle {
+    margin-bottom: 10%;
+    cursor: pointer;
+}
+
+.cardBody {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+}
+
+.sectionHeader {
+    position: sticky;
+    padding: 10px 0;
+    border-top: 1px solid #ddd;
+  }
+  
+  .toggleButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px;
+    text-align: left;
+    font-style: italic;
+  }
+
+  .toggleButton:hover {
+    background-color: white; 
+  }
