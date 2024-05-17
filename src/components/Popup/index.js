@@ -1,23 +1,19 @@
 import React, { useState } from 'react';
 import styles from "./Popup.module.css";
  
-function Popup() {
-  const [isOpen, setIsOpen] = useState(false);
- 
+function Popup({content, isOpen, setIsOpen}) {
+
   return (
     <div>
-      <button className = {styles.Popup} onClick={() => setIsOpen(true)}>
-        Open Pop-up
-      </button>
- 
       {isOpen && (
        <div>
         <div className={styles.Popup}>
-          This is the content of the pop-up.
-        </div>
-        <button className = {styles.Popup} onClick={() => setIsOpen(false)}>
-          Close Pop-up
+          {content}
+        
+        <button className = {styles.PopupButton} onClick={() => setIsOpen(false)}>
+          Close
         </button>
+        </div>
        </div>
       )}
     </div>

@@ -1,7 +1,23 @@
 .Popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    /* Additional styling */
-  }
+  display: flex;
+  flex-direction: column;
+  position: absolute;  /* Absolute positioning relative to the nearest positioned ancestor */
+  top: 50%;            /* Center vertically */
+  left: 50%;           /* Center horizontally */
+  transform: translate(-50%, -50%); /* Ensures exact centering */
+  background-color: white;
+  border: 1px solid black;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  align-items: center;
+  z-index: 1050;  /* Ensure it is above other content */
+}
+
+.PopupButton {
+  margin-top: 25px;
+  cursor: pointer;
+  width: 35%;
+  color: black;
+  background-color: #9a0e20;;
+}
+
