@@ -8,18 +8,18 @@ const studentData = [
   {
     id: "1",
     name: "Emrecan Çuhadar",
-    mail: "emrecancuhadar@hotmail.com",
+    mail: "emrecanchdr@hotmail.com",
     phoneNumber: "0555 555 5555",
   },
   {
     id: "2",
     name: "Emre Erol",
-    mail: "emreerol@example.com",
+    mail: "emre_erol3535@example.com",
     phoneNumber: "0444 444 4444",
   },
   {
     id: "3",
-    name: "Onur Sahinler",
+    name: "Onur Şahinler",
     mail: "onursahinler@std.iyte.edu.tr",
     phoneNumber: "0333 333 3333",
   },
@@ -45,14 +45,16 @@ const studentData = [
 
 const StudentEntries = ({ student }) => (
   <div className={styles.card}>
-    <div className={styles.cardTitle}>
-      <h5>{student.name}</h5>
-    </div>
-    <div className={styles.cardBody}>
-      <h5>{student.mail}</h5>
-    </div>
-    <div className={styles.cardBody}>
-      <h5>{student.phoneNumber}</h5>
+    <div>
+      <h2>{student.name}</h2>
+      <div className={styles.numberAndMail}>
+        <p>
+          <span>Phone Number:</span> {student.phoneNumber}
+        </p>
+        <p>
+          <span>Mail:</span> {student.mail}
+        </p>
+      </div>
     </div>
   </div>
 );
