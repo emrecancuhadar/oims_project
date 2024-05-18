@@ -40,8 +40,9 @@ function InternshipOpportunity({ opportunity }) {
       {open && <div className={styles.backdrop}></div>}
       <div className={styles.card} onClick={handleContentClick}>
         <div className={styles.content}>
-          <h2>{opportunity.title}</h2>
+          <h2>{opportunity.companyName}</h2>
           <h1>{opportunity.content}</h1>
+          <p>{opportunity.email}</p>
           <button 
             onClick={handleOpen} 
             className={styles.applyBtn}

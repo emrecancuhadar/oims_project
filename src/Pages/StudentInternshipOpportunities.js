@@ -9,10 +9,10 @@ import InternshipOpportunity from "../components/InternshipOpportunity";
 function StudentInternshipOpportunities() {
   const { user } = useContext(UserContext);
   const [opportunities, setOpportunities] = useState([
-    {id: 1, title: 'Internship 1', content: 'Backend Developer'},
-    {id: 2, title: 'Internship 2', content: 'Frontend Developer'},
-    {id: 3, title: 'Internship 3', content: 'SUBMARINER'},
-    {id: 4, title: 'Internship 4', content: 'Arabada bulututum yok ama kızlar'},
+    {id: 1, companyName: 'Davon', content: 'Bekirin yerine adam', email: 'davon@davon.com'},
+    {id: 2, companyName: 'Research Ecosystems', content: 'Köle', email: 'tugkantuglular@iyte.edu.tr'},
+    {id: 3, companyName: 'Google Inc.', content: 'Backend Developer', email: 'google@gmail.com'},
+    {id: 4, companyName: 'Microsoft', content: 'Frontend Developer', email: 'microsoft@gmail.com'},
   ])
 
   return (
