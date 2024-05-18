@@ -1,78 +1,68 @@
 import React, { useState } from 'react';
 import styles from './internship-opportunity.module.css';
-import Modal from "@mui/material/Modal";
 import Popup from '../Popup';
 
 function InternshipOpportunity({ opportunity }) {
-  const [open, setOpen] = useState(false);  // Controls the modal
-  const [email, setEmail] = useState("");  // State to store the email
-  const [popupOpen, setPopupOpen] = useState(false);  // State to control the popup
-
-  const handleClose = (event) => {
-    event.stopPropagation();
-    setOpen(false);
-  };
-
-  const handleOpen = (event) => {
-    event.stopPropagation();
-    setOpen(true);
-  };
+  const [popupOpen, setPopupOpen] = useState(false);
+  const [confirmationPopupOpen, setConfirmationPopupOpen] = useState(false);
 
   const handleContentClick = () => {
     alert("Content Clicked!");
   };
 
-  const handleModalClick = (event) => {
+  const handleApplyLogic = (event) => {
     event.stopPropagation();
-  }
-
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
+    setPopupOpen(true);
   };
 
-  const sendEmail = (event) => {
+  const handleApply = (event) => {
     event.stopPropagation();
-    setPopupOpen(true);  // Open the popup on sending email
-  }
+    console.log("Applying to:", opportunity.companyName);
+    setPopupOpen(false);
+    setConfirmationPopupOpen(true);
+  };
+
+  const handleCancel = (event) => {
+    event.stopPropagation();
+    setPopupOpen(false);
+  };
+
+  const handleConfirmationClose = () => {
+    setConfirmationPopupOpen(false);
+  };
+
+  const PopupContent = () => (
+    <div className={styles.popupContent} onClick={event => event.stopPropagation()}>
+      <h1>Are you sure you want to apply to {opportunity.companyName}?</h1>
+      <div className={styles.btns}>
+        <button className={styles.popupCancelBtn} onClick={handleCancel}>Cancel</button>
+        <button className={styles.popupApplyBtn} onClick={handleApply}>Apply</button>
+      </div>
+    </div>
+  );
+
+  const ConfirmationContent = () => (
+    <div className={styles.popupContent} onClick={event => event.stopPropagation()}>
+      <h1>Applied to {opportunity.companyName}</h1>
+      <button className={styles.popupCnfBtn} onClick={handleConfirmationClose}>Done</button>
+    </div>
+  );
 
   return (
-    <div>
-      {open && <div className={styles.backdrop}></div>}
-      <div className={styles.card} onClick={handleContentClick}>
-        <div className={styles.content}>
-          <h2>{opportunity.companyName}</h2>
-          <h1>{opportunity.content}</h1>
-          <p>{opportunity.email}</p>
-          <button 
-            onClick={handleOpen} 
-            className={styles.applyBtn}
-          >
-          Apply
-          </button>
-        </div>
-        <Modal open={open} onClose={handleClose} onClick={handleModalClick}>
-          <div className={styles.modal}>
-            <h1>Enter the e-mail of the company</h1>
-            <input 
-              type="email" 
-              placeholder="Enter company email" 
-              className={styles.emailInput}
-              value={email}
-              onChange={handleEmailChange}
-              onClick={(event) => event.stopPropagation()}
-              required
-            />
-            <button 
-              onClick={sendEmail} 
-              className={styles.sendButton}
-            >
-              Send E-Mail
-            </button>
-            {popupOpen && <Popup content={"Application letter is sent"} isOpen={popupOpen} setIsOpen={setPopupOpen}/>}
-          </div>
-        </Modal>
+    <div className={styles.card} onClick={handleContentClick}>
+      <div className={styles.content}>
+        <h2>{opportunity.companyName}</h2>
+        <h1>{opportunity.content}</h1>
+        <p>{opportunity.email}</p>
+        <button 
+          onClick={handleApplyLogic}
+          className={styles.applyBtn}
+        >
+        Apply
+        </button>
       </div>
-      
+      {popupOpen && <Popup content={<PopupContent />} isOpen={popupOpen} setIsOpen={setPopupOpen} />}
+      {confirmationPopupOpen && <Popup content={<ConfirmationContent />} isOpen={confirmationPopupOpen} setIsOpen={setConfirmationPopupOpen} />}
     </div>
   );
 }
