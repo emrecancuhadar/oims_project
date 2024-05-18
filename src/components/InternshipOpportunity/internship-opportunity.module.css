@@ -19,11 +19,19 @@
     flex: 1;
     flex-direction: column;
     align-items: center;
+    gap: 15px;
   }
   
   .card h2 {
-    font-size: 24px;
-    margin-top: auto;
+    margin-top: 0;
+    margin-bottom: .5rem;
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--bs-heading-color);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width:260px; /* some width */
   }
 
   .card h1 {
@@ -32,11 +40,12 @@
     margin-top: auto;
   }
   
-  .card p {
+  /* .card p {
     margin: 0 0 20px 0;
     margin-top: auto;
   }
-  
+   */
+
   .applyBtn{
     padding: 10px 20px;
     border: none;
@@ -46,7 +55,6 @@
     font-size: 16px;
     background-color:#9a0e20;
     align-self: center;
-    margin-top: auto;
   }
 
   .modal {
@@ -100,4 +108,24 @@
   
   .modal h1 {
     font-size: 24px;
+  }
+
+  .altText {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    width: 100%;
+    margin: 0;
+
+  }
+  .altTextEntry {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    gap: 5px;
+  }
+  .altTextEntry p {
+    margin: 0;
+    font-weight: bold;
+    margin-right: 2%;
   }

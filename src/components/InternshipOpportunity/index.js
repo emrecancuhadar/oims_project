@@ -41,8 +41,17 @@ function InternshipOpportunity({ opportunity }) {
       <div className={styles.card} onClick={handleContentClick}>
         <div className={styles.content}>
           <h2>{opportunity.companyName}</h2>
-          <h1>{opportunity.content}</h1>
-          <p>{opportunity.email}</p>
+          <div className={styles.altText}>
+            <div className={styles.altTextEntry}>
+              <p>Title: </p>
+              {opportunity.content}
+            </div>
+            <div className={styles.altTextEntry}>
+              <p>Mail: </p>
+              {opportunity.email}
+            </div>
+            
+          </div>
           <button 
             onClick={handleOpen} 
             className={styles.applyBtn}
