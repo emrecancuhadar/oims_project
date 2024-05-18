@@ -70,16 +70,17 @@ const StudentEntries = ({ student }) => (
     </div>
     <div className={styles.cardButtons}>
       <div className={styles.buttons}>
+        <button className={styles.uploadBtn}>Upload Application Form</button>
+      </div>
+      <div className={styles.buttons}>
         <button className={styles.downloadBtn}>
           Download Application Form
         </button>
       </div>
-      <div className={styles.buttons}>
-        <button className={styles.uploadBtn}>Upload Application Form</button>
-      </div>
     </div>
   </div>
 );
+
 function CompanyMyInterns() {
   const { user } = useContext(UserContext);
 

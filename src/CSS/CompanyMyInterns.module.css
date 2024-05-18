@@ -24,10 +24,9 @@
   gap: 20px;
 }
 .homepageContainer {
-    display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
   gap: 20px;
-  justify-content: flex-start;
   width: 100%;
   padding: 2%
   
@@ -42,7 +41,7 @@
   background: #fff;
   margin: 20px;
   gap: 20px;
-  width: 300px;
+  width: 340px;
   justify-content: flex-start;
   }
   .content {
@@ -60,24 +59,27 @@
   }
   .buttons button {
     display: flex;
-    padding: 10px 20px;
+  
     margin-right: 10px;
-    border: none;
-    color: white;
     cursor: pointer;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 14px;
   }
-  .uploadBtn:hover {
-    background-color: #d12d2d;
-  }
+ 
   .uploadBtn{
-    background-color: #9a0e20;
+    background-color: white;
+    border-color: #9a0e20;
+    color: #9a0e20;
+    padding: 8px 10px;
+    
   }
   
   .downloadBtn {
     background-color: #9a0e20;
     margin-bottom: 4%;
+    border: none;
+    color: white;
+    padding: 10px 10px;
   }
   .downloadBtn:hover {
     background-color: #d12d2d;
@@ -88,6 +90,7 @@
     justify-content: flex-end;
     margin-bottom: 1%;
   }
+
   .addInternBtn {
     align-self: flex-end;
     display: flex;
@@ -107,9 +110,9 @@
   }
   .cardButtons {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
     margin-top: auto;
   }
   .cardBody {
