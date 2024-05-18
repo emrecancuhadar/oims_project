@@ -10,10 +10,10 @@ import { UserContext } from '../context/UserProvider';
 function StudentAppliedInternships() {
   const { user } = useContext(UserContext);
   const [appliedInternships, setAppliedInternship] = useState([
-    {id: 1, companyName: 'Davon', content: 'Backend Developer', status: 'accepted'},
-    {id: 2, companyName: 'Google', content: 'Frontend Developer', status: 'pending'},
-    {id: 3, companyName: 'Microsoft', content: 'SUBMARINER', status: 'rejected'},
-    {id: 4, companyName: 'abcd', content: 'Cloud Engineer', status: 'accepted'},
+    {id: 1, companyName: 'Davon', content: 'Backend Developer', status: 'accepted', email: 'davon@davon.com'},
+    {id: 2, companyName: 'Google', content: 'Frontend Developer', status: 'pending', email: 'google@gmail.com'},
+    {id: 3, companyName: 'Microsoft', content: 'SUBMARINER', status: 'rejected', email: 'microsoft@gmail.com'},
+    {id: 4, companyName: 'Abcd', content: 'Cloud Engineer', status: 'accepted', email: 'abcd@gmail.com'},
   ]);
 
   const [visibleSections, setVisibleSections] = useState({

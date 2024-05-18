@@ -53,7 +53,8 @@ function AppliedInternship({ internship }) {
     <div className={styles.card} onClick={handleContentClick}>
       <div className={styles.content}>
         <h2>{internship.companyName}</h2>
-        <h1>{internship.content}</h1>
+        <h1>Position: {internship.content}</h1>
+        <p>E-mail: {internship.email}</p>
         {internship.status === 'accepted' && (
           <button onClick={handleRegisterInitiate} className={styles.registerBtn}>Register</button>
         )}

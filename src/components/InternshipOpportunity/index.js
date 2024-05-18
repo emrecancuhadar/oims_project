@@ -52,8 +52,8 @@ function InternshipOpportunity({ opportunity }) {
     <div className={styles.card} onClick={handleContentClick}>
       <div className={styles.content}>
         <h2>{opportunity.companyName}</h2>
-        <h1>{opportunity.content}</h1>
-        <p>{opportunity.email}</p>
+        <h1>Position: {opportunity.content}</h1>
+        <p>E-mail: {opportunity.email}</p>
         <button 
           onClick={handleApplyLogic}
           className={styles.applyBtn}
