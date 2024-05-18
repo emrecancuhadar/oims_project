@@ -13,13 +13,16 @@ function Signup() {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:8081/company/signUp", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ companyName, email, password }),
-      });
+      const response = await fetch(
+        "https://oims-api.onrender.com/company/signUp",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ companyName, email, password }),
+        }
+      );
 
       if (response.ok) {
         navigate("/company/login");
@@ -42,45 +45,49 @@ function Signup() {
           alt="IYTE Logo"
         />
         <form className={styles.formContainer} onSubmit={handleSignup}>
-          <label>Name of Company:
-          <input
-            className={styles.inputField}
-            type="text"
-            value={companyName}
-            required
-            onChange={(e) => setCompanyName(e.target.value)}
-          />
+          <label>
+            Name of Company:
+            <input
+              className={styles.inputField}
+              type="text"
+              value={companyName}
+              required
+              onChange={(e) => setCompanyName(e.target.value)}
+            />
           </label>
-          <label>E-mail:
-          <input
-            className={styles.inputField}
-            type="email"
-            value={email}
-            required
-            onChange={(e) => setEmail(e.target.value)}
-          />
+          <label>
+            E-mail:
+            <input
+              className={styles.inputField}
+              type="email"
+              value={email}
+              required
+              onChange={(e) => setEmail(e.target.value)}
+            />
           </label>
-          <label>Password:
-          <input
-            className={styles.inputField}
-            type="password"
-            value={password}
-            minLength={8}
-            maxLength={28}
-            required
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <label>
+            Password:
+            <input
+              className={styles.inputField}
+              type="password"
+              value={password}
+              minLength={8}
+              maxLength={28}
+              required
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </label>
-          <label>Confirm Password:
-          <input
-            className={styles.inputField}
-            type="password"
-            value={passwordAgain}
-            minLength={8}
-            maxLength={28}
-            required
-            onChange={(e) => setPasswordAgain(e.target.value)}
-          />
+          <label>
+            Confirm Password:
+            <input
+              className={styles.inputField}
+              type="password"
+              value={passwordAgain}
+              minLength={8}
+              maxLength={28}
+              required
+              onChange={(e) => setPasswordAgain(e.target.value)}
+            />
           </label>
           <PasswordChecklist
             className="passwordcheck"
@@ -90,7 +97,9 @@ function Signup() {
             valueAgain={passwordAgain}
             onChange={(isValid) => {}}
           />
-          <button className={styles.signUpButton} type="submit">Sign Up</button>
+          <button className={styles.signUpButton} type="submit">
+            Sign Up
+          </button>
         </form>
         <p className={styles.para} onClick={() => navigate("/company/login")}>
           Sign in now!

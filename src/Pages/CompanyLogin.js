@@ -13,13 +13,16 @@ function Login() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:8081/company/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
+      const response = await fetch(
+        "https://oims-api.onrender.com/company/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password }),
+        }
+      );
 
       if (response.ok) {
         response.json().then((data) => {
@@ -70,12 +73,17 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </label>
-          <button className={styles.button} type="submit">Login</button>
+          <button className={styles.button} type="submit">
+            Login
+          </button>
         </form>
         <p className={styles.para} onClick={() => navigate("/company/signup")}>
           Sign up now!
         </p>
-        <p className={styles.para} onClick={() => navigate("/company/resetpassword")}>
+        <p
+          className={styles.para}
+          onClick={() => navigate("/company/resetpassword")}
+        >
           Forgot my password
         </p>
       </div>
