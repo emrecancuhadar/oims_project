@@ -4,14 +4,11 @@ import axios from "axios";
 import React from "react";
 import styles from "./company-request.module.css";
 
-
-
 function CompanyRequest({ companyRequest }) {
-    
   const approveCompanyRequest = () => {
     axios
       .put(
-        `http://localhost:8081/systemadmin/company/${companyRequest.id}/approve`
+        `${process.env.REACT_APP_API_URL}/systemadmin/company/${companyRequest.id}/approve`
       )
       .then((response) => {
         console.log(response);
@@ -22,7 +19,7 @@ function CompanyRequest({ companyRequest }) {
   const disapproveCompanyRequest = () => {
     axios
       .put(
-        `http://localhost:8081/systemadmin/company/${companyRequest.id}/disapprove`
+        `${process.env.REACT_APP_API_URL}/systemadmin/company/${companyRequest.id}/disapprove`
       )
       .then((response) => {
         alert("Company is disapproved");
@@ -32,7 +29,9 @@ function CompanyRequest({ companyRequest }) {
   };
   const banCompany = () => {
     axios
-      .put(`http://localhost:8081/systemadmin/company/${companyRequest.id}/ban`)
+      .put(
+        `${process.env.REACT_APP_API_URL}/systemadmin/company/${companyRequest.id}/ban`
+      )
       .then((response) => {
         alert("Company is banned");
         console.log(response);

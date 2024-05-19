@@ -14,7 +14,7 @@ function Signup() {
     e.preventDefault();
     try {
       const response = await fetch(
-        "https://oims-api.onrender.com/company/signUp",
+        `${process.env.REACT_APP_API_URL}/company/signUp`,
         {
           method: "POST",
           headers: {

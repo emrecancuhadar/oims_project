@@ -40,7 +40,7 @@ function AnnouncementRequest({ announcementRequest }) {
   const approveAnnouncementRequest = () => {
     axios
       .put(
-        `http://localhost:8081/systemadmin/document/${announcementRequest.id}/approve`
+        `${process.env.REACT_APP_API_URL}/systemadmin/document/${announcementRequest.id}/approve`
       )
       .then((response) => {
         alert("Announcement is approved");
@@ -51,7 +51,7 @@ function AnnouncementRequest({ announcementRequest }) {
   const disapproveAnnouncementRequest = () => {
     axios
       .put(
-        `http://localhost:8081/systemadmin/document/${announcementRequest.id}/disapprove`
+        `${process.env.REACT_APP_API_URL}/systemadmin/document/${announcementRequest.id}/disapprove`
       )
       .then((response) => {
         alert("Announcement is disapproved");
@@ -62,7 +62,7 @@ function AnnouncementRequest({ announcementRequest }) {
   const banCompany = () => {
     axios
       .put(
-        `http://localhost:8081/systemadmin/company/${announcementRequest.companyId}/ban`
+        `${process.env.REACT_APP_API_URL}/systemadmin/company/${announcementRequest.companyId}/ban`
       )
       .then((response) => {
         alert("Company is banned");

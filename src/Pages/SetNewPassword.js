@@ -52,20 +52,25 @@ function SetNewPassword() {
     formData.append("newPassword", password);
     formData.append("token", token);
 
-    axios.post("http://localhost:8081/security/company/savePassword", formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    })
-    .then((response) => {
-      setSuccess(true);
-      setError("");
-      console.log(response.data);
-    })
-    .catch((error) => {
-      console.log(error);
-      setError("Failed to update password. Please try again.");
-    });
+    axios
+      .post(
+        `${process.env.REACT_APP_API_URL}/security/company/savePassword`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      )
+      .then((response) => {
+        setSuccess(true);
+        setError("");
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+        setError("Failed to update password. Please try again.");
+      });
   };
 
   return (
@@ -81,7 +86,8 @@ function SetNewPassword() {
           navigate("/company/login")
         ) : (
           <form onSubmit={handleSubmit} className={styles.formContainer}>
-              <label htmlFor="password">New Password:
+            <label htmlFor="password">
+              New Password:
               <input
                 type="password"
                 id="password"
@@ -90,9 +96,10 @@ function SetNewPassword() {
                 onChange={handlePasswordChange}
                 required
               />
-              </label>
+            </label>
 
-              <label htmlFor="confirmPassword">Confirm Password:
+            <label htmlFor="confirmPassword">
+              Confirm Password:
               <input
                 type="password"
                 id="confirmPassword"
@@ -101,7 +108,7 @@ function SetNewPassword() {
                 onChange={handleConfirmPasswordChange}
                 required
               />
-              </label>
+            </label>
             {error && <div className="error-message">{error}</div>}
             <PasswordChecklist
               className="passwordcheck"

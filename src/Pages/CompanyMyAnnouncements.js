@@ -12,7 +12,7 @@ function CompanyMyAnnouncements() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8081/announcements/company/${user.id}`)
+      .get(`${process.env.REACT_APP_API_URL}/announcements/company/${user.id}`)
       .then((response) => {
         const data = response.data;
         setAnnouncements(
@@ -34,7 +34,7 @@ function CompanyMyAnnouncements() {
     <div className={styles.companyMyAnnouncements}>
       <CompanySidebar />
       <div className={styles.mainContent}>
-          <Header username={user.name} />
+        <Header username={user.name} />
         <div className={styles.announcementsPageContainer}>
           <h1 className={styles.pageTitle}>My Announcements</h1>
           <div className={styles.announcementsContainer}>

@@ -11,17 +11,21 @@ function AdminRegistrationRequests() {
   const { user } = useContext(UserContext);
 
   useEffect(() => {
-    axios.get(`http://localhost:8081/company/list`).then((response) => {
-      const data = response.data;
-      setCompanyRequests(data.map(({ id, companyName, email }) => ({ id, companyName, email })));
-    });
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/company/list`)
+      .then((response) => {
+        const data = response.data;
+        setCompanyRequests(
+          data.map(({ id, companyName, email }) => ({ id, companyName, email }))
+        );
+      });
   }, []);
 
   return (
     <div className={styles.adminCompanyRequest}>
       <SystemAdminSidebar />
       <div className={styles.mainContent}>
-          <Header username={user.name} />
+        <Header username={user.name} />
         <div className={styles.registrations}>
           <h1 className={styles.pageTitle}>Company Registration Requests</h1>
           <div className={styles.registrationRequestsContainer}>

@@ -14,7 +14,7 @@ function Login() {
 
     try {
       const response = await fetch(
-        "https://oims-api.onrender.com/company/login",
+        `${process.env.REACT_APP_API_URL}/company/login`,
         {
           method: "POST",
           headers: {

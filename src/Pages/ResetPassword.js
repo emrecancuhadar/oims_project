@@ -27,11 +27,15 @@ function ResetPassword() {
     formData.append("email", email);
 
     axios
-      .post("http://localhost:8081/company/resetPassword", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
+      .post(
+        `${process.env.REACT_APP_API_URL}/company/resetPassword`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      )
       .then((response) => console.log(response.data))
       .catch((error) => console.log(error));
   };
@@ -56,15 +60,16 @@ function ResetPassword() {
         ) : (
           <form onSubmit={handleSubmit} className={styles.formContainer}>
             <div>
-              <label className={styles.cmpLabelContainer} htmlFor="email">Email:
-              <input
-                type="email"
-                id="email"
-                className={styles.inputField}
-                value={email}
-                onChange={handleEmailChange}
-                required
-              />
+              <label className={styles.cmpLabelContainer} htmlFor="email">
+                Email:
+                <input
+                  type="email"
+                  id="email"
+                  className={styles.inputField}
+                  value={email}
+                  onChange={handleEmailChange}
+                  required
+                />
               </label>
             </div>
             {error && <div className="error">{error}</div>}

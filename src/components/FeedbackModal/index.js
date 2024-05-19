@@ -8,7 +8,7 @@ function FeedbackModal({ isModalOpen, closeModal, receiver }) {
   if (!isModalOpen) return null;
 
   const saveFeedback = () => {
-    const url = `http://localhost:8081/feedback/${receiver.name}/${receiver.id}`;
+    const url = `${process.env.REACT_APP_API_URL}/feedback/${receiver.name}/${receiver.id}`;
 
     axios
       .post(url, {

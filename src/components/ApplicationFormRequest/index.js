@@ -4,14 +4,11 @@ import axios from "axios";
 import React from "react";
 import styles from "./application-form-request.module.css";
 
-
-
 function ApplicationFormRequest({ applicationFormRequest }) {
-    
   const approveApplicationFormRequest = () => {
     axios
       .put(
-        `http://localhost:8081/spc/application-forms/${applicationFormRequest.id}/approve`
+        `${process.env.REACT_APP_API_URL}/spc/application-forms/${applicationFormRequest.id}/approve`
       )
       .then((response) => {
         console.log(response);
@@ -22,7 +19,7 @@ function ApplicationFormRequest({ applicationFormRequest }) {
   const disapproveApplicationFormRequest = () => {
     axios
       .put(
-        `http://localhost:8081/spc/application-forms/${applicationFormRequest.id}/disapprove`
+        `${process.env.REACT_APP_API_URL}/spc/application-forms/${applicationFormRequest.id}/disapprove`
       )
       .then((response) => {
         alert("Application Form is disapproved");
@@ -33,10 +30,13 @@ function ApplicationFormRequest({ applicationFormRequest }) {
   const giveFeedback = () => {};
   return (
     <div className={styles.cardContainer}>
-      <div className={styles.card} onClick={(event) => {
-        event.stopPropagation();
-        /* download form kısmı eklenecek */
-      }}>
+      <div
+        className={styles.card}
+        onClick={(event) => {
+          event.stopPropagation();
+          /* download form kısmı eklenecek */
+        }}
+      >
         <div className={styles.left}>
           <div>
             <h2 className={styles.formOwnerTitle}>Student Name Example</h2>

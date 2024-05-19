@@ -11,22 +11,31 @@ function SPCApplicationForms() {
   const { user } = useContext(UserContext);
 
   useEffect(() => {
-    axios.get(`http://localhost:8081/company/list`).then((response) => {
-      const data = response.data;
-      setApplicationFormRequests(data.map(({ id, studentName, email }) => ({ id, studentName, email })));
-    });
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/company/list`)
+      .then((response) => {
+        const data = response.data;
+        setApplicationFormRequests(
+          data.map(({ id, studentName, email }) => ({ id, studentName, email }))
+        );
+      });
   }, []);
 
   return (
     <div className={styles.spcApplicationFormRequest}>
       <SPCSidebar />
       <div className={styles.mainContent}>
-          <Header username={user.name} />
+        <Header username={user.name} />
         <div className={styles.applicationForms}>
-          <h1 className={styles.pageTitle}>Summer Practice Application Forms</h1>
+          <h1 className={styles.pageTitle}>
+            Summer Practice Application Forms
+          </h1>
           <div className={styles.applicationFormsContainer}>
             {applicationFormRequests.map((applicationFormRequest, index) => (
-              <ApplicationFormRequest key={index} applicationFormRequest={applicationFormRequest} />
+              <ApplicationFormRequest
+                key={index}
+                applicationFormRequest={applicationFormRequest}
+              />
             ))}
           </div>
         </div>
@@ -35,4 +44,4 @@ function SPCApplicationForms() {
   );
 }
 
-export default SPCApplicationForms
+export default SPCApplicationForms;
