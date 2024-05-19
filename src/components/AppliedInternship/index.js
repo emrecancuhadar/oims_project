@@ -1,76 +1,68 @@
 import React, { useState } from 'react';
 import styles from './applied-internship.module.css';
-import Modal from "@mui/material/Modal";
 import Popup from '../Popup';
 
-function InternshipOpportunity({ internship }) {
-  const [open, setOpen] = useState(false);  // Controls the modal
-  const [email, setEmail] = useState("");  // State to store the email
-  const [popupOpen, setPopupOpen] = useState(false);  // State to control the popup
+function AppliedInternship({ internship }) {
+  const [registerPopupOpen, setRegisterPopupOpen] = useState(false);
+  const [confirmationPopupOpen, setConfirmationPopupOpen] = useState(false);
 
-  const handleClose = (event) => {
-    event.stopPropagation();
-    setOpen(false);
-  };
-
-  const handleOpen = (event) => {
-    event.stopPropagation();
-    setOpen(true);
-  };
-
-  const handleContentClick = () => {
+  const handleContentClick = (event) => {
     alert("Content Clicked!");
   };
 
-  const handleModalClick = (event) => {
-    event.stopPropagation();
-  }
-
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
+  const handleRegisterInitiate = (event) => {
+    event.stopPropagation(); 
+    setRegisterPopupOpen(true);
   };
 
-  const sendEmail = (event) => {
+  const handleRegisterConfirm = (event) => {
     event.stopPropagation();
-    setPopupOpen(true);  // Open the popup on sending email
-  }
+    console.log("Registering to:", internship.companyName);
+    setRegisterPopupOpen(false);
+    setConfirmationPopupOpen(true);
+  };
+
+  const handleCancelRegistration = (event) => {
+    event.stopPropagation();  
+    setRegisterPopupOpen(false);
+  };
+
+  const handleConfirmationClose = (event) => {
+    event.stopPropagation();
+    setConfirmationPopupOpen(false);
+  };
+
+  const RegistrationConfirmationContent = () => (
+    <div className={styles.popupContent} onClick={event => event.stopPropagation()}>
+      <h1>Are you sure you want to register to {internship.companyName}?</h1>
+      <div className={styles.btns}>
+        <button className={styles.popupCancelBtn} onClick={handleCancelRegistration}>Cancel</button>
+        <button className={styles.popupApplyBtn} onClick={handleRegisterConfirm}>Register</button>
+      </div>
+    </div>
+  );
+
+  const RegistrationCompleteContent = () => (
+    <div className={styles.popupContent} onClick={event => event.stopPropagation()}>
+      <h1>Registered to {internship.companyName}</h1>
+      <button className={styles.popupCnfBtn} onClick={handleConfirmationClose}>Done</button>
+    </div>
+  );
 
   return (
-    <div>
-      {open && <div className={styles.backdrop}></div>}
-      <div className={styles.card} onClick={handleContentClick}>
-        <div className={styles.content}>
-            <h2>{internship.title}</h2>
-            <h1>{internship.content}</h1>
-            {internship.status === 'accepted' && (
-            <button onClick={handleOpen} className={styles.registerBtn}>Register</button>
-      )}
-        </div>
-        <Modal open={open} onClose={handleClose} onClick={handleModalClick}>
-          <div className={styles.modal}>
-            <h1>Enter the e-mail of the company</h1>
-            <input 
-              type="email" 
-              placeholder="Enter company email" 
-              className={styles.emailInput}
-              value={email}
-              onChange={handleEmailChange}
-              onClick={(event) => event.stopPropagation()}
-              required
-            />
-            <button 
-              onClick={sendEmail} 
-              className={styles.sendButton}
-            >
-              Send E-Mail
-            </button>
-            {popupOpen && <Popup content={"Application form is sent"} isOpen={popupOpen} setIsOpen={setPopupOpen}/>}
-          </div>
-        </Modal>
+    <div className={styles.card} onClick={handleContentClick}>
+      <div className={styles.content}>
+        <h2>{internship.companyName}</h2>
+        <h1>Position: {internship.content}</h1>
+        <p>E-mail: {internship.email}</p>
+        {internship.status === 'accepted' && (
+          <button onClick={handleRegisterInitiate} className={styles.registerBtn}>Register</button>
+        )}
+        {registerPopupOpen && <Popup content={<RegistrationConfirmationContent />} isOpen={registerPopupOpen} setIsOpen={setRegisterPopupOpen} />}
+        {confirmationPopupOpen && <Popup content={<RegistrationCompleteContent />} isOpen={confirmationPopupOpen} setIsOpen={setConfirmationPopupOpen} />}
       </div>
-      
     </div>
   );
 }
 
-export default InternshipOpportunity;
+export default AppliedInternship;
