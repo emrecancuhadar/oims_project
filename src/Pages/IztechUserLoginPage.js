@@ -18,7 +18,7 @@ function IztechUserLoginPage() {
     }
 
     axios
-      .post("http://localhost:8081/iztech-user/login", credentials)
+      .post(`${process.env.REACT_APP_API_URL}/iztech-user/login`, credentials)
       .then((response) => {
         const role = response.data.role;
         loginUser({ id: response.data.id, name: response.data.fullName });
@@ -33,8 +33,8 @@ function IztechUserLoginPage() {
       })
       .catch((error) => {
         console.log(error);
-        alert("Login credentials are not correct!")
-  });
+        alert("Login credentials are not correct!");
+      });
   };
 
   return (
@@ -44,7 +44,6 @@ function IztechUserLoginPage() {
           className={styles.image}
           src={require("../assets/images/iyte_logo.png")}
           alt="IYTE Logo"
-         
         />
         <label>
           ID or E-mail:
