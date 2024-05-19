@@ -110,6 +110,7 @@ function InternshipOpportunity({ opportunity }) {
       {popupOpen && <Popup content={<PopupContent />} isOpen={popupOpen} setIsOpen={setPopupOpen} />}
       {confirmationPopupOpen && <Popup content={<ConfirmationContent />} isOpen={confirmationPopupOpen} setIsOpen={setConfirmationPopupOpen} />}
     </div>
+  </div>
   );
 }
 
