@@ -11,30 +11,35 @@ function AdminAnnouncementRequests() {
   const { user } = useContext(UserContext);
 
   useEffect(() => {
-    axios.get("http://localhost:8081/announcements").then((response) => {
-      const data = response.data;
-      setAnnouncementRequests(
-        data.map(({ title, deadline, document, company }) => ({
-          id: document.documentId,
-          title,
-          deadline,
-          content: document.content,
-          companyId: company.id,
-        }))
-      );
-    });
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/announcements`)
+      .then((response) => {
+        const data = response.data;
+        setAnnouncementRequests(
+          data.map(({ title, deadline, document, company }) => ({
+            id: document.documentId,
+            title,
+            deadline,
+            content: document.content,
+            companyId: company.id,
+          }))
+        );
+      });
   }, []);
 
   return (
     <div className={styles.adminAnnoRequest}>
       <SystemAdminSidebar />
       <div className={styles.mainContent}>
-          <Header username={user.name} />
+        <Header username={user.name} />
         <div className={styles.announcements}>
           <h1 className={styles.pageTitle}>Announcement Requests</h1>
           <div className={styles.announcementRequestsContainer}>
             {announcementRequests.map((announcementRequest, index) => (
-              <AnnouncementRequest key={index} announcementRequest={announcementRequest} />
+              <AnnouncementRequest
+                key={index}
+                announcementRequest={announcementRequest}
+              />
             ))}
           </div>
         </div>
