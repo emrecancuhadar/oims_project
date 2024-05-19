@@ -12,7 +12,7 @@ function AdminAnnouncementRequests() {
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_API_URL}/announcements`)
+      .get(`${process.env.REACT_APP_API_URL}/announcements/pending`)
       .then((response) => {
         const data = response.data;
         setAnnouncementRequests(

@@ -31,6 +31,7 @@ function Login() {
             name: data.companyName,
             email: data.email,
             registrationStatus: data.registrationStatus,
+            role: "company",
           });
         });
         navigate("/company/home");

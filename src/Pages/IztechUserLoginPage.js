@@ -21,7 +21,11 @@ function IztechUserLoginPage() {
       .post(`${process.env.REACT_APP_API_URL}/iztech-user/login`, credentials)
       .then((response) => {
         const role = response.data.role;
-        loginUser({ id: response.data.id, name: response.data.fullName });
+        loginUser({
+          id: response.data.id,
+          name: response.data.fullName,
+          role: role.toLowerCase(),
+        });
         switch (role) {
           case "STUDENT":
             navigate("/student/home");
