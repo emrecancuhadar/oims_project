@@ -1,9 +1,12 @@
 import axios from "axios";
 import React, { useState } from "react";
 import styles from "./feedback-modal.module.css";
+import Popup from "../Popup";
 
 function FeedbackModal({ isModalOpen, closeModal, receiver }) {
   const [feedback, setFeedback] = useState("");
+  const [isFeedbackPopupOpen, setFeedbackPopupOpen] = useState(false);
+  const [isFeedbackFailedPopupOpen, setFeedbackFailedPopupOpen] = useState(false);
 
   if (!isModalOpen) return null;
 
@@ -15,19 +18,24 @@ function FeedbackModal({ isModalOpen, closeModal, receiver }) {
         content: feedback,
       })
       .then((response) => {
-        alert("Feedback sent");
+        setFeedbackPopupOpen(true);
         console.log(response);
-        closeModal();
       })
       .catch((error) => {
-        alert("Failed to send feedback");
+        setFeedbackFailedPopupOpen(true);
         console.log(error);
       });
   };
 
+  const handleOverlayClick = (event) => {
+    event.stopPropagation();
+    closeModal();
+  };
+
+
   return (
-    <div className={styles.modalOverlay}>
-      <div className={styles.modal}>
+    <div className={styles.modalOverlay} onClick={handleOverlayClick}>
+      <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
         <button className={styles.closeBtn} onClick={closeModal}>
           &times;
         </button>
@@ -46,6 +54,20 @@ function FeedbackModal({ isModalOpen, closeModal, receiver }) {
           </button>
         </div>
       </div>
+      {isFeedbackPopupOpen && (
+        <Popup
+          content={ 'Feedback is sent' }
+          isOpen={isFeedbackPopupOpen}
+          setIsOpen={setFeedbackPopupOpen}
+        />
+      )}
+      {isFeedbackFailedPopupOpen && (
+        <Popup
+          content={ 'Failed to send feedback' }
+          isOpen={isFeedbackFailedPopupOpen}
+          setIsOpen={setFeedbackFailedPopupOpen}
+        />
+      )}
     </div>
   );
 }

@@ -2,12 +2,15 @@ import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "../CSS/CompanyLogin.module.css"; // Updated import
 import { UserContext } from "../context/UserProvider";
+import Popup from "../components/Popup";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const { loginUser } = useContext(UserContext);
+  const [popupOpen, setPopupOpen] = useState(false);
+  const [wrongPopupOpen, wrongSetPopupOpen] = useState(false);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -34,16 +37,37 @@ function Login() {
             role: "company",
           });
         });
-        navigate("/company/home");
+        setPopupOpen(true);
+        setTimeout(() => {
+          navigate("/company/home");
+      }, 3000);
+
       } else {
-        const errorMessage = await response.text();
-        alert(errorMessage);
+        wrongSetPopupOpen(true);
       }
     } catch (error) {
       console.error("Error:", error);
       alert("An unexpected error occurred. Please try again later.");
     }
   };
+
+  const SigninPopupContent = () => (
+    <div className={styles.popupContent}>
+      <p>Your credentials are correct.</p>
+      <p>You will be directed to home page in 3 seconds.</p>
+    </div>
+  );
+
+  const WrongPopupContent = () => (
+    <div className={styles.popupContent}>
+      <button className={styles.closeBtn} onClick={() => wrongSetPopupOpen(false)}>
+          &times;
+        </button>
+      <p>The email or password you entered is incorrect.</p>
+      <p>Check your credentials or sign up for an account.</p>
+    </div>
+  );
+  
 
   return (
     <div className={styles.companyLoginContainer}>
@@ -88,7 +112,22 @@ function Login() {
           Forgot my password
         </p>
       </div>
+      {popupOpen && (
+            <Popup
+              content={<SigninPopupContent />} 
+              isOpen={popupOpen}
+              setIsOpen={setPopupOpen}
+            />
+          )};
+      {wrongPopupOpen && (
+            <Popup
+              content={<WrongPopupContent />} 
+              isOpen={wrongPopupOpen}
+              setIsOpen={wrongSetPopupOpen}
+            />
+          )}
     </div>
+    
   );
 }
 

@@ -11,14 +11,18 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   align-items: center;
   z-index: 1050;  /* Ensure it is above other content */
+  border-radius: 10px;
+  justify-content: space-evenly;
 }
 
 .popupButton {
+  border: none;
+  border-radius: 10px;
   margin-top: 25px;
   cursor: pointer;
-  width: 35%;
-  color: black;
-  background-color: #9a0e20;;
+  color: white;
+  background-color: #9a0e20;
+  padding: 8px;
 }
 
 .backdrop {

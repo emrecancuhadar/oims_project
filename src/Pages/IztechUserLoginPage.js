@@ -3,12 +3,15 @@ import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "../CSS/IztechUserLoginPage.module.css";
 import { UserContext } from "../context/UserProvider";
+import Popup from "../components/Popup";
 
 function IztechUserLoginPage() {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const { loginUser } = useContext(UserContext);
+  const [popupOpen, setPopupOpen] = useState(false);
+  const [wrongPopupOpen, wrongSetPopupOpen] = useState(false);
 
   const login = (credentials) => {
     if (username.includes("@")) {
@@ -26,27 +29,53 @@ function IztechUserLoginPage() {
           name: response.data.fullName,
           role: role.toLowerCase(),
         });
+        setPopupOpen(true);
         switch (role) {
           case "STUDENT":
-            navigate("/student/home");
+            setTimeout(() => {
+              navigate("/company/home");
+          }, 3000);
             break;
           case "SYSTEM_ADMIN":
-            navigate("/admin/homepage");
+            setTimeout(() => {
+              navigate("/company/home");
+          }, 3000);
             break;
           case "SUMMER_PRACTICE_COORDINATOR":
-            navigate("/spc/home");
+            setTimeout(() => {
+              navigate("/company/home");
+          }, 3000);
             break;
           case "DEPARTMENT_SECRETARY":
-            navigate("/depsec/home");
+            setTimeout(() => {
+              navigate("/company/home");
+          }, 3000);
             break;
           
         }
       })
       .catch((error) => {
         console.log(error);
-        alert("Login credentials are not correct!");
+        wrongSetPopupOpen(true);
       });
   };
+
+  const SigninPopupContent = () => (
+    <div className={styles.popupContent}>
+      <p>Your credentials are correct.</p>
+      <p>You will be directed to home page in 3 seconds.</p>
+    </div>
+  );
+
+  const WrongPopupContent = () => (
+    <div className={styles.popupContent}>
+      <button className={styles.closeBtn} onClick={() => wrongSetPopupOpen(false)}>
+          &times;
+        </button>
+      <p>The email or password you entered is incorrect.</p>
+      <p>Check your credentials or sign up for an account.</p>
+    </div>
+  );
 
   return (
     <div className={styles.logincontainer}>
@@ -73,10 +102,24 @@ function IztechUserLoginPage() {
           />
         </label>
         <button onClick={() => login({ username, password })}>Login</button>
-        <p onClick={() => alert("Reset Password Clicked")}>
+        <p onClick={() => window.open("https://ubys.iyte.edu.tr/#")}>
           Forgot my password
         </p>
       </div>
+      {popupOpen && (
+            <Popup
+              content={<SigninPopupContent />} 
+              isOpen={popupOpen}
+              setIsOpen={setPopupOpen}
+            />
+          )};
+      {wrongPopupOpen && (
+            <Popup
+              content={<WrongPopupContent />} 
+              isOpen={wrongPopupOpen}
+              setIsOpen={wrongSetPopupOpen}
+            />
+          )}
     </div>
   );
 }

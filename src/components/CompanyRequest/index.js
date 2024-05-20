@@ -4,9 +4,13 @@ import axios from "axios";
 import React, { useState } from "react";
 import FeedbackModal from "../FeedbackModal";
 import styles from "./company-request.module.css";
+import Popup from "../Popup";
 
 function CompanyRequest({ companyRequest }) {
   const [isModalOpen, setModalOpen] = useState(false);
+  const [isApprovePopupOpen, setApprovePopupOpen] = useState(false);
+  const [isDisapprovePopupOpen, setDisapprovePopupOpen] = useState(false);
+  const [isBanPopupOpen, setBanPopupOpen] = useState(false);
 
   const approveCompanyRequest = () => {
     axios
@@ -15,33 +19,34 @@ function CompanyRequest({ companyRequest }) {
       )
       .then((response) => {
         console.log(response);
-        alert("Company is approved");
+        setApprovePopupOpen(true);
       })
       .catch((error) => console.log(error));
   };
+
   const disapproveCompanyRequest = () => {
     axios
       .put(
         `${process.env.REACT_APP_API_URL}/systemadmin/company/${companyRequest.id}/disapprove`
       )
       .then((response) => {
-        alert("Company is disapproved");
         console.log(response);
+        setDisapprovePopupOpen(true);
       })
       .catch((error) => console.log(error));
   };
+
   const banCompany = () => {
     axios
       .put(
         `${process.env.REACT_APP_API_URL}/systemadmin/company/${companyRequest.id}/ban`
       )
       .then((response) => {
-        alert("Company is banned");
         console.log(response);
+        setBanPopupOpen(true);
       })
       .catch((error) => console.log(error));
   };
-  const giveFeedback = () => {};
 
   return (
     <>
@@ -97,6 +102,28 @@ function CompanyRequest({ companyRequest }) {
         closeModal={() => setModalOpen(false)}
         receiver={{ id: companyRequest.id, name: "company" }}
       />
+
+      {isApprovePopupOpen && (
+        <Popup
+          content={"Company is approved"}
+          isOpen={isApprovePopupOpen}
+          setIsOpen={setApprovePopupOpen}
+        />
+      )}
+      {isDisapprovePopupOpen && (
+        <Popup
+          content={"Company is disapproved"}
+          isOpen={isDisapprovePopupOpen}
+          setIsOpen={setDisapprovePopupOpen}
+        />
+      )}
+      {isBanPopupOpen && (
+        <Popup
+          content={"Company is banned"}
+          isOpen={isBanPopupOpen}
+          setIsOpen={setBanPopupOpen}
+        />
+      )}
     </>
   );
 }

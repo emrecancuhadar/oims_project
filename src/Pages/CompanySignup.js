@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "../CSS/CompanySignup.module.css";
 import PasswordChecklist from "react-password-checklist";
+import Popup from "../components/Popup";
 
 function Signup() {
   const [companyName, setCompanyName] = useState("");
@@ -9,6 +10,7 @@ function Signup() {
   const [password, setPassword] = useState("");
   const [passwordAgain, setPasswordAgain] = useState("");
   const navigate = useNavigate();
+  const [popupOpen, setPopupOpen] = useState(false);
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -25,7 +27,10 @@ function Signup() {
       );
 
       if (response.ok) {
-        navigate("/company/login");
+        setPopupOpen(true);
+        setTimeout(() => {
+          navigate("/company/login");
+      }, 3000);
       } else {
         const errorMessage = await response.text();
         alert(errorMessage);
@@ -35,6 +40,13 @@ function Signup() {
       alert("An unexpected error occurred. Please try again later.");
     }
   };
+
+  const SignupPopupContent = () => (
+    <div className={styles.popupContent}>
+      <p>Your registration request is sent to system admin.</p>
+      <p>You will be directed to login screen in 3 seconds.</p>
+    </div>
+  );
 
   return (
     <div className={styles.cmpSignUpContainer}>
@@ -97,13 +109,20 @@ function Signup() {
             valueAgain={passwordAgain}
             onChange={(isValid) => {}}
           />
-          <button className={styles.signUpButton} type="submit">
+          <button className={styles.signUpButton} type="submit" >
             Sign Up
           </button>
         </form>
         <p className={styles.para} onClick={() => navigate("/company/login")}>
           Sign in now!
         </p>
+        {popupOpen && (
+            <Popup
+              content={<SignupPopupContent />} 
+              isOpen={popupOpen}
+              setIsOpen={setPopupOpen}
+            />
+          )}
       </div>
     </div>
   );
