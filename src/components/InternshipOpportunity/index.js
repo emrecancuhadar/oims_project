@@ -26,8 +26,6 @@ function InternshipOpportunity({ opportunity }) {
       bytes[i] = binaryString.charCodeAt(i);
     }
 
-    console.log(bytes);
-
     // Create a Blob from the binary data
     const pdfBlob = new Blob([bytes], { type: "application/pdf" });
 

@@ -1,10 +1,10 @@
+import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import styles from "../CSS/CompanyMyInterns.module.css";
 import CompanySidebar from "../components/CompanySidebar";
 import Header from "../components/Header";
-import { UserContext } from "../context/UserProvider";
-import axios from "axios";
 import InternCard from "../components/InternCard";
+import { UserContext } from "../context/UserProvider";
 
 function CompanyMyInterns() {
   const { user } = useContext(UserContext);
@@ -15,20 +15,28 @@ function CompanyMyInterns() {
       .get(`${process.env.REACT_APP_API_URL}/company/interns/${user.id}`)
       .then((response) => {
         const data = response.data;
+        console.log("interns", data);
         setInterns(
-          data.map(({student}) => ({
-            id: student.studentId,
-            name: student.studentName,
-            mail: student.mail,
-            phoneNumber: student.contactNumber,
-            status: student.status,
-            company: student.companyId
-          }))
-        )
+          data.map(
+            ({
+              id,
+              fullName,
+              email,
+              contactNumber,
+              company: { id: companyId },
+            }) => ({
+              id,
+              name: fullName,
+              mail: email,
+              phoneNumber: contactNumber,
+              company: companyId,
+            })
+          )
+        );
       })
       .catch((error) => {
-      console.error("Error fetching interns:", error);
-    });
+        console.error("Error fetching interns:", error);
+      });
   }, [user.id]);
 
   return (
@@ -45,9 +53,7 @@ function CompanyMyInterns() {
           </div>
           <div className={styles.homepageContainer}>
             {interns.map((student, index) => (
-              <InternCard 
-              key={index} 
-              student={student} />
+              <InternCard key={index} student={student} />
             ))}
           </div>
         </div>

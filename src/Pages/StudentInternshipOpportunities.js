@@ -8,6 +8,8 @@ import Popup from "../components/Popup";
 import StudentSidebar from "../components/StudentSidebar";
 import { UserContext } from "../context/UserProvider";
 
+//TODO pop-up a bir yüklenme ekranı eklenebilir.
+
 function StudentInternshipOpportunities() {
   const { user } = useContext(UserContext);
   const [opportunities, setOpportunities] = useState([]);
@@ -25,8 +27,23 @@ function StudentInternshipOpportunities() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setPopupOpen(true);
-    setEmail("");
+    const formData = new FormData();
+    formData.append("companyEmail", email);
+    axios
+      .post(
+        `${process.env.REACT_APP_API_URL}/students/${user.id}/apply-company`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      )
+      .then((response) => {
+        setPopupOpen(true);
+        setEmail("");
+      })
+      .catch((error) => console.log(error));
   };
 
   useEffect(() => {
