@@ -1,7 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
+import Modal from "@mui/material/Modal";
+import axios from "axios";
 import styles from "../CompanyAnnouncement/company-announcement.module.css";
 
 function CompanyAnnouncement({ announcement }) {
+  const [open, setOpen] = useState(false);
+  const [title, setTitle] = useState(announcement.title);
+  const [deadline, setDeadline] = useState(announcement.deadline);
+  const [file, setFile] = useState(null);
+  const [error, setError] = useState("");
+
+  const handleOpen = (event) => {
+    event.stopPropagation();
+    setOpen(true);
+  };
+
+  const handleClose = (event) => {
+    event.stopPropagation();
+    setOpen(false);
+  };
+
+  const handleUpdate = () => {
+    alert('buraya update logic');
+    setOpen(false);
+  };
+
+  const handleDelete = (event) => {
+    event.stopPropagation();
+    alert('delete logic');
+  }
+
   const showAnnouncement = () => {
     const documentBase64 = announcement.content;
 
@@ -10,51 +38,83 @@ function CompanyAnnouncement({ announcement }) {
       return;
     }
 
-    // Decode the Base64 string to binary
     const binaryString = window.atob(documentBase64);
     const len = binaryString.length;
-    console.log(binaryString);
     const bytes = new Uint8Array(len);
     for (let i = 0; i < len; i++) {
       bytes[i] = binaryString.charCodeAt(i);
     }
 
-    console.log(bytes);
-
-    // Create a Blob from the binary data
     const pdfBlob = new Blob([bytes], { type: "application/pdf" });
-
-    // Generate a URL for the Blob
     const pdfUrl = URL.createObjectURL(pdfBlob);
-
-    // Open the PDF in a new browser tab
     window.open(pdfUrl, "_blank");
   };
 
   return (
-    <div className={styles.card} onClick={() => showAnnouncement()}>
-        <div class={styles.announcentmentUpperDiv}>
-          <div>
-            <h2>{announcement.title}</h2>
-          </div>
-          <div class={styles.announcementAltText}>
-            <div class={styles.announcementAltTextInfo}>
-              Deadline:
-              <p>{announcement.deadline}</p>
-            </div>
-            <div class={styles.announcementAltTextInfo}>
-              Status:
-              <p>{announcement.status}</p>
-            </div>
-            
-          </div>
-          
+    <div className={styles.card} onClick={showAnnouncement}>
+      <div className={styles.announcentmentUpperDiv}>
+        <div>
+          <h2>{announcement.title}</h2>
         </div>
-        <div className={styles.buttons}>
-          <button className={styles.feedbackBtn}>Edit</button>
-          <button className={styles.banBtn}>Delete</button>
+        <div className={styles.announcementAltText}>
+          <div className={styles.announcementAltTextInfo}>
+            Deadline:
+            <p>{announcement.deadline}</p>
+          </div>
+          <div className={styles.announcementAltTextInfo}>
+            Status:
+            <p>{announcement.status}</p>
+          </div>
         </div>
       </div>
+      <div className={styles.buttons}>
+        <button className={styles.feedbackBtn} onClick={handleOpen}>Edit</button>
+        <button className={styles.banBtn} onClick={handleDelete}>Delete</button>
+      </div>
+
+      <Modal open={open} onClose={handleClose}>
+        <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+          <h1>Edit Announcement</h1>
+          <div className={styles.inputGroup}>
+            <span className={styles.inputGroupText}>Title</span>
+            <input
+              type="text"
+              className={styles.formControl}
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+          </div>
+          <div className={styles.inputGroup}>
+            <label className={styles.deadline} htmlFor="deadline">
+              Deadline:
+            </label>
+            <input
+              type="date"
+              className={styles.formControl}
+              name="deadline"
+              value={deadline}
+              onChange={(e) => setDeadline(e.target.value)}
+            />
+          </div>
+          <div className={styles.inputGroup}>
+            <input
+              type="file"
+              className={styles.formControl}
+              onChange={(e) => setFile(e.target.files[0])}
+            />
+          </div>
+          {error && <p style={{ color: "red" }}>{error}</p>}
+          <button
+            className={styles.sendBtn}
+            type="button"
+            onClick={handleUpdate}
+            disabled={!title || !deadline}
+          >
+            Update Announcement
+          </button>
+        </div>
+      </Modal>
+    </div>
   );
 }
 
