@@ -21,8 +21,8 @@
 }
 
 .applicationFormsContainer {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     justify-content: center;
     gap: 25px;
 }

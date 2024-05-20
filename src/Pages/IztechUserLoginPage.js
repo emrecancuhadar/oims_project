@@ -33,6 +33,13 @@ function IztechUserLoginPage() {
           case "SYSTEM_ADMIN":
             navigate("/admin/homepage");
             break;
+          case "SUMMER_PRACTICE_COORDINATOR":
+            navigate("/spc/home");
+            break;
+          case "DEPARTMENT_SECRETARY":
+            navigate("/depsec/home");
+            break;
+          
         }
       })
       .catch((error) => {
