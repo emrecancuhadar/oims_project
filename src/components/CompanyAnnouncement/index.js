@@ -33,10 +33,22 @@ function CompanyAnnouncement({ announcement }) {
 
   return (
     <div className={styles.card} onClick={() => showAnnouncement()}>
-        <div>
-          <h2>{announcement.title}</h2>
-          <p>{announcement.deadline}</p>
-          <p>{announcement.status}</p>
+        <div class={styles.announcentmentUpperDiv}>
+          <div>
+            <h2>{announcement.title}</h2>
+          </div>
+          <div class={styles.announcementAltText}>
+            <div class={styles.announcementAltTextInfo}>
+              Deadline:
+              <p>{announcement.deadline}</p>
+            </div>
+            <div class={styles.announcementAltTextInfo}>
+              Status:
+              <p>{announcement.status}</p>
+            </div>
+            
+          </div>
+          
         </div>
         <div className={styles.buttons}>
           <button className={styles.feedbackBtn}>Edit</button>

@@ -33,9 +33,9 @@
 }
 
 .announcementsContainer {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 15px;
   justify-content: center;
   width: 100%;
 }
