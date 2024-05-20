@@ -79,9 +79,12 @@ function AnnouncementRequest({ announcementRequest }) {
     <>
       <div className={styles.card} onClick={() => showAnnouncementRequest()}>
         <div className={styles.left}>
-          <div>
+          <div className={styles.announcentmentUpperDiv}>
             <h2>{announcementRequest.title}</h2>
-            <p>{announcementRequest.deadline}</p>
+            <div className={styles.altTextInfo}>
+              Deadline:
+              <p>{announcementRequest.deadline}</p>
+            </div>
           </div>
           <div className={styles.buttons}>
             <button

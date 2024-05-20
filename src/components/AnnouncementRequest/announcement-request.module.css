@@ -1,6 +1,5 @@
 .card {
   display: flex;
-  flex-direction: column;
   border: 1px solid #ccc;
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -9,11 +8,12 @@
   margin: 20px;
   gap: 20px;
   cursor:pointer;
-  width: fit-content;
+  
 }
 
 .card h2 {
   font-size: 24px;
+  font-weight: bolder;
   margin: 0;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -67,7 +67,7 @@
   background-color: rgb(238, 109, 3);
 }
 
-.announcementAltTextInfo {
+.altTextInfo {
   display: flex;
   gap: 5px;
   font-weight: bold;
@@ -86,3 +86,8 @@
   gap: 15px;
 }
 
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

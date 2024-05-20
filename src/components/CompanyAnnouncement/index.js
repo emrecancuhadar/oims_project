@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../AnnouncementRequest/announcement-request.module.css";
+import styles from "../CompanyAnnouncement/company-announcement.module.css";
 
 function CompanyAnnouncement({ announcement }) {
   const showAnnouncement = () => {

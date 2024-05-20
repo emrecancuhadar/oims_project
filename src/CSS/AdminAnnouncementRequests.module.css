@@ -27,9 +27,8 @@
 }
 
 .announcementRequestsContainer {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   justify-content: center;
   gap: 25px;
 }
