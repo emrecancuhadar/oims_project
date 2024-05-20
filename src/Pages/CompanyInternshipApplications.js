@@ -38,6 +38,8 @@ const studentData = [
   
 ];
 
+
+
 const StudentEntries = ({ student }) => (
   <div className={styles.card}>
     <div className={styles.cardBody}>
