@@ -29,6 +29,7 @@ function CompanyMyAnnouncements() {
         console.error("Error fetching announcements:", error);
       });
   }, [user.id]);
+  
 
   return (
     <div className={styles.companyMyAnnouncements}>
