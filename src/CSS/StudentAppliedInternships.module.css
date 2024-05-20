@@ -37,8 +37,8 @@
 }
 
 .appliedContainer {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
     padding: 0 10% 0 10%;
     justify-content: flex-start;

@@ -19,11 +19,20 @@
   flex: 1;
   flex-direction: column;
   align-items: flex-start;
+  gap: 27px;
 }
 
 .card h2 {
-  font-size: 24px;
-  margin-top: auto;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-weight: 650;
+  font-size: 25px;
+  line-height: 1.2;
+  color: var(--bs-heading-color);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width:300px; /* some width */
 }
 
 .card h1 {
@@ -33,8 +42,8 @@
 }
 
 .card p {
-  margin: 0 0 20px 0;
-  margin-top: auto;
+  margin: 0;
+  
 }
 
 .registerBtn{
@@ -46,7 +55,7 @@
   font-size: 16px;
   background-color:#9a0e20;
   align-self: center;
-  margin-top: auto;
+  
 }
 
 .popupContent{

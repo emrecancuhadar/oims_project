@@ -9,7 +9,7 @@
     margin: 20px;
     gap: 20px;
     cursor:pointer;
-    width: 300px;
+    width: 350px;
     height: 225px;
     justify-content: flex-start;
   }
@@ -18,20 +18,22 @@
     display: flex;
     flex: 1;
     flex-direction: column;
-    align-items: center;
-    gap: 15px;
+    align-items: flex-start;
+    gap: 17px;
   }
   
   .card h2 {
     margin-top: 0;
-    margin-bottom: .5rem;
-    font-weight: 500;
+    margin-bottom: 0;
+    font-weight: 650;
+    font-size: 25px;
     line-height: 1.2;
     color: var(--bs-heading-color);
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    width:260px; /* some width */
+    width:300px; /* some width */
+    
   }
 
   .card h1 {
@@ -40,11 +42,11 @@
     margin-top: auto;
   }
   
-  /* .card p {
-    margin: 0 0 20px 0;
-    margin-top: auto;
+  .card p {
+    margin: 0;
+    
   }
-   */
+  
 
   .applyBtn{
     padding: 10px 20px;
