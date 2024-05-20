@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import Modal from "@mui/material/Modal";
-import axios from "axios";
 import styles from "../CompanyAnnouncement/company-announcement.module.css";
+import Popup from '../Popup';
 
-function CompanyAnnouncement({ announcement }) {
+function CompanyAnnouncement({ announcement, onDelete }) {
   const [open, setOpen] = useState(false);
+  const [popupOpen, setPopupOpen] = useState(false);
   const [title, setTitle] = useState(announcement.title);
   const [deadline, setDeadline] = useState(announcement.deadline);
   const [file, setFile] = useState(null);
@@ -27,8 +28,12 @@ function CompanyAnnouncement({ announcement }) {
 
   const handleDelete = (event) => {
     event.stopPropagation();
-    alert('delete logic');
-  }
+    setPopupOpen(true);
+  };
+
+  const confirmDelete = () => {
+    alert('buraya delete logic');
+  };
 
   const showAnnouncement = () => {
     const documentBase64 = announcement.content;
@@ -49,6 +54,16 @@ function CompanyAnnouncement({ announcement }) {
     const pdfUrl = URL.createObjectURL(pdfBlob);
     window.open(pdfUrl, "_blank");
   };
+
+  const DeleteConfirmationContent = () => (
+    <div className={styles.popupContent} onClick={(event) => event.stopPropagation()}>
+      <h1>Are you sure you want to delete this announcement?</h1>
+      <div className={styles.btns}>
+        <button className={styles.popupCancelBtn} onClick={() => setPopupOpen(false)}>Cancel</button>
+        <button className={styles.popupDeleteBtn} onClick={confirmDelete}>Delete</button>
+      </div>
+    </div>
+  );
 
   return (
     <div className={styles.card} onClick={showAnnouncement}>
@@ -114,6 +129,10 @@ function CompanyAnnouncement({ announcement }) {
           </button>
         </div>
       </Modal>
+
+      {popupOpen && (
+        <Popup content={<DeleteConfirmationContent />} isOpen={popupOpen} setIsOpen={setPopupOpen} />
+      )}
     </div>
   );
 }
