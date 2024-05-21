@@ -1,7 +1,8 @@
 import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState }  from "react";
+import FeedbackModal from "../FeedbackModal";
 import styles from "./application-form-request.module.css";
 import Popup from "../Popup";
 import FeedbackModal from "../FeedbackModal";
@@ -14,7 +15,7 @@ function ApplicationFormRequest({ applicationFormRequest }) {
   const approveApplicationFormRequest = () => {
     axios
       .put(
-        `${process.env.REACT_APP_API_URL}/spc/application-forms/${applicationFormRequest.id}/approve`
+        `${process.env.REACT_APP_API_URL}/spc/document/${applicationFormRequest.id}/approve`
       )
       .then((response) => {
         console.log(response);
@@ -25,13 +26,16 @@ function ApplicationFormRequest({ applicationFormRequest }) {
   const disapproveApplicationFormRequest = () => {
     axios
       .put(
-        `${process.env.REACT_APP_API_URL}/spc/application-forms/${applicationFormRequest.id}/disapprove`
+        `${process.env.REACT_APP_API_URL}/spc/document/${applicationFormRequest.id}/disapprove`
       )
       .then((response) => {
         setDisapprovePopupOpen(true);
         console.log(response);
       })
       .catch((error) => console.log(error));
+  };
+  const giveFeedback = () => {
+    setModalOpen(true);
   };
   const giveFeedback = () => {
     setModalOpen(true);

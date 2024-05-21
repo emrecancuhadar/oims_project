@@ -25,11 +25,14 @@ function SPCApplicationForms() {
 
   /*useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_API_URL}/company/list`)
+      .get(`${process.env.REACT_APP_API_URL}/documents/applicationFormList`)
       .then((response) => {
         const data = response.data;
         setApplicationFormRequests(
-          data.map(({ id, studentName, email }) => ({ id, studentName, email }))
+          data.map(({ iztechUser: {id: studentId, name: studentName, }
+           }) => ({ id, 
+            studentName,
+             email }))
         );
       });
   }, []);*/
