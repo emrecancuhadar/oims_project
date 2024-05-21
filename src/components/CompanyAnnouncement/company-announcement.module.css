@@ -1,195 +1,197 @@
 .card {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    padding: 10px;
-    background: #fff;
-    margin: 20px;
-    gap: 20px;
-    cursor:pointer;
-    width: fit-content;
-  }
-  
-  .card h2 {
-    font-size: 24px;
-    margin: 0;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    width:250px; /* some width */
-  }
-  
-  .card p {
-    margin: 0;
-  }
-  
-  .left {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .right {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    gap: 15px;
-  }
-  
-  .buttons button {
-    padding: 10px 20px;
-    margin-right: 10px;
-    border: none;
-    color: white;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 16px;
-  }
-  
-  .feedbackBtn {
-    background-color: #0d6efd;
-  }
-  
-  .banBtn {
-    background-color: #dc3545;
-  }
-  
-  .buttons button:last-child {
-    margin-right: 0;
-  }
-  
-  .feedbackBtn:hover {
-    background-color: rgb(238, 109, 3);
-  }
-  
-  .feedbackBtn {
-    background-color: rgb(238, 109, 3);
-  }
-  
-  .announcementAltTextInfo {
-    display: flex;
-    gap: 5px;
-    font-weight: bold;
-    margin: 0;
-  
-  }
-  .announcementAltText {
-    display: flex;
-    flex-direction: column;
-    
-  }
-  
-  .announcentmentUpperDiv {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  .modal {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1050;
-    width: 80%;
-    max-width: 600px;
-    background: white; /* Ensures the modal background is white */
-    border: 2px solid black; /* Adds a black border around the modal */
-    padding: 20px; /* Adds some padding inside the modal */
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Optional: Adds shadow for better visibility */
-    align-items: center;
-  }
-  
-  .inputGroup {
-    width: 100%;
-    margin-bottom: 15px;
-  }
-  
-  .inputGroupText {
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
-  .formControl {
-    width: 100%;
-    padding: 10px;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .deadline {
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
-  .sendBtn {
-    background-color: #4CAF50;
-    color: white;
-    background-color: #9a0e20;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .sendBtn:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  background: #fff;
+  margin: 20px;
+  gap: 20px;
+  cursor: pointer;
+  width: fit-content;
+}
 
-  .popupContent{
-    display: flex;
-    flex-direction: column;
-    position: absolute;  /* Absolute positioning relative to the nearest positioned ancestor */
-    top: 50%;            /* Center vertically */
-    left: 50%;           /* Center horizontally */
-    transform: translate(-50%, -50%); /* Ensures exact centering */
-    background-color: white;
-    border: 1px solid black;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 1050;  /* Ensure it is above other content */
-    width: 20vw;
-    text-align: center;
-    }
-    
+.card h2 {
+  font-size: 24px;
+  margin: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 250px; /* some width */
+}
 
-    .popupContent h1{
-      font-size: 18px;
-    }
+.card p {
+  margin: 0;
+}
 
+.left {
+  display: flex;
+  flex-direction: column;
+}
 
+.right {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 15px;
+}
 
-    .btns {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    }
-    
-    .popupCancelBtn {
-    border: none;
-    border-radius: 10px;
-    margin-top: 25px;
-    cursor: pointer;
-    color: white;
-    background-color: #9a0e20;
-    padding: 8px;
-    }
-    
-    .popupDeleteBtn {
-    border: none;
-    border-radius: 10px;
-    margin-top: 25px;
-    cursor: pointer;
-    color: white;
-    background-color: #9a0e20;
-    padding: 8px;
-    }
-  
-  
+.buttons button {
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.uploadBtn {
+  border-color: #9a0e20;
+  color: #9a0e20;
+  padding: 8px 10px;
+  background: none;
+  border-radius: 5px;
+  margin-right: 15px;
+}
+
+.feedbackBtn {
+  background-color: #0d6efd;
+}
+
+.banBtn {
+  background-color: #dc3545;
+}
+
+.buttons button:last-child {
+  margin-right: 0;
+}
+
+.feedbackBtn:hover {
+  background-color: rgb(238, 109, 3);
+}
+
+.feedbackBtn {
+  background-color: rgb(238, 109, 3);
+}
+
+.announcementAltTextInfo {
+  display: flex;
+  gap: 5px;
+  font-weight: bold;
+  margin: 0;
+}
+.announcementAltText {
+  display: flex;
+  flex-direction: column;
+}
+
+.announcentmentUpperDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1050;
+  width: 80%;
+  max-width: 600px;
+  background: white; /* Ensures the modal background is white */
+  border: 2px solid black; /* Adds a black border around the modal */
+  padding: 20px; /* Adds some padding inside the modal */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Adds shadow for better visibility */
+  align-items: center;
+}
+
+.inputGroup {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.inputGroupText {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.formControl {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.deadline {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.sendBtn {
+  background-color: #4caf50;
+  color: white;
+  background-color: #9a0e20;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.sendBtn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.popupContent {
+  display: flex;
+  flex-direction: column;
+  position: absolute; /* Absolute positioning relative to the nearest positioned ancestor */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Ensures exact centering */
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1050; /* Ensure it is above other content */
+  width: 20vw;
+  text-align: center;
+}
+
+.popupContent h1 {
+  font-size: 18px;
+}
+
+.btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.popupCancelBtn {
+  border: none;
+  border-radius: 10px;
+  margin-top: 25px;
+  cursor: pointer;
+  color: white;
+  background-color: #9a0e20;
+  padding: 8px;
+}
+
+.popupDeleteBtn {
+  border: none;
+  border-radius: 10px;
+  margin-top: 25px;
+  cursor: pointer;
+  color: white;
+  background-color: #9a0e20;
+  padding: 8px;
+}

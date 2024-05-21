@@ -1,7 +1,44 @@
-import React, { useState } from "react";
 import Modal from "@mui/material/Modal";
+import axios from "axios";
+import React, { useRef, useState } from "react";
 import styles from "../CompanyAnnouncement/company-announcement.module.css";
-import Popup from '../Popup';
+import Popup from "../Popup";
+
+function FileUploader({ initialFileName, setFile }) {
+  // Create a reference to the hidden file input element
+  const hiddenFileInput = useRef(null);
+  const [fileName, setFileName] = useState(initialFileName);
+
+  // Programatically click the hidden file input element
+  // when the Button component is clicked
+  const handleClick = () => {
+    hiddenFileInput.current.click();
+  };
+
+  // Call a function (passed as a prop from the parent component)
+  // to handle the user-selected file
+  const handleChange = (event) => {
+    const fileUploaded = event.target.files[0];
+    if (fileUploaded) {
+      setFileName(fileUploaded.name);
+      setFile(fileUploaded);
+    }
+  };
+  return (
+    <>
+      <button className={styles.uploadBtn} onClick={handleClick}>
+        Upload Announcement
+      </button>
+      <input
+        type="file"
+        onChange={handleChange}
+        ref={hiddenFileInput}
+        style={{ display: "none" }}
+      />
+      <span>{fileName}</span>
+    </>
+  );
+}
 
 function CompanyAnnouncement({ announcement, onDelete }) {
   const [open, setOpen] = useState(false);
@@ -22,8 +59,26 @@ function CompanyAnnouncement({ announcement, onDelete }) {
   };
 
   const handleUpdate = () => {
-    alert('buraya update logic');
-    setOpen(false);
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("deadline", deadline);
+    formData.append("file", file);
+
+    axios
+      .put(
+        `${process.env.REACT_APP_API_URL}/announcements/update/${announcement.id}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+        setOpen(false);
+      })
+      .catch((error) => console.log(error));
   };
 
   const handleDelete = (event) => {
@@ -32,7 +87,7 @@ function CompanyAnnouncement({ announcement, onDelete }) {
   };
 
   const confirmDelete = () => {
-    alert('buraya delete logic');
+    alert("Delete logic here");
   };
 
   const showAnnouncement = () => {
@@ -56,11 +111,21 @@ function CompanyAnnouncement({ announcement, onDelete }) {
   };
 
   const DeleteConfirmationContent = () => (
-    <div className={styles.popupContent} onClick={(event) => event.stopPropagation()}>
+    <div
+      className={styles.popupContent}
+      onClick={(event) => event.stopPropagation()}
+    >
       <h1>Are you sure you want to delete this announcement?</h1>
       <div className={styles.btns}>
-        <button className={styles.popupCancelBtn} onClick={() => setPopupOpen(false)}>Cancel</button>
-        <button className={styles.popupDeleteBtn} onClick={confirmDelete}>Delete</button>
+        <button
+          className={styles.popupCancelBtn}
+          onClick={() => setPopupOpen(false)}
+        >
+          Cancel
+        </button>
+        <button className={styles.popupDeleteBtn} onClick={confirmDelete}>
+          Delete
+        </button>
       </div>
     </div>
   );
@@ -83,8 +148,12 @@ function CompanyAnnouncement({ announcement, onDelete }) {
         </div>
       </div>
       <div className={styles.buttons}>
-        <button className={styles.feedbackBtn} onClick={handleOpen}>Edit</button>
-        <button className={styles.banBtn} onClick={handleDelete}>Delete</button>
+        <button className={styles.feedbackBtn} onClick={handleOpen}>
+          Edit
+        </button>
+        <button className={styles.banBtn} onClick={handleDelete}>
+          Delete
+        </button>
       </div>
 
       <Modal open={open} onClose={handleClose}>
@@ -112,10 +181,9 @@ function CompanyAnnouncement({ announcement, onDelete }) {
             />
           </div>
           <div className={styles.inputGroup}>
-            <input
-              type="file"
-              className={styles.formControl}
-              onChange={(e) => setFile(e.target.files[0])}
+            <FileUploader
+              initialFileName={announcement.title}
+              setFile={setFile}
             />
           </div>
           {error && <p style={{ color: "red" }}>{error}</p>}
@@ -131,7 +199,11 @@ function CompanyAnnouncement({ announcement, onDelete }) {
       </Modal>
 
       {popupOpen && (
-        <Popup content={<DeleteConfirmationContent />} isOpen={popupOpen} setIsOpen={setPopupOpen} />
+        <Popup
+          content={<DeleteConfirmationContent />}
+          isOpen={popupOpen}
+          setIsOpen={setPopupOpen}
+        />
       )}
     </div>
   );
