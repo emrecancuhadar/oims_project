@@ -1,51 +1,29 @@
 import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import axios from "axios";
 import React, { useState } from "react";
 import FeedbackModal from "../FeedbackModal";
 import styles from "./company-request.module.css";
 import Popup from "../Popup";
 
-function CompanyRequest({ companyRequest }) {
+function CompanyRequest({ companyRequest, onApprove, onDisapprove, onBan }) {
   const [isModalOpen, setModalOpen] = useState(false);
   const [isApprovePopupOpen, setApprovePopupOpen] = useState(false);
   const [isDisapprovePopupOpen, setDisapprovePopupOpen] = useState(false);
   const [isBanPopupOpen, setBanPopupOpen] = useState(false);
 
   const approveCompanyRequest = () => {
-    axios
-      .put(
-        `${process.env.REACT_APP_API_URL}/systemadmin/company/${companyRequest.id}/approve`
-      )
-      .then((response) => {
-        console.log(response);
-        setApprovePopupOpen(true);
-      })
-      .catch((error) => console.log(error));
+    onApprove(companyRequest.id);
+    setApprovePopupOpen(true);
   };
 
   const disapproveCompanyRequest = () => {
-    axios
-      .put(
-        `${process.env.REACT_APP_API_URL}/systemadmin/company/${companyRequest.id}/disapprove`
-      )
-      .then((response) => {
-        console.log(response);
-        setDisapprovePopupOpen(true);
-      })
-      .catch((error) => console.log(error));
+    onDisapprove(companyRequest.id);
+    setDisapprovePopupOpen(true);
   };
 
-  const banCompany = () => {
-    axios
-      .put(
-        `${process.env.REACT_APP_API_URL}/systemadmin/company/${companyRequest.id}/ban`
-      )
-      .then((response) => {
-        console.log(response);
-        setBanPopupOpen(true);
-      })
-      .catch((error) => console.log(error));
+  const banCompanyRequest = () => {
+    onBan(companyRequest.id);
+    setBanPopupOpen(true);
   };
 
   return (
@@ -67,7 +45,7 @@ function CompanyRequest({ companyRequest }) {
               className={styles.banBtn}
               onClick={(event) => {
                 event.stopPropagation();
-                banCompany();
+                banCompanyRequest();
               }}
             >
               Ban
