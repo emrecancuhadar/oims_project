@@ -46,7 +46,7 @@ function InternshipOpportunity({ opportunity }) {
     console.log("Applying to:", opportunity.companyName);
     axios
       .post(
-        `${process.env.REACT_APP_API_URL}/students/${user.id}/apply/${opportunity.id}`
+        `${process.env.REACT_APP_API_URL}/students/${user.id}/apply-announcement/${opportunity.id}`
       )
       .then((response) => {
         setPopupOpen(false);
@@ -99,9 +99,15 @@ function InternshipOpportunity({ opportunity }) {
       <div className={styles.content}>
         <h2>{opportunity.companyName}</h2>
         <div>
-          <p><strong>Position:</strong> {opportunity.title}</p>
-          <p><strong>Mail:</strong> {opportunity.email}</p>
-          <p><strong>Deadline:</strong> {opportunity.deadline}</p>
+          <p>
+            <strong>Position:</strong> {opportunity.title}
+          </p>
+          <p>
+            <strong>Mail:</strong> {opportunity.email}
+          </p>
+          <p>
+            <strong>Deadline:</strong> {opportunity.deadline}
+          </p>
         </div>
         <button onClick={handleApplyLogic} className={styles.applyBtn}>
           Apply
