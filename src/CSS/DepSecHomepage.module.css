@@ -32,7 +32,7 @@
 }
 
 .card {
-    flex: 1 1 300px; /* Flex basis of 300px with ability to grow and shrink */
+    flex: 1 1 300px; 
     border: 1px solid #ccc;
     padding: 15px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);  
