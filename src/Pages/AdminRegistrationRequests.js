@@ -11,6 +11,10 @@ function AdminRegistrationRequests() {
   const { user } = useContext(UserContext);
 
   useEffect(() => {
+    fetchCompanyRequests();
+  }, []);
+
+  const fetchCompanyRequests = () => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/company/list`)
       .then((response) => {
@@ -18,8 +22,53 @@ function AdminRegistrationRequests() {
         setCompanyRequests(
           data.map(({ id, companyName, email }) => ({ id, companyName, email }))
         );
+      })
+      .catch((error) => {
+        console.error('Error fetching company requests:', error);
       });
-  }, []);
+  };
+
+  const approveCompany = (id) => {
+    axios
+      .put(`${process.env.REACT_APP_API_URL}/systemadmin/company/${id}/approve`)
+      .then((response) => {
+        
+        // Update the state to remove the approved company request
+        setCompanyRequests((prevRequests) =>
+          prevRequests.filter((request) => request.id !== id)
+        );
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const disapproveCompany = (id) => {
+    axios
+      .put(`${process.env.REACT_APP_API_URL}/systemadmin/company/${id}/disapprove`)
+      .then((response) => {
+        
+        // Update the state to remove the disapproved company request
+        setCompanyRequests((prevRequests) =>
+          prevRequests.filter((request) => request.id !== id)
+        );
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const banCompany = (id) => {
+    axios
+      .put(`${process.env.REACT_APP_API_URL}/systemadmin/company/${id}/ban`)
+      .then((response) => {
+        
+        // Update the state to remove the banned company request
+        setCompanyRequests((prevRequests) =>
+          prevRequests.filter((request) => request.id !== id)
+        );
+      })
+      .catch((error) => {
+        console.error('Error banning company:', error);
+        alert("Error banning company");
+      });
+  };
 
   return (
     <div className={styles.adminCompanyRequest}>
@@ -30,7 +79,13 @@ function AdminRegistrationRequests() {
           <h1 className={styles.pageTitle}>Company Registration Requests</h1>
           <div className={styles.registrationRequestsContainer}>
             {companyRequests.map((companyRequest, index) => (
-              <CompanyRequest key={index} companyRequest={companyRequest} />
+              <CompanyRequest
+                key={index}
+                companyRequest={companyRequest}
+                onApprove={approveCompany}
+                onDisapprove={disapproveCompany}
+                onBan={banCompany}
+              />
             ))}
           </div>
         </div>
