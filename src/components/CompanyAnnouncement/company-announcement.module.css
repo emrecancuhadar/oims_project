@@ -79,7 +79,6 @@
 .announcementAltTextInfo {
   display: flex;
   gap: 5px;
-  font-weight: bold;
   margin: 0;
 }
 .announcementAltText {

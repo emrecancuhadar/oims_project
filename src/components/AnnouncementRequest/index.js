@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import FeedbackModal from "../FeedbackModal";
 import styles from "./announcement-request.module.css";
 
-function AnnouncementRequest({ announcementRequest }) {
+function AnnouncementRequest({ announcementRequest, onApprove, onDisapprove, onBan }) {
   const [isModalOpen, setModalOpen] = useState(false);
 
   const showAnnouncementRequest = () => {
@@ -19,13 +19,10 @@ function AnnouncementRequest({ announcementRequest }) {
     // Decode the Base64 string to binary
     const binaryString = window.atob(documentBase64);
     const len = binaryString.length;
-    console.log(binaryString);
     const bytes = new Uint8Array(len);
     for (let i = 0; i < len; i++) {
       bytes[i] = binaryString.charCodeAt(i);
     }
-
-    console.log(bytes);
 
     // Create a Blob from the binary data
     const pdfBlob = new Blob([bytes], { type: "application/pdf" });
@@ -38,37 +35,15 @@ function AnnouncementRequest({ announcementRequest }) {
   };
 
   const approveAnnouncementRequest = () => {
-    axios
-      .put(
-        `${process.env.REACT_APP_API_URL}/systemadmin/document/${announcementRequest.id}/approve`
-      )
-      .then((response) => {
-        alert("Announcement is approved");
-        console.log(response);
-      })
-      .catch((error) => console.log(error));
+    onApprove(announcementRequest.id);
   };
+
   const disapproveAnnouncementRequest = () => {
-    axios
-      .put(
-        `${process.env.REACT_APP_API_URL}/systemadmin/document/${announcementRequest.id}/disapprove`
-      )
-      .then((response) => {
-        alert("Announcement is disapproved");
-        console.log(response);
-      })
-      .catch((error) => console.log(error));
+    onDisapprove(announcementRequest.id);
   };
-  const banCompany = () => {
-    axios
-      .put(
-        `${process.env.REACT_APP_API_URL}/systemadmin/company/${announcementRequest.companyId}/ban`
-      )
-      .then((response) => {
-        alert("Company is banned");
-        console.log(response);
-      })
-      .catch((error) => console.log(error));
+
+  const banCompanyRequest = () => {
+    onBan(announcementRequest.companyId);
   };
 
   const giveFeedback = () => {
@@ -100,7 +75,7 @@ function AnnouncementRequest({ announcementRequest }) {
               className={styles.banBtn}
               onClick={(event) => {
                 event.stopPropagation();
-                banCompany();
+                banCompanyRequest();
               }}
             >
               Ban

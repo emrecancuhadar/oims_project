@@ -11,6 +11,10 @@ function AdminAnnouncementRequests() {
   const { user } = useContext(UserContext);
 
   useEffect(() => {
+    fetchPendingAnnouncements();
+  }, []);
+
+  const fetchPendingAnnouncements = () => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/announcements/pending`)
       .then((response) => {
@@ -24,8 +28,50 @@ function AdminAnnouncementRequests() {
             companyId: company.id,
           }))
         );
+      })
+      .catch((error) => {
+        console.error('Error fetching announcement requests:', error);
       });
-  }, []);
+  };
+
+  const approveAnnouncement = (id) => {
+    axios
+      .put(`${process.env.REACT_APP_API_URL}/systemadmin/document/${id}/approve`)
+      .then((response) => {
+        alert("Announcement is approved");
+        // Update the state to remove the approved announcement
+        setAnnouncementRequests((prevRequests) =>
+          prevRequests.filter((request) => request.id !== id)
+        );
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const disapproveAnnouncement = (id) => {
+    axios
+      .put(`${process.env.REACT_APP_API_URL}/systemadmin/document/${id}/disapprove`)
+      .then((response) => {
+        alert("Announcement is disapproved");
+        // Update the state to remove the disapproved announcement
+        setAnnouncementRequests((prevRequests) =>
+          prevRequests.filter((request) => request.id !== id)
+        );
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const banCompany = (companyId) => {
+    axios
+      .put(`${process.env.REACT_APP_API_URL}/systemadmin/company/${companyId}/ban`)
+      .then((response) => {
+        alert("Company is banned");
+        // Optionally, you could also remove announcements by the banned company
+        setAnnouncementRequests((prevRequests) =>
+          prevRequests.filter((request) => request.companyId !== companyId)
+        );
+      })
+      .catch((error) => console.log(error));
+  };
 
   return (
     <div className={styles.adminAnnoRequest}>
@@ -39,6 +85,9 @@ function AdminAnnouncementRequests() {
               <AnnouncementRequest
                 key={index}
                 announcementRequest={announcementRequest}
+                onApprove={approveAnnouncement}
+                onDisapprove={disapproveAnnouncement}
+                onBan={banCompany}
               />
             ))}
           </div>

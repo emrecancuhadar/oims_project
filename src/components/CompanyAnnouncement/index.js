@@ -138,11 +138,11 @@ function CompanyAnnouncement({ announcement, onDelete }) {
         </div>
         <div className={styles.announcementAltText}>
           <div className={styles.announcementAltTextInfo}>
-            Deadline:
+            <strong>Deadline:</strong>
             <p>{announcement.deadline}</p>
           </div>
           <div className={styles.announcementAltTextInfo}>
-            Status:
+            <strong>Status:</strong>
             <p>{announcement.status}</p>
           </div>
         </div>
