@@ -5,10 +5,14 @@ import AnnouncementRequest from "../components/AnnouncementRequest";
 import Header from "../components/Header";
 import SystemAdminSidebar from "../components/SystemAdminSidebar";
 import { UserContext } from "../context/UserProvider";
+import Popup from "../components/Popup";
 
 function AdminAnnouncementRequests() {
   const [announcementRequests, setAnnouncementRequests] = useState([]);
   const { user } = useContext(UserContext);
+  const [approvePopupOpen, setApprovePopupOpen] = useState(false);
+  const [disapprovePopupOpen, setDisapprovePopupOpen] = useState(false);
+  const [banPopupOpen, setBanPopupOpen] = useState(false);
 
   useEffect(() => {
     fetchPendingAnnouncements();
@@ -38,7 +42,7 @@ function AdminAnnouncementRequests() {
     axios
       .put(`${process.env.REACT_APP_API_URL}/systemadmin/document/${id}/approve`)
       .then((response) => {
-        alert("Announcement is approved");
+        setApprovePopupOpen(true);
         // Update the state to remove the approved announcement
         setAnnouncementRequests((prevRequests) =>
           prevRequests.filter((request) => request.id !== id)
@@ -51,7 +55,7 @@ function AdminAnnouncementRequests() {
     axios
       .put(`${process.env.REACT_APP_API_URL}/systemadmin/document/${id}/disapprove`)
       .then((response) => {
-        alert("Announcement is disapproved");
+        setDisapprovePopupOpen(true);
         // Update the state to remove the disapproved announcement
         setAnnouncementRequests((prevRequests) =>
           prevRequests.filter((request) => request.id !== id)
@@ -64,7 +68,7 @@ function AdminAnnouncementRequests() {
     axios
       .put(`${process.env.REACT_APP_API_URL}/systemadmin/company/${companyId}/ban`)
       .then((response) => {
-        alert("Company is banned");
+        setBanPopupOpen(true);
         // Optionally, you could also remove announcements by the banned company
         setAnnouncementRequests((prevRequests) =>
           prevRequests.filter((request) => request.companyId !== companyId)
@@ -87,11 +91,32 @@ function AdminAnnouncementRequests() {
                 announcementRequest={announcementRequest}
                 onApprove={approveAnnouncement}
                 onDisapprove={disapproveAnnouncement}
-                onBan={banCompany}
+                onBan={(banCompany)}
               />
             ))}
           </div>
         </div>
+        {approvePopupOpen && (
+        <Popup
+          content={'Announcement is approved'}
+          isOpen={approvePopupOpen}
+          setIsOpen={setApprovePopupOpen}
+        />
+      )}
+        {disapprovePopupOpen && (
+        <Popup
+          content={'Announcement is disapproved'}
+          isOpen={disapprovePopupOpen}
+          setIsOpen={setDisapprovePopupOpen}
+        />
+      )}
+        {banPopupOpen && (
+        <Popup
+          content={'Company is banned'}
+          isOpen={banPopupOpen}
+          setIsOpen={setBanPopupOpen}
+        />
+      )}
       </div>
     </div>
   );
