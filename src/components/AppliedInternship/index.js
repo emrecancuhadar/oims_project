@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import styles from './applied-internship.module.css';
-import Popup from '../Popup';
+import React, { useState } from "react";
+import Popup from "../Popup";
+import styles from "./applied-internship.module.css";
 
 function AppliedInternship({ internship }) {
   const [registerPopupOpen, setRegisterPopupOpen] = useState(false);
@@ -11,7 +11,7 @@ function AppliedInternship({ internship }) {
   };
 
   const handleRegisterInitiate = (event) => {
-    event.stopPropagation(); 
+    event.stopPropagation();
     setRegisterPopupOpen(true);
   };
 
@@ -23,7 +23,7 @@ function AppliedInternship({ internship }) {
   };
 
   const handleCancelRegistration = (event) => {
-    event.stopPropagation();  
+    event.stopPropagation();
     setRegisterPopupOpen(false);
   };
 
@@ -33,19 +33,37 @@ function AppliedInternship({ internship }) {
   };
 
   const RegistrationConfirmationContent = () => (
-    <div className={styles.popupContent} onClick={event => event.stopPropagation()}>
+    <div
+      className={styles.popupContent}
+      onClick={(event) => event.stopPropagation()}
+    >
       <h1>Are you sure you want to register to {internship.companyName}?</h1>
       <div className={styles.btns}>
-        <button className={styles.popupCancelBtn} onClick={handleCancelRegistration}>Cancel</button>
-        <button className={styles.popupApplyBtn} onClick={handleRegisterConfirm}>Register</button>
+        <button
+          className={styles.popupCancelBtn}
+          onClick={handleCancelRegistration}
+        >
+          Cancel
+        </button>
+        <button
+          className={styles.popupApplyBtn}
+          onClick={handleRegisterConfirm}
+        >
+          Register
+        </button>
       </div>
     </div>
   );
 
   const RegistrationCompleteContent = () => (
-    <div className={styles.popupContent} onClick={event => event.stopPropagation()}>
+    <div
+      className={styles.popupContent}
+      onClick={(event) => event.stopPropagation()}
+    >
       <h1>Registered to {internship.companyName}</h1>
-      <button className={styles.popupCnfBtn} onClick={handleConfirmationClose}>Done</button>
+      <button className={styles.popupCnfBtn} onClick={handleConfirmationClose}>
+        Done
+      </button>
     </div>
   );
 
@@ -54,15 +72,41 @@ function AppliedInternship({ internship }) {
       <div className={styles.content}>
         <h2>{internship.companyName}</h2>
         <div>
-          <p><strong>Position:</strong> {internship.content}</p>
-          <p><strong>E-mail: </strong>{internship.email}</p>
+          <p>
+            <strong>Position:</strong> {internship.position}
+          </p>
+          <p>
+            <strong>E-mail: </strong>
+            {internship.companyEmail}
+          </p>
+          <p>
+            <strong>Application Date: </strong>
+            {internship.applicationDate}
+          </p>
         </div>
-        
-        {internship.status === 'accepted' && (
-          <button onClick={handleRegisterInitiate} className={styles.registerBtn}>Register</button>
+
+        {internship.status === "ACCEPTED" && (
+          <button
+            onClick={handleRegisterInitiate}
+            className={styles.registerBtn}
+          >
+            Register
+          </button>
         )}
-        {registerPopupOpen && <Popup content={<RegistrationConfirmationContent />} isOpen={registerPopupOpen} setIsOpen={setRegisterPopupOpen} />}
-        {confirmationPopupOpen && <Popup content={<RegistrationCompleteContent />} isOpen={confirmationPopupOpen} setIsOpen={setConfirmationPopupOpen} />}
+        {registerPopupOpen && (
+          <Popup
+            content={<RegistrationConfirmationContent />}
+            isOpen={registerPopupOpen}
+            setIsOpen={setRegisterPopupOpen}
+          />
+        )}
+        {confirmationPopupOpen && (
+          <Popup
+            content={<RegistrationCompleteContent />}
+            isOpen={confirmationPopupOpen}
+            setIsOpen={setConfirmationPopupOpen}
+          />
+        )}
       </div>
     </div>
   );

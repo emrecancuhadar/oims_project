@@ -8,7 +8,7 @@
   background: #fff;
   margin: 20px;
   gap: 20px;
-  cursor:pointer;
+  cursor: pointer;
   width: 300px;
   height: 225px;
   justify-content: flex-start;
@@ -32,7 +32,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  width:300px; /* some width */
+  width: 250px; /* some width */
 }
 
 .card h1 {
@@ -43,72 +43,70 @@
 
 .card p {
   margin: 0;
-  
 }
 
-.registerBtn{
+.registerBtn {
   padding: 10px 20px;
   border: none;
   color: white;
   cursor: pointer;
   border-radius: 5px;
   font-size: 16px;
-  background-color:#9a0e20;
+  background-color: #9a0e20;
   align-self: center;
-  
 }
 
-.popupContent{
-display: flex;
-flex-direction: column;
-position: absolute;  /* Absolute positioning relative to the nearest positioned ancestor */
-top: 50%;            /* Center vertically */
-left: 50%;           /* Center horizontally */
-transform: translate(-50%, -50%); /* Ensures exact centering */
-background-color: white;
-border: 1px solid black;
-border-radius: 10px;
-padding: 20px;
-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-z-index: 1050;  /* Ensure it is above other content */
-width: 20vw;
-text-align: center;
+.popupContent {
+  display: flex;
+  flex-direction: column;
+  position: absolute; /* Absolute positioning relative to the nearest positioned ancestor */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Ensures exact centering */
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1050; /* Ensure it is above other content */
+  width: 20vw;
+  text-align: center;
 }
 
 .btns {
-display: flex;
-flex-direction: row;
-justify-content: space-around;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 .popupCancelBtn {
-border: none;
-border-radius: 10px;
-margin-top: 25px;
-cursor: pointer;
-color: white;
-background-color: #9a0e20;
-padding: 8px;
+  border: none;
+  border-radius: 10px;
+  margin-top: 25px;
+  cursor: pointer;
+  color: white;
+  background-color: #9a0e20;
+  padding: 8px;
 }
 
 .popupApplyBtn {
-border: none;
-border-radius: 10px;
-margin-top: 25px;
-cursor: pointer;
-color: white;
-background-color: #9a0e20;
-padding: 8px;
+  border: none;
+  border-radius: 10px;
+  margin-top: 25px;
+  cursor: pointer;
+  color: white;
+  background-color: #9a0e20;
+  padding: 8px;
 }
 
 .popupCnfBtn {
-border: none;
-border-radius: 10px;
-margin-top: 25px;
-cursor: pointer;
-color: white;
-background-color: #9a0e20;
-padding: 8px;
-width: 40%;
-align-self: center;
+  border: none;
+  border-radius: 10px;
+  margin-top: 25px;
+  cursor: pointer;
+  color: white;
+  background-color: #9a0e20;
+  padding: 8px;
+  width: 40%;
+  align-self: center;
 }
