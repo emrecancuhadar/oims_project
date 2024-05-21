@@ -33,22 +33,22 @@ function IztechUserLoginPage() {
         switch (role) {
           case "STUDENT":
             setTimeout(() => {
-              navigate("/company/home");
+              navigate("/student/home");
           }, 3000);
             break;
           case "SYSTEM_ADMIN":
             setTimeout(() => {
-              navigate("/company/home");
+              navigate("/admin/homepage");
           }, 3000);
             break;
           case "SUMMER_PRACTICE_COORDINATOR":
             setTimeout(() => {
-              navigate("/company/home");
+              navigate("/spc/home");
           }, 3000);
             break;
           case "DEPARTMENT_SECRETARY":
             setTimeout(() => {
-              navigate("/company/home");
+              navigate("/depsec/home");
           }, 3000);
             break;
           
