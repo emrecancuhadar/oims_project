@@ -57,7 +57,7 @@ function AnnouncementRequest({ announcementRequest, onApprove, onDisapprove, onB
           <div className={styles.announcentmentUpperDiv}>
             <h2>{announcementRequest.title}</h2>
             <div className={styles.altTextInfo}>
-              Deadline:
+              <strong>Deadline:</strong>
               <p>{announcementRequest.deadline}</p>
             </div>
           </div>

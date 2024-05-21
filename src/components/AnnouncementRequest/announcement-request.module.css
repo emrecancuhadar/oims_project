@@ -69,7 +69,6 @@
 .altTextInfo {
   display: flex;
   gap: 5px;
-  font-weight: bold;
   margin: 0;
   width: fit-content;
 
