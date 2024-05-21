@@ -50,8 +50,8 @@
   justify-self: center;
 }
 
-.buttonHover:hover {
-  background-color: darkred;
+.button:hover {
+  background-color: #d12d2d;
 }
 
 .logoImage {

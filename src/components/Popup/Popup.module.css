@@ -25,6 +25,10 @@
   padding: 8px;
 }
 
+.popupButton:hover {
+  background-color: #d12d2d;
+}
+
 .backdrop {
   position: fixed;
   top: 0;

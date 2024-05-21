@@ -71,7 +71,10 @@
     border-color: #9a0e20;
     color: #9a0e20;
     padding: 8px 10px;
-    
+  }
+
+  .uploadBtn:hover {
+    background-color: #d12d2d;
   }
   
   .downloadBtn {
@@ -81,9 +84,11 @@
     color: white;
     padding: 10px 10px;
   }
+
   .downloadBtn:hover {
     background-color: #d12d2d;
   }
+
   .addInternContainer {
     display: flex;
     flex-direction: row;
@@ -178,6 +183,10 @@
     cursor: pointer; /* Pointer cursor on hover */
     justify-self: center;
 
+  }
+
+  .sendButton:hover {
+    background-color: #d12d2d;
   }
   
   .modal h1 {

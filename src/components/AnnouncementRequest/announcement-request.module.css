@@ -46,12 +46,12 @@
   font-size: 16px;
 }
 
-.feedbackBtn {
-  background-color: #0d6efd;
+.banBtn {
+  background-color: #d82638;
 }
 
-.banBtn {
-  background-color: #dc3545;
+.banBtn:hover {
+  background-color: #db3445;
 }
 
 .buttons button:last-child {
@@ -59,7 +59,7 @@
 }
 
 .feedbackBtn:hover {
-  background-color: rgb(238, 109, 3);
+  background-color: rgb(224, 131, 55);
 }
 
 .feedbackBtn {

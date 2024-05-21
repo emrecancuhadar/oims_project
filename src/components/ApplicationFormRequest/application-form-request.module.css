@@ -50,8 +50,8 @@
     background-color: rgb(238, 109, 3);
   }
 
-  .feedbackBtn:hover{
-    background-color: orange;
+  .feedbackBtn:hover {
+    background-color: rgb(224, 131, 55);
   }
   
   .buttons button:last-child {

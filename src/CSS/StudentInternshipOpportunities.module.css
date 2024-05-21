@@ -128,8 +128,12 @@
     border: none; /* No border */
     cursor: pointer; /* Pointer cursor on hover */
     justify-self: center;
-
   }
+
+  .sendButton:hover {
+    background-color: #d12d2d;
+  }
+  
   
   .modal h1 {
     font-size: 24px;

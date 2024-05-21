@@ -59,6 +59,10 @@
     align-self: center;
   }
 
+  .applyBtn:hover {
+    background-color: #d12d2d;
+  }
+
 .popupContent{
   display: flex;
   flex-direction: column;
@@ -92,6 +96,10 @@
   padding: 8px;
 }
 
+.popupCancelBtn:hover {
+  background-color: #d12d2d;
+}
+
 .popupApplyBtn {
   border: none;
   border-radius: 10px;
@@ -100,6 +108,10 @@
   color: white;
   background-color: #9a0e20;
   padding: 8px;
+}
+
+.popupApplyBtn:hover {
+  background-color: #d12d2d;
 }
 
 .popupCnfBtn {
@@ -159,9 +171,12 @@
     border: none; /* No border */
     cursor: pointer; /* Pointer cursor on hover */
     justify-self: center;
-
   }
   
+  .sendButton:hover {
+    background-color: #d12d2d;
+  }
+
   .modal h1 {
     font-size: 24px;
   }

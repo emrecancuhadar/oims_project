@@ -58,3 +58,7 @@
   font-size: 16px;
   background-color: #9a0e20;
 }
+
+.sendBtn:hover {
+  background-color: #d12d2d;
+}
