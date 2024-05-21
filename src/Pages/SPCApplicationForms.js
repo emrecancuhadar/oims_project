@@ -7,35 +7,30 @@ import SPCSidebar from "../components/SPCSideBar";
 import { UserContext } from "../context/UserProvider";
 
 function SPCApplicationForms() {
-  const [applicationFormRequests, setApplicationFormRequests] = useState([
-    {
-      id :1,
-      owner: 'Çağan',
-    },
-    {
-      id :2,
-      owner: 'Çağan',
-    },
-    {
-      id :3,
-      owner: 'Çağan',
-    }
-  ]);
+  const [applicationFormRequests, setApplicationFormRequests] = useState([]);
   const { user } = useContext(UserContext);
 
-  /*useEffect(() => {
+  useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_API_URL}/documents/applicationFormList`)
+      .get(`${process.env.REACT_APP_API_URL}/spc/application-forms`)
       .then((response) => {
         const data = response.data;
         setApplicationFormRequests(
-          data.map(({ iztechUser: {id: studentId, name: studentName, }
-           }) => ({ id, 
-            studentName,
-             email }))
+          data.map(
+            ({
+              applicationId,
+              student: { fullName, email },
+              applicationForm: { documentId, content },
+            }) => ({
+              id: documentId,
+              owner: fullName,
+              email,
+              content,
+            })
+          )
         );
       });
-  }, []);*/
+  }, []);
 
   return (
     <div className={styles.spcApplicationFormRequest}>

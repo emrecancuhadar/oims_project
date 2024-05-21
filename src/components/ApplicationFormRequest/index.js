@@ -1,11 +1,10 @@
 import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
-import React, { useState }  from "react";
+import React, { useState } from "react";
 import FeedbackModal from "../FeedbackModal";
-import styles from "./application-form-request.module.css";
 import Popup from "../Popup";
-import FeedbackModal from "../FeedbackModal";
+import styles from "./application-form-request.module.css";
 
 function ApplicationFormRequest({ applicationFormRequest }) {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -37,26 +36,59 @@ function ApplicationFormRequest({ applicationFormRequest }) {
   const giveFeedback = () => {
     setModalOpen(true);
   };
-  const giveFeedback = () => {
-    setModalOpen(true);
+
+  const showApplicationFormRequest = () => {
+    console.log("clicked");
+    const documentBase64 = applicationFormRequest.content;
+
+    if (!documentBase64) {
+      console.error("Document base64 data is missing");
+      return;
+    }
+
+    // Decode the Base64 string to binary
+    const binaryString = window.atob(documentBase64);
+    const len = binaryString.length;
+    const bytes = new Uint8Array(len);
+    for (let i = 0; i < len; i++) {
+      bytes[i] = binaryString.charCodeAt(i);
+    }
+
+    // Create a Blob from the binary data
+    const pdfBlob = new Blob([bytes], {
+      type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    });
+
+    // Generate a URL for the Blob
+    const pdfUrl = URL.createObjectURL(pdfBlob);
+
+    // Open the PDF in a new browser tab
+    window.open(pdfUrl, "_blank");
   };
+
   return (
     <div className={styles.cardContainer}>
       <div
         className={styles.card}
         onClick={(event) => {
           event.stopPropagation();
+          showApplicationFormRequest();
           /* download form kısmı eklenecek */
         }}
       >
         <div className={styles.left}>
           <div>
-            <h2 className={styles.formOwnerTitle}>{applicationFormRequest.owner}</h2>
+            <h2 className={styles.formOwnerTitle}>
+              {applicationFormRequest.owner}
+            </h2>
+            <p>{applicationFormRequest.email}</p>
           </div>
           <div className={styles.buttons}>
-            <button className={styles.feedbackBtn} onClick={(event) => {
-              event.stopPropagation(); 
-              giveFeedback();
+            <button
+              className={styles.feedbackBtn}
+              onClick={(event) => {
+                event.stopPropagation();
+                giveFeedback();
               }}
             >
               Feedback

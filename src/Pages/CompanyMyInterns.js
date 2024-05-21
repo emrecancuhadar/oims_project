@@ -1,6 +1,6 @@
+import Modal from "@mui/material/Modal";
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
-import Modal from "@mui/material/Modal";
 import styles from "../CSS/CompanyMyInterns.module.css";
 import CompanySidebar from "../components/CompanySidebar";
 import Header from "../components/Header";
@@ -27,30 +27,22 @@ function CompanyMyInterns() {
   const handleEmailChange = (event) => setEmail(event.target.value);
 
   const handleSubmit = (event) => {
-    alert('handle submit logic');
-    /*event.preventDefault();
-    const formData = new FormData();
-    formData.append("companyEmail", email);
+    event.preventDefault();
     axios
-      .post(
-        `${process.env.REACT_APP_API_URL}/company/${user.id}/add-intern`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          }
-        }
+      .put(
+        `${process.env.REACT_APP_API_URL}/company/intern/${email}/${user.id}`
       )
       .then((response) => {
         setPopupOpen(true);
         setEmail("");
       })
       .catch((error) => {
-        setErrorMessage(error.response?.data || "An unexpected error occurred.");
+        setErrorMessage(
+          error.response?.data || "An unexpected error occurred."
+        );
         setErrorPopupOpen(true);
       });
-  };*/
-    }
+  };
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/company/interns/${user.id}`)
