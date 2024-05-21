@@ -1,10 +1,16 @@
 import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
 import styles from "./application-form-request.module.css";
+import Popup from "../Popup";
+import FeedbackModal from "../FeedbackModal";
 
 function ApplicationFormRequest({ applicationFormRequest }) {
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [isApprovePopupOpen, setApprovePopupOpen] = useState(false);
+  const [isDisapprovePopupOpen, setDisapprovePopupOpen] = useState(false);
+
   const approveApplicationFormRequest = () => {
     axios
       .put(
@@ -12,7 +18,7 @@ function ApplicationFormRequest({ applicationFormRequest }) {
       )
       .then((response) => {
         console.log(response);
-        alert("Application Form is approved");
+        setApprovePopupOpen(true);
       })
       .catch((error) => console.log(error));
   };
@@ -22,12 +28,14 @@ function ApplicationFormRequest({ applicationFormRequest }) {
         `${process.env.REACT_APP_API_URL}/spc/application-forms/${applicationFormRequest.id}/disapprove`
       )
       .then((response) => {
-        alert("Application Form is disapproved");
+        setDisapprovePopupOpen(true);
         console.log(response);
       })
       .catch((error) => console.log(error));
   };
-  const giveFeedback = () => {};
+  const giveFeedback = () => {
+    setModalOpen(true);
+  };
   return (
     <div className={styles.cardContainer}>
       <div
@@ -39,10 +47,14 @@ function ApplicationFormRequest({ applicationFormRequest }) {
       >
         <div className={styles.left}>
           <div>
-            <h2 className={styles.formOwnerTitle}>Student Name Example</h2>
+            <h2 className={styles.formOwnerTitle}>{applicationFormRequest.owner}</h2>
           </div>
           <div className={styles.buttons}>
-            <button className={styles.feedbackBtn} onClick={giveFeedback}>
+            <button className={styles.feedbackBtn} onClick={(event) => {
+              event.stopPropagation(); 
+              giveFeedback();
+              }}
+            >
               Feedback
             </button>
           </div>
@@ -70,6 +82,25 @@ function ApplicationFormRequest({ applicationFormRequest }) {
           />
         </div>
       </div>
+      <FeedbackModal
+        isModalOpen={isModalOpen}
+        closeModal={() => setModalOpen(false)}
+        receiver={{ id: ApplicationFormRequest.id, name: "application" }}
+      />
+      {isApprovePopupOpen && (
+        <Popup
+          content={"Application form is approved"}
+          isOpen={isApprovePopupOpen}
+          setIsOpen={setApprovePopupOpen}
+        />
+      )}
+      {isDisapprovePopupOpen && (
+        <Popup
+          content={"Application form is disapproved"}
+          isOpen={isDisapprovePopupOpen}
+          setIsOpen={setDisapprovePopupOpen}
+        />
+      )}
     </div>
   );
 }
