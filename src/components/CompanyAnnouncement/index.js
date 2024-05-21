@@ -43,6 +43,7 @@ function FileUploader({ initialFileName, setFile }) {
 function CompanyAnnouncement({ announcement, onDelete }) {
   const [open, setOpen] = useState(false);
   const [popupOpen, setPopupOpen] = useState(false);
+  const [editPopupOpen, setEditPopupOpen] = useState(false);
   const [title, setTitle] = useState(announcement.title);
   const [deadline, setDeadline] = useState(announcement.deadline);
   const [file, setFile] = useState(null);
@@ -76,6 +77,7 @@ function CompanyAnnouncement({ announcement, onDelete }) {
       )
       .then((response) => {
         console.log(response.data);
+        setEditPopupOpen(true);
         setOpen(false);
       })
       .catch((error) => console.log(error));
@@ -203,6 +205,13 @@ function CompanyAnnouncement({ announcement, onDelete }) {
           content={<DeleteConfirmationContent />}
           isOpen={popupOpen}
           setIsOpen={setPopupOpen}
+        />
+      )}
+       {editPopupOpen && (
+        <Popup
+          content={'Announcement is updated'}
+          isOpen={editPopupOpen}
+          setIsOpen={setEditPopupOpen}
         />
       )}
     </div>

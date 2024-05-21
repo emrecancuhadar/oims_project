@@ -9,11 +9,18 @@ function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordAgain, setPasswordAgain] = useState("");
+  const [isPasswordValid, setIsPasswordValid] = useState(false);
+  const [showPasswordCriteriaMessage, setShowPasswordCriteriaMessage] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [errorPopupOpen, setErrorPopupOpen] = useState(false);
   const navigate = useNavigate();
-  const [popupOpen, setPopupOpen] = useState(false);
 
   const handleSignup = async (e) => {
     e.preventDefault();
+    if (!isPasswordValid) {
+      setShowPasswordCriteriaMessage(true);
+      return;
+    }
     try {
       const response = await fetch(
         `${process.env.REACT_APP_API_URL}/company/signUp`,
@@ -27,26 +34,21 @@ function Signup() {
       );
 
       if (response.ok) {
-        setPopupOpen(true);
+        setShowPasswordCriteriaMessage(false);
         setTimeout(() => {
           navigate("/company/login");
-      }, 3000);
+        }, 3000);
       } else {
         const errorMessage = await response.text();
-        alert(errorMessage);
+        setErrorMessage(errorMessage);
+        setErrorPopupOpen(true);
       }
     } catch (error) {
       console.error("Error:", error);
-      alert("An unexpected error occurred. Please try again later.");
+      setErrorMessage("An unexpected error occurred. Please try again later.");
+      setErrorPopupOpen(true);
     }
   };
-
-  const SignupPopupContent = () => (
-    <div className={styles.popupContent}>
-      <p>Your registration request is sent to system admin.</p>
-      <p>You will be directed to login screen in 3 seconds.</p>
-    </div>
-  );
 
   return (
     <div className={styles.cmpSignUpContainer}>
@@ -71,7 +73,7 @@ function Signup() {
             E-mail:
             <input
               className={styles.inputField}
-              type="email"
+              type="text"
               value={email}
               required
               onChange={(e) => setEmail(e.target.value)}
@@ -107,23 +109,26 @@ function Signup() {
             minLength={8}
             value={password}
             valueAgain={passwordAgain}
-            onChange={(isValid) => {}}
+            onChange={(isValid) => setIsPasswordValid(isValid)}
           />
-          <button className={styles.signUpButton} type="submit" >
+          {showPasswordCriteriaMessage && !isPasswordValid && (
+            <p style={{ color: "red" }}>Password must meet the requirements.</p>
+          )}
+          <button className={styles.signUpButton} type="submit">
             Sign Up
           </button>
         </form>
         <p className={styles.para} onClick={() => navigate("/company/login")}>
           Sign in now!
         </p>
-        {popupOpen && (
-            <Popup
-              content={<SignupPopupContent />} 
-              isOpen={popupOpen}
-              setIsOpen={setPopupOpen}
-            />
-          )}
       </div>
+      {errorPopupOpen && (
+        <Popup
+          content={errorMessage}
+          isOpen={errorPopupOpen}
+          setIsOpen={setErrorPopupOpen}
+        />
+      )}
     </div>
   );
 }

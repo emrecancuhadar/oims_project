@@ -82,7 +82,7 @@ function Login() {
             E-mail:
             <input
               className={styles.inputField}
-              type="email"
+              type="text"
               value={email}
               required
               onChange={(e) => setEmail(e.target.value)}

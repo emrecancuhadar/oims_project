@@ -5,6 +5,7 @@ import styles from "../CSS/CompanyMakeAnnouncement.module.css";
 import CompanySidebar from "../components/CompanySidebar";
 import Header from "../components/Header";
 import { UserContext } from "../context/UserProvider";
+import Popup from '../components/Popup';
 
 function CompanyMakeAnnouncement() {
   const [title, setTitle] = useState("");
@@ -15,6 +16,7 @@ function CompanyMakeAnnouncement() {
   const [error, setError] = useState("");
   const { user } = useContext(UserContext);
   const navigate = useNavigate();
+  const [popupOpen, setPopupOpen] = useState(false);
 
   const onSend = () => {
     const formData = new FormData();
@@ -31,7 +33,10 @@ function CompanyMakeAnnouncement() {
       })
       .then((response) => {
         console.log("Announcement Created:", response.data);
-        navigate("/company/my-announcements");
+        setPopupOpen(true);
+        setTimeout(() => {
+          navigate("/company/my-announcements");
+      }, 1500);   
       })
       .catch((error) => {
         if (error.response && error.response.status === 400) {
@@ -89,6 +94,13 @@ function CompanyMakeAnnouncement() {
           </div>
         </div>
       </div>
+      {popupOpen && (
+            <Popup
+              content={'Announcement uploaded successfully'} 
+              isOpen={popupOpen}
+              setIsOpen={setPopupOpen}
+            />
+          )};
     </div>
   );
 }

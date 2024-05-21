@@ -1,9 +1,8 @@
-.companyMyAnnouncements{
+.companyMyAnnouncements {
   display: flex;
   flex-direction: row;
   background-color: #ffffff;
   height: 100vh;
-  width: 100vw;
 }
 
 .sidebarLogo {
@@ -15,6 +14,7 @@
   padding: 20px;
   display: flex;
   flex-direction: column;
+  overflow-y: auto; /* Enable vertical scrolling if needed */
 }
 
 .pageTitle {
@@ -29,27 +29,27 @@
   flex-direction: column;
   align-items: center;
   gap: 20px;
-
+  width: 100%;
 }
 
 .announcementsContainer {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 15px;
-  justify-content: center;
-  width: 100%;
+  grid-template-columns: repeat(4,1fr);
+  gap: 20px;
+  justify-content: flex-start;
 }
 
 .card {
-  flex: 1 1 150px;  /* Adjust card size as needed */
-  height: 300px;  /* Set a fixed height */
-  padding: 10px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  flex: 1 1 150px; /* Adjust flex-basis to make cards narrower */
+  height: auto; /* Set a fixed height to make cards taller */
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  padding: 2%;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   align-items: center;
+  margin: 0 2% 0 2%;
+  box-shadow: 0 0 10px;
 }
 
 .cardTitle {
