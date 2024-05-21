@@ -7,10 +7,23 @@ import SPCSidebar from "../components/SPCSideBar";
 import { UserContext } from "../context/UserProvider";
 
 function SPCApplicationForms() {
-  const [applicationFormRequests, setApplicationFormRequests] = useState([]);
+  const [applicationFormRequests, setApplicationFormRequests] = useState([
+    {
+      id :1,
+      owner: 'Çağan',
+    },
+    {
+      id :2,
+      owner: 'Çağan',
+    },
+    {
+      id :3,
+      owner: 'Çağan',
+    }
+  ]);
   const { user } = useContext(UserContext);
 
-  useEffect(() => {
+  /*useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/documents/applicationFormList`)
       .then((response) => {
@@ -22,7 +35,7 @@ function SPCApplicationForms() {
              email }))
         );
       });
-  }, []);
+  }, []);*/
 
   return (
     <div className={styles.spcApplicationFormRequest}>
@@ -34,9 +47,9 @@ function SPCApplicationForms() {
             Summer Practice Application Forms
           </h1>
           <div className={styles.applicationFormsContainer}>
-            {applicationFormRequests.map((applicationFormRequest, index) => (
+            {applicationFormRequests.map((applicationFormRequest, id) => (
               <ApplicationFormRequest
-                key={index}
+                key={id}
                 applicationFormRequest={applicationFormRequest}
               />
             ))}

@@ -7,14 +7,10 @@
     background: #fff;
     margin: 20px;
     gap: 40px;
-    transition: scale 0.2s;
   }
 
-  .card:hover{
-    background-color: gainsboro;
-    scale: 1.03;
-  }
-  
+
+
   .card h2 {
     font-size: 24px;
     margin: 0;
