@@ -1,14 +1,17 @@
 import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
-import React from "react";
+import React, { useState }  from "react";
+import FeedbackModal from "../FeedbackModal";
 import styles from "./application-form-request.module.css";
+import Popup from "../Popup";
 
 function ApplicationFormRequest({ applicationFormRequest }) {
+  const [isModalOpen, setModalOpen] = useState(false);
   const approveApplicationFormRequest = () => {
     axios
       .put(
-        `${process.env.REACT_APP_API_URL}/spc/application-forms/${applicationFormRequest.id}/approve`
+        `${process.env.REACT_APP_API_URL}/spc/document/${applicationFormRequest.id}/approve`
       )
       .then((response) => {
         console.log(response);
@@ -19,7 +22,7 @@ function ApplicationFormRequest({ applicationFormRequest }) {
   const disapproveApplicationFormRequest = () => {
     axios
       .put(
-        `${process.env.REACT_APP_API_URL}/spc/application-forms/${applicationFormRequest.id}/disapprove`
+        `${process.env.REACT_APP_API_URL}/spc/document/${applicationFormRequest.id}/disapprove`
       )
       .then((response) => {
         alert("Application Form is disapproved");
@@ -27,7 +30,9 @@ function ApplicationFormRequest({ applicationFormRequest }) {
       })
       .catch((error) => console.log(error));
   };
-  const giveFeedback = () => {};
+  const giveFeedback = () => {
+    setModalOpen(true);
+  };
   return (
     <div className={styles.cardContainer}>
       <div
@@ -39,7 +44,7 @@ function ApplicationFormRequest({ applicationFormRequest }) {
       >
         <div className={styles.left}>
           <div>
-            <h2 className={styles.formOwnerTitle}>Student Name Example</h2>
+            <h2 className={styles.formOwnerTitle}>[student.name]</h2>
           </div>
           <div className={styles.buttons}>
             <button className={styles.feedbackBtn} onClick={giveFeedback}>
