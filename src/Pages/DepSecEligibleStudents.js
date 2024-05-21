@@ -1,47 +1,34 @@
-import React, { useContext } from "react";
+import axios from "axios";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "../CSS/DepSecEligibleStudents.module.css";
 import DepSecSidebar from "../components/DepSecSidebar";
 import Header from "../components/Header";
 import { UserContext } from "../context/UserProvider";
 
-const studentData = [
-  {
-    id: "1",
-    name: "Emrecan Çuhadar",
-    mail: "emrecanchdr@hotmail.com",
-    phoneNumber: "0555 555 5555",
-  },
-  {
-    id: "2",
-    name: "Emre Erol",
-    mail: "emre_erol3535@example.com",
-    phoneNumber: "0444 444 4444",
-  },
-  {
-    id: "3",
-    name: "Onur Şahinler",
-    mail: "onursahinler@std.iyte.edu.tr",
-    phoneNumber: "0333 333 3333",
-  },
-  {
-    id: "4",
-    name: "Arda Polat",
-    mail: "arda_polat1923@gmail.com",
-    phoneNumber: "0222 222 2222",
-  },
-  {
-    id: "5",
-    name: "Berk Sengul",
-    mail: "sengul_berk2@example.com",
-    phoneNumber: "0111 111 1111",
-  },
-  {
-    id: "6",
-    name: "Cagan Ozsir",
-    mail: "caganozsir@example.com",
-    phoneNumber: "0666 666 6666",
-  },
-];
+
+function DepSecEligibleStudents() {
+  const { user } = useContext(UserContext);
+  const [students, setStudents] = useState([]);
+  
+  useEffect(() => {
+    axios
+    .get(`${process.env.REACT_APP_API_URL}/depsec/eligible-students/${user.id}`)
+    .then((response) => {
+        const data = response.data;
+        console.log("eligible-students", data);
+        setStudents(
+          data.map(({ id, fullName, email, contactNumber }) => ({
+            id,
+            fullName,
+            email,
+            contactNumber,
+          }))
+        );
+      })
+      .catch((error) => {
+        console.error("Error fetching interns:", error);
+      });
+  }, [user.id]);
 
 const StudentEntries = ({ student }) => (
   <div className={styles.card}>
@@ -59,9 +46,6 @@ const StudentEntries = ({ student }) => (
   </div>
 );
 
-function DepSecEligibleStudents() {
-  const { user } = useContext(UserContext);
-
   return (
     <div className={styles.DepSecEligibleStudents}>
       <DepSecSidebar />
@@ -73,7 +57,7 @@ function DepSecEligibleStudents() {
           </div>
           <div className={styles.homepageContainer}>
             <div className={styles.cardContainer}>
-              {studentData.map((student) => (
+              {students.map((student) => (
                 <StudentEntries key={student.id} student={student} />
               ))}
             </div>
