@@ -131,6 +131,60 @@
     margin-right: 2%; 
   }
 
+  .modal {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1050;
+    width: 80%;
+    max-width: 600px;
+    background: white; /* Ensures the modal background is white */
+    border: 2px solid black; /* Adds a black border around the modal */
+    padding: 20px; /* Adds some padding inside the modal */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Optional: Adds shadow for better visibility */
+    align-items: center;
+  }
+  
+  .backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Lighter backdrop */
+    backdrop-filter: blur(5px); /* Reduced blur effect */
+    z-index: 1040;
+  }
+  
+  .emailInput {
+    width: 100%; /* Full width of the modal */
+    padding: 10px; /* Padding for better text visibility */
+    margin-top: 20px; /* Space between the header and the input field */
+    border: 1px solid #ccc; /* Subtle border for the input */
+    box-sizing: border-box; /* Ensures padding doesn't affect the width */
+  }
+  
+  .sendButton {
+    display: block; /* Makes the button a block element */
+    width: 50%; /* Full width of the modal */
+    padding: 10px 0; /* Padding top and bottom */
+    margin-top: 10px; /* Space between the input and the button */
+    background-color: #9a0e20;; /* Example: Blue background */
+    color: white; /* White text */
+    border: none; /* No border */
+    cursor: pointer; /* Pointer cursor on hover */
+    justify-self: center;
+
+  }
+  
+  .modal h1 {
+    font-size: 24px;
+  }
+
+
 
 
   

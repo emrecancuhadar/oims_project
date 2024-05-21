@@ -8,7 +8,7 @@ import Popup from "../components/Popup";
 import StudentSidebar from "../components/StudentSidebar";
 import { UserContext } from "../context/UserProvider";
 
-//TODO pop-up a bir yüklenme ekranı eklenebilir.
+// TODO pop-up a bir yüklenme ekranı eklenebilir.
 
 function StudentInternshipOpportunities() {
   const { user } = useContext(UserContext);
@@ -17,11 +17,14 @@ function StudentInternshipOpportunities() {
   const [open, setOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [popupOpen, setPopupOpen] = useState(false);
+  const [errorPopupOpen, setErrorPopupOpen] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
     setOpen(false);
     setPopupOpen(false);
+    setErrorPopupOpen(false);
   };
   const handleEmailChange = (event) => setEmail(event.target.value);
 
@@ -43,7 +46,10 @@ function StudentInternshipOpportunities() {
         setPopupOpen(true);
         setEmail("");
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        setErrorMessage(error.response?.data || "An unexpected error occurred.");
+        setErrorPopupOpen(true);
+      });
   };
 
   useEffect(() => {
@@ -97,7 +103,7 @@ function StudentInternshipOpportunities() {
         <form onSubmit={handleSubmit} className={styles.modal}>
           <h1>Enter the e-mail of the company</h1>
           <input
-            type="email"
+            type="text"
             placeholder="Enter company email"
             className={styles.emailInput}
             value={email}
@@ -113,6 +119,13 @@ function StudentInternshipOpportunities() {
               content={"Application letter is sent"}
               isOpen={popupOpen}
               setIsOpen={setPopupOpen}
+            />
+          )}
+          {errorPopupOpen && (
+            <Popup
+              content={errorMessage}
+              isOpen={errorPopupOpen}
+              setIsOpen={setErrorPopupOpen}
             />
           )}
         </form>
