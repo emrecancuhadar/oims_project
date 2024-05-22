@@ -24,7 +24,7 @@ function AdminRegistrationRequests() {
         );
       })
       .catch((error) => {
-        console.error('Error fetching company requests:', error);
+        console.error("Error fetching company requests:", error);
       });
   };
 
@@ -32,7 +32,6 @@ function AdminRegistrationRequests() {
     axios
       .put(`${process.env.REACT_APP_API_URL}/systemadmin/company/${id}/approve`)
       .then((response) => {
-        
         // Update the state to remove the approved company request
         setCompanyRequests((prevRequests) =>
           prevRequests.filter((request) => request.id !== id)
@@ -43,9 +42,10 @@ function AdminRegistrationRequests() {
 
   const disapproveCompany = (id) => {
     axios
-      .put(`${process.env.REACT_APP_API_URL}/systemadmin/company/${id}/disapprove`)
+      .put(
+        `${process.env.REACT_APP_API_URL}/systemadmin/company/${id}/disapprove`
+      )
       .then((response) => {
-        
         // Update the state to remove the disapproved company request
         setCompanyRequests((prevRequests) =>
           prevRequests.filter((request) => request.id !== id)
@@ -58,15 +58,13 @@ function AdminRegistrationRequests() {
     axios
       .put(`${process.env.REACT_APP_API_URL}/systemadmin/company/${id}/ban`)
       .then((response) => {
-        
         // Update the state to remove the banned company request
         setCompanyRequests((prevRequests) =>
           prevRequests.filter((request) => request.id !== id)
         );
       })
       .catch((error) => {
-        console.error('Error banning company:', error);
-        alert("Error banning company");
+        console.error("Error banning company:", error);
       });
   };
 

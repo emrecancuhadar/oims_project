@@ -88,9 +88,7 @@ function CompanyAnnouncement({ announcement, onDelete }) {
     setPopupOpen(true);
   };
 
-  const confirmDelete = () => {
-    alert("Delete logic here");
-  };
+  const confirmDelete = () => {};
 
   const showAnnouncement = () => {
     const documentBase64 = announcement.content;
@@ -207,9 +205,9 @@ function CompanyAnnouncement({ announcement, onDelete }) {
           setIsOpen={setPopupOpen}
         />
       )}
-       {editPopupOpen && (
+      {editPopupOpen && (
         <Popup
-          content={'Announcement is updated'}
+          content={"Announcement is updated"}
           isOpen={editPopupOpen}
           setIsOpen={setEditPopupOpen}
         />

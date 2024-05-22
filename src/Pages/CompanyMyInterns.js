@@ -11,6 +11,7 @@ import { UserContext } from "../context/UserProvider";
 function CompanyMyInterns() {
   const { user } = useContext(UserContext);
   const [interns, setInterns] = useState([]);
+  const [pendingInterns, setPendingInterns] = useState([]);
   const [open, setOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [popupOpen, setPopupOpen] = useState(false);
@@ -48,23 +49,22 @@ function CompanyMyInterns() {
       .get(`${process.env.REACT_APP_API_URL}/company/interns/${user.id}`)
       .then((response) => {
         const data = response.data;
-        console.log("interns", data);
         setInterns(
-          data.map(
-            ({
-              id,
-              fullName,
-              email,
-              contactNumber,
-              company: { id: companyId },
-            }) => ({
-              id,
-              name: fullName,
-              mail: email,
-              phoneNumber: contactNumber,
-              company: companyId,
-            })
-          )
+          data.accepted.map(({ id, fullName, email, contactNumber }) => ({
+            id,
+            name: fullName,
+            mail: email,
+            phoneNumber: contactNumber,
+          }))
+        );
+
+        setPendingInterns(
+          data.pending.map(({ id, fullName, email, contactNumber }) => ({
+            id,
+            name: fullName,
+            mail: email,
+            phoneNumber: contactNumber,
+          }))
         );
       })
       .catch((error) => {
@@ -87,9 +87,16 @@ function CompanyMyInterns() {
             </button>
           </div>
           <div className={styles.homepageContainer}>
-            {interns.map((student, index) => (
-              <InternCard key={index} student={student} />
-            ))}
+            <div>
+              {interns.map((student, index) => (
+                <InternCard key={index} student={student} isPending={false} />
+              ))}
+            </div>
+            <div>
+              {pendingInterns.map((student, index) => (
+                <InternCard key={index} student={student} isPending={true} />
+              ))}
+            </div>
           </div>
         </div>
       </div>

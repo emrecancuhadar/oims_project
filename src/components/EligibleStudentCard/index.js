@@ -30,7 +30,7 @@ function FileUploader({ companyId, studentEmail }) {
           },
         }
       )
-      .then((response) => alert(response.data))
+      .then((response) => console.log(response.data))
       .catch((error) => console.log(error));
   };
 
@@ -107,15 +107,15 @@ function EligibleStudentCard({ student }) {
   return (
     <div className={styles.card}>
       <div className={styles.cardBody}>
-        <h2>{student.name}</h2>
+        <h2>{student.owner}</h2>
         <div className={styles.studentInfoContainer}>
           <div className={styles.studentInfoRows}>
             <div className={styles.studentInfoRowDivs}>Phone Number:</div>
-            {student.phoneNumber}
+            {student.contactNumber}
           </div>
           <div className={styles.studentInfoRows}>
             <div className={styles.studentInfoRowDivs}>Mail: </div>
-            {student.mail}
+            {student.email}
           </div>
         </div>
       </div>
