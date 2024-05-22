@@ -1,10 +1,10 @@
 import axios from "axios";
-import mime from "mime";
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { UserContext } from "../../context/UserProvider";
+import Popup from "../Popup";
 import styles from "./eligible-student.module.css";
 
-function FileUploader({ companyId, studentEmail }) {
+function FileUploader({ studentEmail, setPopupOpen }) {
   // Create a reference to the hidden file input element
   const hiddenFileInput = useRef(null);
 
@@ -16,13 +16,12 @@ function FileUploader({ companyId, studentEmail }) {
 
   const uploadFile = (fileUploaded) => {
     const formData = new FormData();
-    formData.append("companyId", companyId);
     formData.append("studentEmail", studentEmail);
     formData.append("file", fileUploaded);
 
     axios
       .post(
-        `${process.env.REACT_APP_API_URL}/internship-applications/upload-application-form`,
+        `${process.env.REACT_APP_API_URL}/department-secretary/upload-ssi-certificate`,
         formData,
         {
           headers: {
@@ -30,7 +29,10 @@ function FileUploader({ companyId, studentEmail }) {
           },
         }
       )
-      .then((response) => console.log(response.data))
+      .then((response) => {
+        console.log(response.data);
+        setPopupOpen(true);
+      })
       .catch((error) => console.log(error));
   };
 
@@ -57,6 +59,7 @@ function FileUploader({ companyId, studentEmail }) {
 
 function EligibleStudentCard({ student }) {
   const { user } = useContext(UserContext);
+  const [popupOpen, setPopupOpen] = useState(false);
 
   return (
     <div className={styles.card}>
@@ -75,9 +78,19 @@ function EligibleStudentCard({ student }) {
       </div>
       <div className={styles.cardButtons}>
         <div className={styles.buttons}>
-          <FileUploader companyId={user.id} studentEmail={student.mail} />
+          <FileUploader
+            studentEmail={student.email}
+            setPopupOpen={setPopupOpen}
+          />
         </div>
       </div>
+      {popupOpen && (
+        <Popup
+          content={"SSI certificate is uploaded."}
+          isOpen={popupOpen}
+          setIsOpen={setPopupOpen}
+        />
+      )}
     </div>
   );
 }
