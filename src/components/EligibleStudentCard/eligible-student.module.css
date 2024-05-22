@@ -71,18 +71,18 @@
   padding: 8px 10px;
 }
 
-    .uploadBtn:hover {
-      background-color: #d12d2d;
-      color: white;
-    }
-    
-    .downloadBtn {
-      background-color: #9a0e20;
-      margin-bottom: 4%;
-      border: none;
-      color: white;
-      padding: 10px 10px;
-    }
+.uploadBtn:hover {
+    background-color: #d12d2d;
+    color: white;
+}
+
+.downloadBtn {
+    background-color: #9a0e20;
+    margin-bottom: 4%;
+    border: none;
+    color: white;
+    padding: 10px 10px;
+}
 
 .downloadBtn:hover {
   background-color: #d12d2d;

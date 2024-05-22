@@ -1,3 +1,4 @@
+// Main page
 import Modal from "@mui/material/Modal";
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
@@ -18,33 +19,11 @@ function CompanyMyInterns() {
   const [errorPopupOpen, setErrorPopupOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => {
-    setOpen(false);
-    setPopupOpen(false);
-    setErrorPopupOpen(false);
-  };
-
-  const handleEmailChange = (event) => setEmail(event.target.value);
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    axios
-      .put(
-        `${process.env.REACT_APP_API_URL}/company/intern/${email}/${user.id}`
-      )
-      .then((response) => {
-        setPopupOpen(true);
-        setEmail("");
-      })
-      .catch((error) => {
-        setErrorMessage(
-          error.response?.data || "An unexpected error occurred."
-        );
-        setErrorPopupOpen(true);
-      });
-  };
   useEffect(() => {
+    fetchInterns();
+  }, [user.id]);
+
+  const fetchInterns = () => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/company/interns/${user.id}`)
       .then((response) => {
@@ -70,7 +49,31 @@ function CompanyMyInterns() {
       .catch((error) => {
         console.error("Error fetching interns:", error);
       });
-  }, [user.id]);
+  };
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => {
+    setOpen(false);
+    setPopupOpen(false);
+    setErrorPopupOpen(false);
+  };
+
+  const handleEmailChange = (event) => setEmail(event.target.value);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    axios
+      .put(`${process.env.REACT_APP_API_URL}/company/intern/${email}/${user.id}`)
+      .then((response) => {
+        setPopupOpen(true);
+        setEmail("");
+        fetchInterns(); // Refetch the intern list after adding a new intern
+      })
+      .catch((error) => {
+        setErrorMessage(error.response?.data || "An unexpected error occurred.");
+        setErrorPopupOpen(true);
+      });
+  };
 
   return (
     <div className={styles.CompanyMyInterns}>

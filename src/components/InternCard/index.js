@@ -30,7 +30,7 @@ function FileUploader({ companyId, studentEmail }) {
           },
         }
       )
-      .then((response) => console.log(response.data))
+      .then((response) => alert(response.data))
       .catch((error) => console.log(error));
   };
 
@@ -55,7 +55,7 @@ function FileUploader({ companyId, studentEmail }) {
   );
 }
 
-function InternCard({ student, isPending }) {
+function InternCard({ student }) {
   const { user } = useContext(UserContext);
 
   const downloadApplicationForm = () => {
@@ -119,22 +119,19 @@ function InternCard({ student, isPending }) {
           </div>
         </div>
       </div>
-      {!isPending && (
-        <div className={styles.cardButtons}>
-          <div className={styles.buttons}>
-            <FileUploader companyId={user.id} studentEmail={student.mail} />
-          </div>
-
-          <div className={styles.buttons}>
-            <button
-              className={styles.downloadBtn}
-              onClick={downloadApplicationForm}
-            >
-              Download Application Form
-            </button>
-          </div>
+      <div className={styles.cardButtons}>
+        <div className={styles.buttons}>
+          <FileUploader companyId={user.id} studentEmail={student.mail} />
         </div>
-      )}
+        <div className={styles.buttons}>
+          <button
+            className={styles.downloadBtn}
+            onClick={downloadApplicationForm}
+          >
+            Download Application Form
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
