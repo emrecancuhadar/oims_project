@@ -4,7 +4,7 @@ import { UserContext } from "../../context/UserProvider";
 import Popup from "../Popup";
 import styles from "./eligible-student.module.css";
 
-function FileUploader({ studentEmail, setPopupOpen }) {
+function FileUploader({ studentId, studentEmail, setPopupOpen }) {
   // Create a reference to the hidden file input element
   const hiddenFileInput = useRef(null);
 
@@ -32,6 +32,12 @@ function FileUploader({ studentEmail, setPopupOpen }) {
       .then((response) => {
         console.log(response.data);
         setPopupOpen(true);
+        axios.post(
+          `${process.env.REACT_APP_API_URL}/feedback/iztech-user/${studentId}`,
+          {
+            content: "SSI certificate is uploaded.",
+          }
+        );
       })
       .catch((error) => console.log(error));
   };
@@ -79,6 +85,7 @@ function EligibleStudentCard({ student }) {
       <div className={styles.cardButtons}>
         <div className={styles.buttons}>
           <FileUploader
+            studentId={student.id}
             studentEmail={student.email}
             setPopupOpen={setPopupOpen}
           />

@@ -31,10 +31,15 @@ function Notification() {
 
   useEffect(() => {
     if (user) {
+      let receiver = "";
+      if (user.role === "student") {
+        receiver = "iztech-user";
+      } else {
+        receiver = user.role;
+      }
+
       axios
-        .get(
-          `${process.env.REACT_APP_API_URL}/feedback/${user.role}/${user.id}`
-        )
+        .get(`${process.env.REACT_APP_API_URL}/feedback/${receiver}/${user.id}`)
         .then((response) => {
           const notificationData = response.data;
           setNotifications(

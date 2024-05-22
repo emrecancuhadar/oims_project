@@ -1,5 +1,7 @@
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios";
+import mime from "mime";
 import React, { useContext, useState } from "react";
 import styles from "../CSS/StudentMyDocuments.module.css";
 import Header from "../components/Header";
@@ -30,8 +32,30 @@ function StudentMyDocuments() {
 
   const handleContentClick = () => {};
 
+  // TODO burası düzeltilcek şu an her buton için ssi indiriyo
   const handleDownloadButton = (event) => {
+    console.log("handle");
     event.stopPropagation();
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/students/${user.id}/ssi`)
+      .then((response) => {
+        let fileName = "SSI Certificate";
+
+        const contentType = response.headers["content-type"];
+        const fileExtension = mime.getExtension(contentType) || "bin";
+        fileName += `.${fileExtension}`;
+
+        // Create a URL for the Blob and trigger a download
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", fileName); // You can set a default filename here
+        document.body.appendChild(link);
+        link.click();
+        link.parentNode.removeChild(link);
+        URL.revokeObjectURL(url);
+      })
+      .catch((error) => console.log(error));
   };
 
   return (

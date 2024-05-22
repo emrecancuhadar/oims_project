@@ -1,10 +1,11 @@
 import axios from "axios";
 import mime from "mime";
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { UserContext } from "../../context/UserProvider";
+import Popup from "../Popup";
 import styles from "./intern-card.module.css";
 
-function FileUploader({ companyId, studentEmail }) {
+function FileUploader({ companyId, studentEmail, setPopupOpen }) {
   // Create a reference to the hidden file input element
   const hiddenFileInput = useRef(null);
 
@@ -30,7 +31,10 @@ function FileUploader({ companyId, studentEmail }) {
           },
         }
       )
-      .then((response) => alert(response.data))
+      .then((response) => {
+        console.log(response.data);
+        setPopupOpen(true);
+      })
       .catch((error) => console.log(error));
   };
 
@@ -55,8 +59,9 @@ function FileUploader({ companyId, studentEmail }) {
   );
 }
 
-function InternCard({ student }) {
+function InternCard({ student, isPending }) {
   const { user } = useContext(UserContext);
+  const [popupOpen, setPopupOpen] = useState(false);
 
   const downloadApplicationForm = () => {
     const formData = new FormData();
@@ -119,19 +124,32 @@ function InternCard({ student }) {
           </div>
         </div>
       </div>
-      <div className={styles.cardButtons}>
-        <div className={styles.buttons}>
-          <FileUploader companyId={user.id} studentEmail={student.mail} />
+      {!isPending && (
+        <div className={styles.cardButtons}>
+          <div className={styles.buttons}>
+            <FileUploader
+              companyId={user.id}
+              studentEmail={student.mail}
+              setPopupOpen={setPopupOpen}
+            />
+          </div>
+          <div className={styles.buttons}>
+            <button
+              className={styles.downloadBtn}
+              onClick={downloadApplicationForm}
+            >
+              Download Application Form
+            </button>
+          </div>
         </div>
-        <div className={styles.buttons}>
-          <button
-            className={styles.downloadBtn}
-            onClick={downloadApplicationForm}
-          >
-            Download Application Form
-          </button>
-        </div>
-      </div>
+      )}
+      {popupOpen && (
+        <Popup
+          content={"Application form is uploaded."}
+          isOpen={popupOpen}
+          setIsOpen={setPopupOpen}
+        />
+      )}
     </div>
   );
 }
