@@ -1,0 +1,145 @@
+.CompanyMyInterns {
+    display: flex;
+    
+  }
+  .companyMyInternshipsMainContent {
+      flex-grow: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  .titleContainer {
+      text-align: center;
+    margin: 20px 0;
+    color: #9a0e20;
+    margin-bottom: 2%;
+    display: flex;
+    width: 100%;
+    justify-content: center;  
+  }
+  .homepage {
+      display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  .homepageContainer {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 20px;
+    width: 100%;
+    padding: 2%
+    
+  }
+  .card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    background: #fff;
+    margin: 20px;
+    gap: 20px;
+    width: 340px;
+    justify-content: flex-start;
+    }
+    .content {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      align-items: center;
+    }
+    .card p {
+      font-size: 14px;
+    }
+    
+    .cardTitle {
+      margin-bottom: 10px;
+    }
+    .buttons button {
+      display: flex;
+    
+      margin-right: 10px;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+   
+    .uploadBtn{
+      background-color: white;
+      border-color: #9a0e20;
+      color: #9a0e20;
+      padding: 8px 10px;
+    }
+
+    .uploadBtn:hover {
+      background-color: #d12d2d;
+    }
+    
+    .downloadBtn {
+      background-color: #9a0e20;
+      margin-bottom: 4%;
+      border: none;
+      color: white;
+      padding: 10px 10px;
+    }
+
+    .downloadBtn:hover {
+      background-color: #d12d2d;
+    }
+
+    .addInternContainer {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      margin-bottom: 1%;
+    }
+  
+    .addInternBtn {
+      align-self: flex-end;
+      display: flex;
+      padding: 15px 35px;
+      margin-right: 1%;
+      border: none;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 16px;
+      background-color: #9a0e20;
+      position: absolute;
+      right : 0;
+    }
+
+    .addInternBtn:hover {
+      background-color: #d12d2d;
+    }
+
+    .cardButtons {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-content: center;
+      margin-top: auto;
+    }
+    
+    .cardBody {
+      display: flex;
+      flex-direction: column;
+      gap: 15px; /* Gap'i azalttım */
+      width: 100%;
+      
+    }
+    .studentInfoRows {
+      display:flex;
+      align-items: center;
+    }
+    .studentInfoRowDivs {
+      font-weight: bold;
+      margin-right: 2%; 
+    }
+  
+  
+  
+    
+  
