@@ -75,6 +75,7 @@
 
     .uploadBtn:hover {
       background-color: #d12d2d;
+      color: white;
     }
     
     .downloadBtn {

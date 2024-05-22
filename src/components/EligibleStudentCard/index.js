@@ -58,78 +58,24 @@ function FileUploader({ companyId, studentEmail }) {
 function EligibleStudentCard({ student }) {
   const { user } = useContext(UserContext);
 
-  const downloadApplicationForm = () => {
-    const formData = new FormData();
-    formData.append("companyId", user.id);
-    formData.append("studentEmail", student.mail);
-
-    axios
-      .post(
-        `${process.env.REACT_APP_API_URL}/internship-applications/download-application-form`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-          responseType: "blob",
-        }
-      )
-      .then((response) => {
-        //FIXME dosya adı alınamıyor. Content-disposition gelmiyor.
-        // Extract the filename from the Content-Disposition header
-        console.log(response.data);
-        const contentDisposition = response.headers["content-disposition"];
-        let fileName = "Application Form";
-        if (contentDisposition) {
-          const fileNameMatch = contentDisposition.match(/filename="(.+)"/);
-          if (fileNameMatch.length === 2) {
-            fileName = fileNameMatch[1];
-          }
-        }
-
-        const contentType = response.headers["content-type"];
-        const fileExtension = mime.getExtension(contentType) || "bin";
-        fileName += `.${fileExtension}`;
-
-        // Create a URL for the Blob and trigger a download
-        const url = window.URL.createObjectURL(new Blob([response.data]));
-        const link = document.createElement("a");
-        link.href = url;
-        link.setAttribute("download", fileName); // You can set a default filename here
-        document.body.appendChild(link);
-        link.click();
-        link.parentNode.removeChild(link);
-        URL.revokeObjectURL(url);
-      })
-      .catch((error) => console.log(error));
-  };
-
   return (
     <div className={styles.card}>
       <div className={styles.cardBody}>
-        <h2>{student.name}</h2>
+        <h2>{student.owner}</h2>
         <div className={styles.studentInfoContainer}>
           <div className={styles.studentInfoRows}>
             <div className={styles.studentInfoRowDivs}>Phone Number:</div>
-            {student.phoneNumber}
+            {student.contactNumber}
           </div>
           <div className={styles.studentInfoRows}>
             <div className={styles.studentInfoRowDivs}>Mail: </div>
-            {student.mail}
+            {student.email}
           </div>
         </div>
       </div>
       <div className={styles.cardButtons}>
         <div className={styles.buttons}>
           <FileUploader companyId={user.id} studentEmail={student.mail} />
-        </div>
-        <div className={styles.buttons}>
-          <button
-            className={styles.downloadBtn}
-            onClick={downloadApplicationForm}
-          >
-            Download Application Form
-          </button>
         </div>
       </div>
     </div>
