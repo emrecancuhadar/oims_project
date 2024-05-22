@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useContext, useState } from "react";
+import { UserContext } from "../../context/UserProvider";
 import Popup from "../Popup";
 import styles from "./applied-internship.module.css";
 
 function AppliedInternship({ internship }) {
+  const { user } = useContext(UserContext);
   const [registerPopupOpen, setRegisterPopupOpen] = useState(false);
   const [confirmationPopupOpen, setConfirmationPopupOpen] = useState(false);
 
-  const handleContentClick = (event) => {
-    alert("Content Clicked!");
-  };
+  const handleContentClick = (event) => {};
 
   const handleRegisterInitiate = (event) => {
     event.stopPropagation();
@@ -17,9 +18,27 @@ function AppliedInternship({ internship }) {
 
   const handleRegisterConfirm = (event) => {
     event.stopPropagation();
-    console.log("Registering to:", internship.companyName);
-    setRegisterPopupOpen(false);
-    setConfirmationPopupOpen(true);
+    const formData = new FormData();
+    formData.append("studentId", user.id);
+    formData.append("companyEmail", internship.companyEmail);
+    axios
+      .post(
+        `${process.env.REACT_APP_API_URL}/internship-registration/register`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      )
+      .then((response) => {
+        console.log("Registering to:", internship.companyName);
+        setRegisterPopupOpen(false);
+        setConfirmationPopupOpen(true);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const handleCancelRegistration = (event) => {

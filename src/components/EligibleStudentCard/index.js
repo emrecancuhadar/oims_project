@@ -30,7 +30,7 @@ function FileUploader({ companyId, studentEmail }) {
           },
         }
       )
-      .then((response) => alert(response.data))
+      .then((response) => console.log(response.data))
       .catch((error) => console.log(error));
   };
 
