@@ -10,14 +10,19 @@ function CompanyMyAnnouncements() {
   const [announcements, setAnnouncements] = useState([]);
   const { user } = useContext(UserContext);
 
-  useEffect(() => {
+  useEffect (() => {
+    fetchCompanyAnnouncements();
+  }, [])
+
+  const fetchCompanyAnnouncements = () => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/announcements/company/${user.id}`)
       .then((response) => {
         const data = response.data;
         setAnnouncements(
-          data.map(({ title, deadline, document }) => ({
-            id: document.documentId,
+          data.map(({ announcementId, title, deadline, document }) => ({
+            id: announcementId,
+            documentId: document.documentId,
             title,
             deadline,
             content: document.content,
@@ -28,8 +33,21 @@ function CompanyMyAnnouncements() {
       .catch((error) => {
         console.error("Error fetching announcements:", error);
       });
-  }, [user.id]);
-  
+  };
+
+  const deleteAnnouncement = (id) => {
+    axios
+      .put(`${process.env.REACT_APP_API_URL}/announcements/delete/${id}`)
+      .then((response) => {
+        // Remove the deleted announcement from the state
+        setAnnouncements((prevAnnouncements) =>
+          prevAnnouncements.filter((announcement) => announcement.id !== id)
+        );
+      })
+      .catch((error) => {
+        console.error("Error deleting announcement:", error);
+      });
+  };
 
   return (
     <div className={styles.companyMyAnnouncements}>
@@ -40,7 +58,11 @@ function CompanyMyAnnouncements() {
           <h1 className={styles.pageTitle}>My Announcements</h1>
           <div className={styles.announcementsContainer}>
             {announcements.map((announcement, index) => (
-              <CompanyAnnouncement key={index} announcement={announcement} />
+              <CompanyAnnouncement
+                key={index}
+                announcement={announcement}
+                onDelete={deleteAnnouncement}
+              />
             ))}
           </div>
         </div>

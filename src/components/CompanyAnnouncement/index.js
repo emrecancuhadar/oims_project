@@ -5,18 +5,13 @@ import styles from "../CompanyAnnouncement/company-announcement.module.css";
 import Popup from "../Popup";
 
 function FileUploader({ initialFileName, setFile }) {
-  // Create a reference to the hidden file input element
   const hiddenFileInput = useRef(null);
   const [fileName, setFileName] = useState(initialFileName);
 
-  // Programatically click the hidden file input element
-  // when the Button component is clicked
   const handleClick = () => {
     hiddenFileInput.current.click();
   };
 
-  // Call a function (passed as a prop from the parent component)
-  // to handle the user-selected file
   const handleChange = (event) => {
     const fileUploaded = event.target.files[0];
     if (fileUploaded) {
@@ -24,18 +19,21 @@ function FileUploader({ initialFileName, setFile }) {
       setFile(fileUploaded);
     }
   };
+
   return (
     <>
-      <button className={styles.uploadBtn} onClick={handleClick}>
-        Upload Announcement
-      </button>
-      <input
-        type="file"
-        onChange={handleChange}
-        ref={hiddenFileInput}
-        style={{ display: "none" }}
-      />
-      <span>{fileName}</span>
+      <div className={styles.uploadBtnDiv}>
+        <button className={styles.uploadBtn} onClick={handleClick}>
+          Upload Announcement
+        </button>
+        <input
+          type="file"
+          onChange={handleChange}
+          ref={hiddenFileInput}
+          style={{ display: "none" }}
+        />
+        <span>{fileName}</span>
+      </div>
     </>
   );
 }
@@ -61,6 +59,7 @@ function CompanyAnnouncement({ announcement, onDelete }) {
 
   const handleUpdate = () => {
     const formData = new FormData();
+    formData.append("id", announcement.id);
     formData.append("title", title);
     formData.append("deadline", deadline);
     formData.append("file", file);
@@ -83,12 +82,15 @@ function CompanyAnnouncement({ announcement, onDelete }) {
       .catch((error) => console.log(error));
   };
 
-  const handleDelete = (event) => {
-    event.stopPropagation();
-    setPopupOpen(true);
+  const handleDelete = () => {
+    onDelete(announcement.id)
+    setPopupOpen(false);
   };
 
-  const confirmDelete = () => {};
+  const showDeletePopup = (event) => {
+    event.stopPropagation();
+    setPopupOpen(true);
+  }
 
   const showAnnouncement = () => {
     const documentBase64 = announcement.content;
@@ -123,7 +125,12 @@ function CompanyAnnouncement({ announcement, onDelete }) {
         >
           Cancel
         </button>
-        <button className={styles.popupDeleteBtn} onClick={confirmDelete}>
+        <button 
+          className={styles.popupDeleteBtn} 
+          onClick={(event) => {
+            event.stopPropagation();
+            handleDelete();
+        }}>
           Delete
         </button>
       </div>
@@ -151,7 +158,7 @@ function CompanyAnnouncement({ announcement, onDelete }) {
         <button className={styles.feedbackBtn} onClick={handleOpen}>
           Edit
         </button>
-        <button className={styles.banBtn} onClick={handleDelete}>
+        <button className={styles.banBtn} onClick={showDeletePopup}>
           Delete
         </button>
       </div>
@@ -182,7 +189,7 @@ function CompanyAnnouncement({ announcement, onDelete }) {
           </div>
           <div className={styles.inputGroup}>
             <FileUploader
-              initialFileName={announcement.title}
+              initialFileName={announcement.fileName}
               setFile={setFile}
             />
           </div>
