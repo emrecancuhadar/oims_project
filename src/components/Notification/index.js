@@ -43,8 +43,9 @@ function Notification() {
         .then((response) => {
           const notificationData = response.data;
           setNotifications(
-            notificationData.map(({ id, content }) => ({
+            notificationData.map(({ id, role, content }) => ({
               id,
+              role,
               content,
             }))
           );
@@ -74,6 +75,7 @@ function Notification() {
             <>
               <NotificationItem
                 key={notification.id}
+                
                 notification={notification.content}
               />
               {index !== notifications.length - 1 && <hr />}

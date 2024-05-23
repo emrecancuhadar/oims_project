@@ -30,6 +30,7 @@ function AdminAnnouncementRequests() {
             deadline,
             content: document.content,
             companyId: company.id,
+            companyName: company.companyName
           }))
         );
       })

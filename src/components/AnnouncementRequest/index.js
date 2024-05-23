@@ -60,6 +60,10 @@ function AnnouncementRequest({ announcementRequest, onApprove, onDisapprove, onB
               <strong>Deadline:</strong>
               <p>{announcementRequest.deadline}</p>
             </div>
+            <div className={styles.altTextInfo}>
+              <strong>CompanyName:</strong>
+              <p>{announcementRequest.companyName}</p>
+            </div>
           </div>
           <div className={styles.buttons}>
             <button
