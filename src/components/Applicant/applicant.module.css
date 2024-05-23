@@ -1,0 +1,39 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    background: #fff;
+    margin: 20px;
+  }
+  
+  .left {
+    display: flex;
+    flex-direction: column;
+    width: 100%; /* Ensures it takes full width */
+  }
+  
+  .right {
+    display: flex;
+    justify-content: flex-end; /* Align icons to the right */
+    align-items: center;
+    gap: 15px; /* Space between icons */
+  }
+  
+  .left, .right {
+    align-self: stretch; /* Stretch to fill the card's width */
+  }
+  
+  .card h2 {
+    font-size: 24px;
+    margin-bottom: 20px; /* Space below the name */
+    font-weight: bolder;
+  }
+  
+  .card p {
+    font-weight: 600;
+    margin: 0; /* Adjust or remove margins as needed */
+  }
+  

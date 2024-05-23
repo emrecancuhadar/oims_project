@@ -38,11 +38,18 @@ function CompanySidebar() {
         Make Announcement
       </button>
       <button 
+        onClick={() => navigate("/company/my-applicants")} 
+        className="btn btn-light w-100 mt-2 pt-2 pb-2"
+      >
+        My Applicants
+      </button>
+      <button 
         onClick={() => navigate("/company/my-interns")} 
         className="btn btn-light w-100 mt-2 pt-2 pb-2"
       >
         My Interns
       </button>
+
     </div>
   );
 }
