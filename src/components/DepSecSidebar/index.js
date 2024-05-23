@@ -23,12 +23,6 @@ function DepSecSidebar() {
       >
         Eligible Students
       </button>
-      <button
-        onClick={() => navigate("/depsec/upload-certificates")}
-        className="btn btn-light w-100 mt-2 pt-2 pb-2"
-      >
-        Upload Certificates
-      </button>
     </div>
   );
 }
