@@ -16,8 +16,9 @@ function CompanyMyAnnouncements() {
       .then((response) => {
         const data = response.data;
         setAnnouncements(
-          data.map(({ title, deadline, document }) => ({
-            id: document.documentId,
+          data.map(({ announcementId, title, deadline, document }) => ({
+            id: announcementId,
+            documentId: document.documentId,
             title,
             deadline,
             content: document.content,

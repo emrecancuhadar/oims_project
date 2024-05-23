@@ -26,18 +26,20 @@ function FileUploader({ initialFileName, setFile }) {
   };
   return (
     <>
-      <button className={styles.uploadBtn} onClick={handleClick}>
-        Upload Announcement
-      </button>
-      <input
-        type="file"
-        onChange={handleChange}
-        ref={hiddenFileInput}
-        style={{ display: "none" }}
-      />
-      <span>{fileName}</span>
+      <div className={styles.uploadBtnDiv}>
+        <button className={styles.uploadBtn} onClick={handleClick}>
+          Upload Announcement
+        </button>
+        <input
+          type="file"
+          onChange={handleChange}
+          ref={hiddenFileInput}
+          style={{ display: "none" }}
+        />
+        <span>{fileName}</span>
+      </div>  
     </>
-  );
+  );  
 }
 
 function CompanyAnnouncement({ announcement, onDelete }) {
@@ -61,6 +63,7 @@ function CompanyAnnouncement({ announcement, onDelete }) {
 
   const handleUpdate = () => {
     const formData = new FormData();
+    formData.append("id", announcement.id);
     formData.append("title", title);
     formData.append("deadline", deadline);
     formData.append("file", file);
@@ -88,7 +91,18 @@ function CompanyAnnouncement({ announcement, onDelete }) {
     setPopupOpen(true);
   };
 
-  const confirmDelete = () => {};
+  const confirmDelete = () => {
+    axios
+    .put(`${process.env.REACT_APP_API_URL}/announcements/delete/${announcement.id}`)
+    .then((response) => {
+      setPopupOpen(false);
+       
+    })
+    .catch((error) => {
+      console.error("Error deleting announcement:", error);
+    });
+
+  };
 
   const showAnnouncement = () => {
     const documentBase64 = announcement.content;
@@ -182,7 +196,7 @@ function CompanyAnnouncement({ announcement, onDelete }) {
           </div>
           <div className={styles.inputGroup}>
             <FileUploader
-              initialFileName={announcement.title}
+              initialFileName={announcement.fileName}
               setFile={setFile}
             />
           </div>
