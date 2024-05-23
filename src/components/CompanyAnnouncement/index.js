@@ -5,18 +5,13 @@ import styles from "../CompanyAnnouncement/company-announcement.module.css";
 import Popup from "../Popup";
 
 function FileUploader({ initialFileName, setFile }) {
-  // Create a reference to the hidden file input element
   const hiddenFileInput = useRef(null);
   const [fileName, setFileName] = useState(initialFileName);
 
-  // Programatically click the hidden file input element
-  // when the Button component is clicked
   const handleClick = () => {
     hiddenFileInput.current.click();
   };
 
-  // Call a function (passed as a prop from the parent component)
-  // to handle the user-selected file
   const handleChange = (event) => {
     const fileUploaded = event.target.files[0];
     if (fileUploaded) {
@@ -24,6 +19,7 @@ function FileUploader({ initialFileName, setFile }) {
       setFile(fileUploaded);
     }
   };
+
   return (
     <>
       <div className={styles.uploadBtnDiv}>
@@ -37,9 +33,9 @@ function FileUploader({ initialFileName, setFile }) {
           style={{ display: "none" }}
         />
         <span>{fileName}</span>
-      </div>  
+      </div>
     </>
-  );  
+  );
 }
 
 function CompanyAnnouncement({ announcement, onDelete }) {
@@ -86,23 +82,15 @@ function CompanyAnnouncement({ announcement, onDelete }) {
       .catch((error) => console.log(error));
   };
 
-  const handleDelete = (event) => {
+  const handleDelete = () => {
+    onDelete(announcement.id)
+    setPopupOpen(false);
+  };
+
+  const showDeletePopup = (event) => {
     event.stopPropagation();
     setPopupOpen(true);
-  };
-
-  const confirmDelete = () => {
-    axios
-    .put(`${process.env.REACT_APP_API_URL}/announcements/delete/${announcement.id}`)
-    .then((response) => {
-      setPopupOpen(false);
-       
-    })
-    .catch((error) => {
-      console.error("Error deleting announcement:", error);
-    });
-
-  };
+  }
 
   const showAnnouncement = () => {
     const documentBase64 = announcement.content;
@@ -137,7 +125,12 @@ function CompanyAnnouncement({ announcement, onDelete }) {
         >
           Cancel
         </button>
-        <button className={styles.popupDeleteBtn} onClick={confirmDelete}>
+        <button 
+          className={styles.popupDeleteBtn} 
+          onClick={(event) => {
+            event.stopPropagation();
+            handleDelete();
+        }}>
           Delete
         </button>
       </div>
@@ -165,7 +158,7 @@ function CompanyAnnouncement({ announcement, onDelete }) {
         <button className={styles.feedbackBtn} onClick={handleOpen}>
           Edit
         </button>
-        <button className={styles.banBtn} onClick={handleDelete}>
+        <button className={styles.banBtn} onClick={showDeletePopup}>
           Delete
         </button>
       </div>
