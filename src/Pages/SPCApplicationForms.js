@@ -46,6 +46,9 @@ function SPCApplicationForms() {
       .then((response) => {
         console.log(response);
         setApprovePopupOpen(true);
+        setApplicationFormRequests((prevRequests) =>
+          prevRequests.filter((request) => request.id !== id)
+        );
       })
       .catch((error) => console.log(error));
   };
@@ -58,6 +61,9 @@ function SPCApplicationForms() {
       .then((response) => {
         setDisapprovePopupOpen(true);
         console.log(response);
+        setApplicationFormRequests((prevRequests) =>
+          prevRequests.filter((request) => request.id !== id)
+        );
       })
       .catch((error) => console.log(error));
   };
