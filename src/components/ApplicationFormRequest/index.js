@@ -6,33 +6,11 @@ import FeedbackModal from "../FeedbackModal";
 import Popup from "../Popup";
 import styles from "./application-form-request.module.css";
 
-function ApplicationFormRequest({ applicationFormRequest }) {
+function ApplicationFormRequest({ applicationFormRequest, onApprove, onDisapprove }) {
   const [isModalOpen, setModalOpen] = useState(false);
   const [isApprovePopupOpen, setApprovePopupOpen] = useState(false);
   const [isDisapprovePopupOpen, setDisapprovePopupOpen] = useState(false);
 
-  const approveApplicationFormRequest = () => {
-    axios
-      .put(
-        `${process.env.REACT_APP_API_URL}/spc/document/${applicationFormRequest.id}/approve`
-      )
-      .then((response) => {
-        console.log(response);
-        setApprovePopupOpen(true);
-      })
-      .catch((error) => console.log(error));
-  };
-  const disapproveApplicationFormRequest = () => {
-    axios
-      .put(
-        `${process.env.REACT_APP_API_URL}/spc/document/${applicationFormRequest.id}/disapprove`
-      )
-      .then((response) => {
-        setDisapprovePopupOpen(true);
-        console.log(response);
-      })
-      .catch((error) => console.log(error));
-  };
   const giveFeedback = () => {
     setModalOpen(true);
   };
@@ -64,6 +42,14 @@ function ApplicationFormRequest({ applicationFormRequest }) {
 
     // Open the PDF in a new browser tab
     window.open(pdfUrl, "_blank");
+  };
+
+  const approveApplicationFormRequest = () => {
+    onApprove(applicationFormRequest.id);
+  };
+
+  const disapproveApplicationFormRequest = () => {
+    onDisapprove(applicationFormRequest.id);
   };
 
   return (

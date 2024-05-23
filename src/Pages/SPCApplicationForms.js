@@ -9,8 +9,14 @@ import { UserContext } from "../context/UserProvider";
 function SPCApplicationForms() {
   const [applicationFormRequests, setApplicationFormRequests] = useState([]);
   const { user } = useContext(UserContext);
+  const [isApprovePopupOpen, setApprovePopupOpen] = useState(false);
+  const [isDisapprovePopupOpen, setDisapprovePopupOpen] = useState(false);
 
   useEffect(() => {
+    fetchApplicationForms();
+  }, [])
+
+  const fetchApplicationForms = () => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/spc/application-forms`)
       .then((response) => {
@@ -30,7 +36,31 @@ function SPCApplicationForms() {
           )
         );
       });
-  }, []);
+  };
+
+  const approveApplicationFormRequest = (id) => {
+    axios
+      .put(
+        `${process.env.REACT_APP_API_URL}/spc/document/${id}/approve`
+      )
+      .then((response) => {
+        console.log(response);
+        setApprovePopupOpen(true);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const disapproveApplicationFormRequest = (id) => {
+    axios
+      .put(
+        `${process.env.REACT_APP_API_URL}/spc/document/${id}/disapprove`
+      )
+      .then((response) => {
+        setDisapprovePopupOpen(true);
+        console.log(response);
+      })
+      .catch((error) => console.log(error));
+  };
 
   return (
     <div className={styles.spcApplicationFormRequest}>
@@ -46,6 +76,8 @@ function SPCApplicationForms() {
               <ApplicationFormRequest
                 key={id}
                 applicationFormRequest={applicationFormRequest}
+                onApprove={approveApplicationFormRequest}
+                onDisapprove={disapproveApplicationFormRequest}
               />
             ))}
           </div>

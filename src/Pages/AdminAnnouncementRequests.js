@@ -24,8 +24,8 @@ function AdminAnnouncementRequests() {
       .then((response) => {
         const data = response.data;
         setAnnouncementRequests(
-          data.map(({ title, deadline, document, company }) => ({
-            id: document.documentId,
+          data.map(({ announcementId, title, deadline, document, company }) => ({
+            id: announcementId,
             title,
             deadline,
             content: document.content,
