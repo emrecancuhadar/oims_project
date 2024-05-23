@@ -12,7 +12,6 @@ import { UserContext } from "../context/UserProvider";
 function CompanyMyInterns() {
   const { user } = useContext(UserContext);
   const [interns, setInterns] = useState([]);
-  const [pendingInterns, setPendingInterns] = useState([]);
   const [open, setOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [popupOpen, setPopupOpen] = useState(false);
@@ -20,6 +19,7 @@ function CompanyMyInterns() {
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
+    console.log("fetch interns");
     fetchInterns();
   }, [user.id]);
 
@@ -29,16 +29,7 @@ function CompanyMyInterns() {
       .then((response) => {
         const data = response.data;
         setInterns(
-          data.accepted.map(({ id, fullName, email, contactNumber }) => ({
-            id,
-            name: fullName,
-            mail: email,
-            phoneNumber: contactNumber,
-          }))
-        );
-
-        setPendingInterns(
-          data.pending.map(({ id, fullName, email, contactNumber }) => ({
+          data.map(({ id, fullName, email, contactNumber }) => ({
             id,
             name: fullName,
             mail: email,
@@ -63,14 +54,18 @@ function CompanyMyInterns() {
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .put(`${process.env.REACT_APP_API_URL}/company/intern/${email}/${user.id}`)
+      .put(
+        `${process.env.REACT_APP_API_URL}/company/intern/${email}/${user.id}`
+      )
       .then((response) => {
         setPopupOpen(true);
         setEmail("");
         fetchInterns(); // Refetch the intern list after adding a new intern
       })
       .catch((error) => {
-        setErrorMessage(error.response?.data || "An unexpected error occurred.");
+        setErrorMessage(
+          error.response?.data || "An unexpected error occurred."
+        );
         setErrorPopupOpen(true);
       });
   };
@@ -92,12 +87,7 @@ function CompanyMyInterns() {
           <div className={styles.homepageContainer}>
             <div>
               {interns.map((student, index) => (
-                <InternCard key={index} student={student} isPending={false} />
-              ))}
-            </div>
-            <div>
-              {pendingInterns.map((student, index) => (
-                <InternCard key={index} student={student} isPending={true} />
+                <InternCard key={index} student={student} />
               ))}
             </div>
           </div>

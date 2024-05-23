@@ -124,25 +124,23 @@ function InternCard({ student, isPending }) {
           </div>
         </div>
       </div>
-      {!isPending && (
-        <div className={styles.cardButtons}>
-          <div className={styles.buttons}>
-            <FileUploader
-              companyId={user.id}
-              studentEmail={student.mail}
-              setPopupOpen={setPopupOpen}
-            />
-          </div>
-          <div className={styles.buttons}>
-            <button
-              className={styles.downloadBtn}
-              onClick={downloadApplicationForm}
-            >
-              Download Application Form
-            </button>
-          </div>
+      <div className={styles.cardButtons}>
+        <div className={styles.buttons}>
+          <FileUploader
+            companyId={user.id}
+            studentEmail={student.mail}
+            setPopupOpen={setPopupOpen}
+          />
         </div>
-      )}
+        <div className={styles.buttons}>
+          <button
+            className={styles.downloadBtn}
+            onClick={downloadApplicationForm}
+          >
+            Download Application Form
+          </button>
+        </div>
+      </div>
       {popupOpen && (
         <Popup
           content={"Application form is uploaded."}

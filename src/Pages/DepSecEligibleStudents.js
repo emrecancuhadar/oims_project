@@ -1,28 +1,23 @@
-import Modal from "@mui/material/Modal";
 import axios from "axios";
-import mime from "mime";
 import React, { useContext, useEffect, useState } from "react";
 import styles from "../CSS/DepSecEligibleStudents.module.css";
 import DepSecSidebar from "../components/DepSecSidebar";
-import Header from "../components/Header";
-import Popup from "../components/Popup";
-import { UserContext } from "../context/UserProvider";
 import EligibleStudentCard from "../components/EligibleStudentCard";
+import Header from "../components/Header";
+import { UserContext } from "../context/UserProvider";
 
 function DepSecEligibleStudents() {
   const { user } = useContext(UserContext);
   const [students, setStudents] = useState([]);
-  const [popupOpen, setPopupOpen] = useState(false);
-  const [open, setOpen] = useState(false);
-  const [errorPopupOpen, setErrorPopupOpen] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
-  const [email, setEmail] = useState("");
 
   const downloadEligibleStudentPdf = () => {
     axios
-      .get(`${process.env.REACT_APP_API_URL}/students/get-eligible-students-pdf`, {
-        responseType: "blob",
-      })
+      .get(
+        `${process.env.REACT_APP_API_URL}/students/get-eligible-students-pdf`,
+        {
+          responseType: "blob",
+        }
+      )
       .then((response) => {
         const contentDisposition = response.headers["content-disposition"];
         let fileName = "eligible_students.pdf";
@@ -60,7 +55,9 @@ function DepSecEligibleStudents() {
           }))
         );
       })
-      .catch((error) => console.error("Error fetching eligible students:", error));
+      .catch((error) =>
+        console.error("Error fetching eligible students:", error)
+      );
   }, []);
 
   return (
@@ -73,7 +70,10 @@ function DepSecEligibleStudents() {
             <h1>Eligible Students</h1>
           </div>
           <div className={styles.downloadPdfContainer}>
-            <button className={styles.downloadPdfBtn} onClick={downloadEligibleStudentPdf}>
+            <button
+              className={styles.downloadPdfBtn}
+              onClick={downloadEligibleStudentPdf}
+            >
               Download Pdf
             </button>
           </div>
