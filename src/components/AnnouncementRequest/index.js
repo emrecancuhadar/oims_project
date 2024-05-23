@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import FeedbackModal from "../FeedbackModal";
 import styles from "./announcement-request.module.css";
 
-function AnnouncementRequest({ announcementRequest, onApprove, onDisapprove, onBan }) {
+function AnnouncementRequest({ announcementRequest, onApprove, onDisapprove, onBan, user }) {
   const [isModalOpen, setModalOpen] = useState(false);
 
   const showAnnouncementRequest = () => {
@@ -112,10 +112,11 @@ function AnnouncementRequest({ announcementRequest, onApprove, onDisapprove, onB
       <FeedbackModal
         isModalOpen={isModalOpen}
         closeModal={() => setModalOpen(false)}
-        receiver={{ id: announcementRequest.id, name: "announcement" }}
+        receiver={{ id: user.id, name: user.role }}
       />
     </>
   );
 }
 
 export default AnnouncementRequest;
+ 

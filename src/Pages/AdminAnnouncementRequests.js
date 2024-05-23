@@ -93,6 +93,7 @@ function AdminAnnouncementRequests() {
                 onApprove={approveAnnouncement}
                 onDisapprove={disapproveAnnouncement}
                 onBan={(banCompany)}
+                user={user}
               />
             ))}
           </div>
