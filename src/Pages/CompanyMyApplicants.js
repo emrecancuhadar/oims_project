@@ -38,7 +38,7 @@ function CompanyMyApplicants() {
 
     const approveApplicant = (id) => {
         axios
-          .put(`${process.env.REACT_APP_API_URL}/applicant/{id}/approve`)
+          .put(`${process.env.REACT_APP_API_URL}/company/applicant/${id}/approve`)
           .then((response) => {
             // Update the state to remove the approved company request
             setMyApplicants((prevApplications) =>
@@ -51,7 +51,7 @@ function CompanyMyApplicants() {
       const disapproveApplicant = (id) => {
         axios
           .put(
-            `${process.env.REACT_APP_API_URL}//applicant/{id}/disapprove`
+            `${process.env.REACT_APP_API_URL}/company/applicant/${id}/disapprove`
           )
           .then((response) => {
             // Update the state to remove the disapproved company request
