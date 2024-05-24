@@ -78,7 +78,7 @@ function AdminAnnouncementRequests() {
         
         // Optionally, you could also remove announcements by the banned company
         setAnnouncementRequests((prevAnnouncementRequest) =>
-          prevAnnouncementRequest.filter((announcementRequest) => announcementRequest.documentId !== documentId)
+          prevAnnouncementRequest.filter((announcementRequest) => announcementRequest.companyId !== companyId)
         );
       })
       .catch((error) => console.log(error));
