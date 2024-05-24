@@ -5,10 +5,13 @@ import CompanySidebar from "../components/CompanySidebar";
 import Header from "../components/Header";
 import { UserContext } from "../context/UserProvider";
 import Applicant from "../components/Applicant";
+import Popup from "../components/Popup";
 
 function CompanyMyApplicants() {
     const { user } = useContext(UserContext);
     const [applicants, setMyApplicants] = useState([]);
+    const [isApprovePopupOpen, setApprovePopupOpen] = useState(false);
+    const [isDisapprovePopupOpen, setDisapprovePopupOpen] = useState(false);
 
     useEffect(() => {
       fetchPendingApplicants();
@@ -40,6 +43,7 @@ function CompanyMyApplicants() {
         axios
           .put(`${process.env.REACT_APP_API_URL}/company/applicant/${id}/approve`)
           .then((response) => {
+            setApprovePopupOpen(true);
             // Update the state to remove the approved company request
             setMyApplicants((prevApplications) =>
               prevApplications.filter((application) => application.id !== id)
@@ -54,6 +58,7 @@ function CompanyMyApplicants() {
             `${process.env.REACT_APP_API_URL}/company/applicant/${id}/disapprove`
           )
           .then((response) => {
+            setDisapprovePopupOpen(true);
             // Update the state to remove the disapproved company request
             setMyApplicants((prevApplications) =>
               prevApplications.filter((application) => application.id !== id)
@@ -81,7 +86,20 @@ function CompanyMyApplicants() {
               />
             ))}
           </div>
-
+          {isApprovePopupOpen && (
+        <Popup
+          content={"Applicant is approved"}
+          isOpen={isApprovePopupOpen}
+          setIsOpen={setApprovePopupOpen}
+        />
+      )}
+      {isDisapprovePopupOpen && (
+        <Popup
+          content={"Applicant is disapproved"}
+          isOpen={isDisapprovePopupOpen}
+          setIsOpen={setDisapprovePopupOpen}
+        />
+      )}
         </div>
         </div>
       </div>

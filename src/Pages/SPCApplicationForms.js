@@ -5,6 +5,7 @@ import ApplicationFormRequest from "../components/ApplicationFormRequest";
 import Header from "../components/Header";
 import SPCSidebar from "../components/SPCSideBar";
 import { UserContext } from "../context/UserProvider";
+import Popup from "../components/Popup";
 
 function SPCApplicationForms() {
   const [applicationFormRequests, setApplicationFormRequests] = useState([]);
@@ -89,6 +90,20 @@ function SPCApplicationForms() {
           </div>
         </div>
       </div>
+      {isApprovePopupOpen && (
+        <Popup
+          content={"Application form is approved"}
+          isOpen={isApprovePopupOpen}
+          setIsOpen={setApprovePopupOpen}
+        />
+      )}
+      {isDisapprovePopupOpen && (
+        <Popup
+          content={"Application form is disapproved"}
+          isOpen={isDisapprovePopupOpen}
+          setIsOpen={setDisapprovePopupOpen}
+        />
+      )}
     </div>
   );
 }

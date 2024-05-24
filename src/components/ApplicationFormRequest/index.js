@@ -2,7 +2,6 @@ import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import FeedbackModal from "../FeedbackModal";
-import Popup from "../Popup";
 import styles from "./application-form-request.module.css";
 
 function ApplicationFormRequest({
@@ -11,8 +10,6 @@ function ApplicationFormRequest({
   onDisapprove,
 }) {
   const [isModalOpen, setModalOpen] = useState(false);
-  const [isApprovePopupOpen, setApprovePopupOpen] = useState(false);
-  const [isDisapprovePopupOpen, setDisapprovePopupOpen] = useState(false);
 
   const giveFeedback = () => {
     setModalOpen(true);
@@ -112,20 +109,6 @@ function ApplicationFormRequest({
         closeModal={() => setModalOpen(false)}
         receiver={{ id: ApplicationFormRequest.id, name: "company" }}
       />
-      {isApprovePopupOpen && (
-        <Popup
-          content={"Application form is approved"}
-          isOpen={isApprovePopupOpen}
-          setIsOpen={setApprovePopupOpen}
-        />
-      )}
-      {isDisapprovePopupOpen && (
-        <Popup
-          content={"Application form is disapproved"}
-          isOpen={isDisapprovePopupOpen}
-          setIsOpen={setDisapprovePopupOpen}
-        />
-      )}
     </div>
   );
 }
