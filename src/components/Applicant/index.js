@@ -14,9 +14,29 @@ function Applicant({ applicant, onApprove, onDisapprove}) {
     onDisapprove(applicant.id);
   };
 
+  const showApplicationLetter = () => {
+    const documentBase64 = applicant.applicationLetter;
+
+    if (!documentBase64) {
+      console.error("Document base64 data is missing");
+      return;
+    }
+
+    const binaryString = window.atob(documentBase64);
+    const len = binaryString.length;
+    const bytes = new Uint8Array(len);
+    for (let i = 0; i < len; i++) {
+      bytes[i] = binaryString.charCodeAt(i);
+    }
+
+    const pdfBlob = new Blob([bytes], { type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document" });
+    const pdfUrl = URL.createObjectURL(pdfBlob);
+    window.open(pdfUrl, "_blank");
+  };
+
   return (
     <>
-      <div className={styles.card}>
+      <div className={styles.card} onClick={showApplicationLetter}>
         <div className={styles.left}>
             <h2>{applicant.name}</h2>
             <p><strong>Mail:</strong> {applicant.mail}</p>

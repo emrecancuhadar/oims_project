@@ -21,7 +21,7 @@ function CompanyMyInterns() {
   useEffect(() => {
     console.log("fetch interns");
     fetchInterns();
-  }, [user.id]);
+  }, []);
 
   const fetchInterns = () => {
     axios
