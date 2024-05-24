@@ -23,8 +23,8 @@ function Applicant({ applicant, onApprove, onDisapprove}) {
       <div className={styles.card}>
         <div className={styles.left}>
             <h2>{applicant.name}</h2>
-            <p><strong>Mail:</strong> {applicant.email}</p>
-            <p><strong>Contact:</strong> {applicant.contactNumber}</p>
+            <p><strong>Mail:</strong> {applicant.mail}</p>
+            <p><strong>Contact:</strong> {applicant.phoneNumber}</p>
         </div>
         <div className={styles.right}>
           <FontAwesomeIcon

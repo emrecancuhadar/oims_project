@@ -16,15 +16,15 @@ function CompanyMyApplicants() {
   
     const fetchPendingApplicants = () => {
       axios
-        .get(`${process.env.REACT_APP_API_URL}/{companyId}/applied-internships`)
+        .get(`${process.env.REACT_APP_API_URL}/company/${user.id}/applied-internships`)
         .then((response) => {
           const data = response.data;
           setMyApplicants(
             data.map(
-              ({ applicationId, applicationLetter: {content}, company, student: {fullName, email, contactNumber} }) => ({
+              ({ applicationId, applicationLetter: {content}, student: {fullName, email, contactNumber} }) => ({
                 id: applicationId,
                 name : fullName,
-                mali : email,
+                mail : email,
                 phoneNumber : contactNumber,
                 applicationLetter: content,
               })
@@ -41,8 +41,8 @@ function CompanyMyApplicants() {
           .put(`${process.env.REACT_APP_API_URL}/applicant/{id}/approve`)
           .then((response) => {
             // Update the state to remove the approved company request
-            setMyApplicants((prevRequests) =>
-              prevRequests.filter((request) => request.id !== id)
+            setMyApplicants((prevApplications) =>
+              prevApplications.filter((application) => application.id !== id)
             );
           })
           .catch((error) => console.log(error));
@@ -55,8 +55,8 @@ function CompanyMyApplicants() {
           )
           .then((response) => {
             // Update the state to remove the disapproved company request
-            setMyApplicants((prevRequests) =>
-              prevRequests.filter((request) => request.id !== id)
+            setMyApplicants((prevApplications) =>
+              prevApplications.filter((application) => application.id !== id)
             );
           })
           .catch((error) => console.log(error));
@@ -72,10 +72,10 @@ function CompanyMyApplicants() {
           <h1>My Applicants</h1>
           </div>
         <div className={styles.myApplicantsContainer}>
-            {applicants.map((applicant, index) => (
+            {applicants.map((application, index) => (
               <Applicant
                 key={index}
-                applicant={applicant}
+                applicant={application}
                 onApprove={approveApplicant}
                 onDisapprove={disapproveApplicant}
               />
