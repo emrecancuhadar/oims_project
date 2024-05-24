@@ -7,6 +7,7 @@ import CompanySidebar from "../components/CompanySidebar";
 import Header from "../components/Header";
 import InternCard from "../components/InternCard";
 import Popup from "../components/Popup";
+import StatusFilterAccordion from "../components/StatusFilterAccordion";
 import { UserContext } from "../context/UserProvider";
 
 function CompanyMyInterns() {
@@ -29,12 +30,15 @@ function CompanyMyInterns() {
       .then((response) => {
         const data = response.data;
         setInterns(
-          data.map(({ id, fullName, email, contactNumber }) => ({
-            id,
-            name: fullName,
-            mail: email,
-            phoneNumber: contactNumber,
-          }))
+          data.map(
+            ({ student: { id, fullName, email, contactNumber }, status }) => ({
+              id,
+              name: fullName,
+              mail: email,
+              phoneNumber: contactNumber,
+              status,
+            })
+          )
         );
       })
       .catch((error) => {
@@ -84,13 +88,10 @@ function CompanyMyInterns() {
               Add Intern
             </button>
           </div>
-          <div className={styles.homepageContainer}>
-            <div>
-              {interns.map((student, index) => (
-                <InternCard key={index} student={student} />
-              ))}
-            </div>
-          </div>
+          <StatusFilterAccordion
+            data={interns}
+            ItemComponent={({ item }) => <InternCard student={item} />}
+          />
         </div>
       </div>
       <Modal open={open} onClose={handleClose}>

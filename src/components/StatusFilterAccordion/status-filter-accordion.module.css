@@ -1,0 +1,27 @@
+.sectionHeader {
+  position: sticky;
+  padding: 10px 0;
+  border-top: 1px solid #ddd;
+}
+
+.toggleButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px;
+  text-align: left;
+  font-style: italic;
+}
+
+.toggleButton:hover {
+  background-color: white;
+}
+
+.sectionContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 0 10% 0 10%;
+  justify-content: flex-start;
+}

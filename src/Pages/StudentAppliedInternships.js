@@ -5,6 +5,7 @@ import styles from "../CSS/StudentAppliedInternships.module.css";
 import AppliedInternship from "../components/AppliedInternship";
 import Header from "../components/Header";
 import Popup from "../components/Popup";
+import StatusFilterAccordion from "../components/StatusFilterAccordion";
 import StudentSidebar from "../components/StudentSidebar";
 import { UserContext } from "../context/UserProvider";
 
@@ -102,31 +103,12 @@ function StudentAppliedInternships() {
               )}
             </form>
           </Modal>
-          {["ACCEPTED", "PENDING", "REJECTED"].map((section) => (
-            <div key={section}>
-              <div className={styles.sectionHeader}>
-                <button
-                  onClick={() => toggleSection(section)}
-                  className={styles.toggleButton}
-                >
-                  {visibleSections[section] ? "▼" : "►"}{" "}
-                  {section.charAt(0).toUpperCase() + section.slice(1)}
-                </button>
-              </div>
-              {visibleSections[section] && (
-                <div className={styles.appliedContainer}>
-                  {appliedInternships
-                    .filter((internship) => internship.status === section)
-                    .map((internship) => (
-                      <AppliedInternship
-                        key={internship.id}
-                        internship={internship}
-                      />
-                    ))}
-                </div>
-              )}
-            </div>
-          ))}
+          <StatusFilterAccordion
+            data={appliedInternships}
+            ItemComponent={({ item }) => (
+              <AppliedInternship internship={item} />
+            )}
+          />
         </div>
       </div>
     </div>
