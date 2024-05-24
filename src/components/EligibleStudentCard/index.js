@@ -4,12 +4,9 @@ import { UserContext } from "../../context/UserProvider";
 import Popup from "../Popup";
 import styles from "./eligible-student.module.css";
 
-function FileUploader({ studentId, studentEmail, setPopupOpen }) {
-  // Create a reference to the hidden file input element
+function FileUploader({ studentId, studentEmail, setPopupOpen, setError }) {
   const hiddenFileInput = useRef(null);
 
-  // Programatically click the hidden file input element
-  // when the Button component is clicked
   const handleClick = () => {
     hiddenFileInput.current.click();
   };
@@ -32,6 +29,7 @@ function FileUploader({ studentId, studentEmail, setPopupOpen }) {
       .then((response) => {
         console.log(response.data);
         setPopupOpen(true);
+        setError(""); // Clear any existing error when upload is successful
         axios.post(
           `${process.env.REACT_APP_API_URL}/feedback/iztech-user/${studentId}`,
           {
@@ -39,15 +37,19 @@ function FileUploader({ studentId, studentEmail, setPopupOpen }) {
           }
         );
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        if (error.response && error.response.status === 400) {
+          setError(error.response.data);
+        }
+        console.error("Error uploading the announcement:", error);
+      });
   };
 
-  // Call a function (passed as a prop from the parent component)
-  // to handle the user-selected file
   const handleChange = (event) => {
     const fileUploaded = event.target.files[0];
     uploadFile(fileUploaded);
   };
+
   return (
     <>
       <button className={styles.uploadBtn} onClick={handleClick}>
@@ -66,6 +68,7 @@ function FileUploader({ studentId, studentEmail, setPopupOpen }) {
 function EligibleStudentCard({ student }) {
   const { user } = useContext(UserContext);
   const [popupOpen, setPopupOpen] = useState(false);
+  const [error, setError] = useState("");
 
   return (
     <div className={styles.card}>
@@ -88,8 +91,10 @@ function EligibleStudentCard({ student }) {
             studentId={student.id}
             studentEmail={student.email}
             setPopupOpen={setPopupOpen}
+            setError={setError}
           />
         </div>
+        {error && <p style={{ color: "red" }}>{error}</p>}
       </div>
       {popupOpen && (
         <Popup

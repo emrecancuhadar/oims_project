@@ -5,7 +5,7 @@ import { UserContext } from "../../context/UserProvider";
 import Popup from "../Popup";
 import styles from "./intern-card.module.css";
 
-function FileUploader({ companyId, studentEmail, setPopupOpen }) {
+function FileUploader({ companyId, studentEmail, setPopupOpen, setError}) {
   // Create a reference to the hidden file input element
   const hiddenFileInput = useRef(null);
 
@@ -35,7 +35,12 @@ function FileUploader({ companyId, studentEmail, setPopupOpen }) {
         console.log(response.data);
         setPopupOpen(true);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        if (error.response && error.response.status === 400) {
+          setError(error.response.data);
+        }
+        console.error("Error uploading the announcement:", error);
+      });
   };
 
   // Call a function (passed as a prop from the parent component)
@@ -62,6 +67,7 @@ function FileUploader({ companyId, studentEmail, setPopupOpen }) {
 function InternCard({ student, isPending }) {
   const { user } = useContext(UserContext);
   const [popupOpen, setPopupOpen] = useState(false);
+  const [error, setError] = useState("");
 
   const downloadApplicationForm = () => {
     const formData = new FormData();
@@ -131,8 +137,10 @@ function InternCard({ student, isPending }) {
               companyId={user.id}
               studentEmail={student.mail}
               setPopupOpen={setPopupOpen}
+              setError={setError}
             />
           </div>
+          {error && <p style={{ color: "red" }}>{error}</p>}
           <div className={styles.buttons}>
             <button
               className={styles.downloadBtn}
