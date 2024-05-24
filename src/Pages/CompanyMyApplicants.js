@@ -1,79 +1,65 @@
-import Modal from "@mui/material/Modal";
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import styles from "../CSS/CompanyMyApplicants.module.css";
 import CompanySidebar from "../components/CompanySidebar";
 import Header from "../components/Header";
-import InternCard from "../components/InternCard";
-import Popup from "../components/Popup";
 import { UserContext } from "../context/UserProvider";
 import Applicant from "../components/Applicant";
 
 function CompanyMyApplicants() {
     const { user } = useContext(UserContext);
-    const [applicants, setMyApplicants] = useState([
-        {
-            id: 1,
-            name: 'Çağan',
-            email: 'caganozsir@std.iyte.edu.tr',
-            contact: '0555 555 55 55',
-        },
-        {
-            id: 2,
-            name: 'Çağan',
-            email: 'caganozsir@std.iyte.edu.tr',
-            contact: '0555 555 55 55',
-        },
-        {
-            id: 3,
-            name: 'Çağan',
-            email: 'caganozsir@std.iyte.edu.tr',
-            contact: '0555 555 55 55',
-        },
-        {
-            id: 4,
-            name: 'Çağan',
-            email: 'caganozsir@std.iyte.edu.tr',
-            contact: '0555 555 55 55',
-        },
-        {
-            id: 3,
-            name: 'Çağan',
-            email: 'caganozsir@std.iyte.edu.tr',
-            contact: '0555 555 55 55',
-        },
-        {
-            id: 3,
-            name: 'Çağan',
-            email: 'caganozsir@std.iyte.edu.tr',
-            contact: '0555 555 55 55',
-        },
-    ]);
+    const [applicants, setMyApplicants] = useState([]);
+
+    useEffect(() => {
+      fetchPendingApplicants();
+    }, []);
+  
+    const fetchPendingApplicants = () => {
+      axios
+        .get(`${process.env.REACT_APP_API_URL}/{companyId}/applied-internships`)
+        .then((response) => {
+          const data = response.data;
+          setMyApplicants(
+            data.map(
+              ({ applicationId, applicationLetter: {content}, company, student: {fullName, email, contactNumber} }) => ({
+                id: applicationId,
+                name : fullName,
+                mali : email,
+                phoneNumber : contactNumber,
+                applicationLetter: content,
+              })
+            )
+          );
+        })
+        .catch((error) => {
+          console.error("Error fetching announcement requests:", error);
+        });
+    };
 
     const approveApplicant = (id) => {
-        /*axios
-          .put(`${process.env.REACT_APP_API_URL}/systemadmin/company/${id}/approve`)
+        axios
+          .put(`${process.env.REACT_APP_API_URL}/applicant/{id}/approve`)
           .then((response) => {
             // Update the state to remove the approved company request
-            setCompanyRequests((prevRequests) =>
+            setMyApplicants((prevRequests) =>
               prevRequests.filter((request) => request.id !== id)
             );
           })
-          .catch((error) => console.log(error));*/
+          .catch((error) => console.log(error));
       };
     
       const disapproveApplicant = (id) => {
-        /*axios
+        axios
           .put(
-            `${process.env.REACT_APP_API_URL}/systemadmin/company/${id}/disapprove`
+            `${process.env.REACT_APP_API_URL}//applicant/{id}/disapprove`
           )
           .then((response) => {
             // Update the state to remove the disapproved company request
-            setCompanyRequests((prevRequests) =>
+            setMyApplicants((prevRequests) =>
               prevRequests.filter((request) => request.id !== id)
             );
           })
-          .catch((error) => console.log(error));*/
+          .catch((error) => console.log(error));
       };
 
   return (

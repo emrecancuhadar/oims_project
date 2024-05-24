@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import FeedbackModal from "../FeedbackModal";
 import styles from "./announcement-request.module.css";
+import Popup from "../Popup";
 
 function AnnouncementRequest({
   announcementRequest,
@@ -12,6 +13,9 @@ function AnnouncementRequest({
   user,
 }) {
   const [isModalOpen, setModalOpen] = useState(false);
+  const [approvePopupOpen, setApprovePopupOpen] = useState(false);
+  const [disapprovePopupOpen, setDisapprovePopupOpen] = useState(false);
+  const [banPopupOpen, setBanPopupOpen] = useState(false);
 
   const showAnnouncementRequest = () => {
     const documentBase64 = announcementRequest.content;
@@ -41,14 +45,17 @@ function AnnouncementRequest({
 
   const approveAnnouncementRequest = () => {
     onApprove(announcementRequest.documentId);
+    setApprovePopupOpen(true);
   };
 
   const disapproveAnnouncementRequest = () => {
     onDisapprove(announcementRequest.documentId);
+    setDisapprovePopupOpen(true);
   };
 
-  const banCompanyRequest = () => {
+  const banAnnouncementRequest = () => {
     onBan(announcementRequest.companyId);
+    setBanPopupOpen(true);
   };
 
   const giveFeedback = () => {
@@ -84,7 +91,7 @@ function AnnouncementRequest({
               className={styles.banBtn}
               onClick={(event) => {
                 event.stopPropagation();
-                banCompanyRequest();
+                banAnnouncementRequest();
               }}
             >
               Ban
@@ -119,6 +126,27 @@ function AnnouncementRequest({
         closeModal={() => setModalOpen(false)}
         receiver={{ id: user.id, name: user.role }}
       />
+      {approvePopupOpen && (
+          <Popup
+            content={"Announcement is approved"}
+            isOpen={approvePopupOpen}
+            setIsOpen={setApprovePopupOpen}
+          />
+        )}
+        {disapprovePopupOpen && (
+          <Popup
+            content={"Announcement is disapproved"}
+            isOpen={disapprovePopupOpen}
+            setIsOpen={setDisapprovePopupOpen}
+          />
+        )}
+        {banPopupOpen && (
+          <Popup
+            content={"Company is banned"}
+            isOpen={banPopupOpen}
+            setIsOpen={setBanPopupOpen}
+          />
+        )}
     </>
   );
 }

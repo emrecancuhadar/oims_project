@@ -16,7 +16,6 @@ import SystemAdminHomepage from "./Pages/SystemAdminHomePage";
 import UserSelection from "./Pages/UserSelection";
 import CompanyMyApplicants from "./Pages/CompanyMyApplicants";
 import CompanyMyInterns from "./Pages/CompanyMyInterns";
-import CompanyInternshipApplications from "./Pages/CompanyInternshipApplications";
 import StudentAppliedInternships from "./Pages/StudentAppliedInternships";
 import StudentMyDocuments from "./Pages/StudentMyDocuments";
 import SPCHomepage from "./Pages/SPCHomepage";
@@ -42,10 +41,6 @@ function App() {
           <Route
             path="/company/my-announcements"
             element={<CompanyMyAnnouncements />}
-          />
-          <Route
-            path="/company/internship-applications"
-            element={<CompanyInternshipApplications />}
           />
           <Route
             path="/company/my-applicants"
