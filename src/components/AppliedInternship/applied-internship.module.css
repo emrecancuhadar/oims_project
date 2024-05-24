@@ -126,3 +126,9 @@
 .popupCnfBtn:hover {
   background-color: #d12d2d;
 }
+
+.acceptedApplicationStatus {
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+}

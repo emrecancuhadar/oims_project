@@ -16,11 +16,16 @@ const StyledBadge = styled(Badge)(() => ({
 }));
 
 function NotificationItem({ notification, onClose }) {
+  console.log(notification);
   return (
     <div className={styles.notificationItem}>
       <div className={styles.notificationContent}>
-        <span style={{ fontWeight: "bold" }}>{notification.title}</span>
-        <div className={styles.line}></div>
+        {notification.title && (
+          <>
+            <span style={{ fontWeight: "bold" }}>{notification.title}</span>
+            <div className={styles.line}></div>
+          </>
+        )}
         <span>{notification.content}</span>
       </div>
       <button
@@ -37,6 +42,10 @@ function Notification() {
   const { user } = useContext(UserContext);
   const [isOpen, setOpen] = useState(false);
   const [notifications, setNotifications] = useState([]);
+
+  useEffect(() => {
+    console.log("not", notifications);
+  }, [notifications]);
 
   useEffect(() => {
     if (user) {
@@ -107,14 +116,10 @@ function Notification() {
       >
         {notifications &&
           notifications.map((notification, index) => (
-            <>
-              <NotificationItem
-                key={notification.id}
-                notification={notification}
-                onClose={onClose}
-              />
+            <React.Fragment key={index}>
+              <NotificationItem notification={notification} onClose={onClose} />
               {index !== notifications.length - 1 && <hr />}
-            </>
+            </React.Fragment>
           ))}
       </div>
     </div>
