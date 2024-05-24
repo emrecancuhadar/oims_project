@@ -1,6 +1,5 @@
 import EditIcon from "@mui/icons-material/Edit";
 import { Modal } from "@mui/material";
-import axios from "axios";
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/UserProvider";
@@ -10,6 +9,7 @@ import styles from "./header.module.css";
 
 function UpdateProfileModal({
   user,
+  updateProfile,
   updateProfileModalOpen,
   setUpdateProfileModalOpen,
 }) {
@@ -19,22 +19,7 @@ function UpdateProfileModal({
 
   const saveProfile = (event) => {
     event.preventDefault();
-
-    const formData = new FormData();
-    formData.append("name", name);
-    formData.append("email", email);
-    axios
-      .put(
-        `${process.env.REACT_APP_API_URL}/company/changeInformation/${user.id}`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      )
-      .then((response) => setUpdatedPopupOpen(true))
-      .catch((error) => console.log(error));
+    updateProfile(name, email);
   };
 
   return (
@@ -95,8 +80,8 @@ function UpdateProfileModal({
 
 function Header({ username }) {
   const navigate = useNavigate();
-  const { user, logoutUser } = useContext(UserContext);
-  const [updateProfileModalOpen, setUpdateProfileModalOpen] = useState(true);
+  const { user, logoutUser, updateProfile } = useContext(UserContext);
+  const [updateProfileModalOpen, setUpdateProfileModalOpen] = useState(false);
   const [logoutPopupOpen, setLogoutPopupOpen] = useState(false);
 
   const onLogout = () => {
@@ -140,6 +125,7 @@ function Header({ username }) {
       {user.role === "company" && (
         <UpdateProfileModal
           user={user}
+          updateProfile={updateProfile}
           updateProfileModalOpen={updateProfileModalOpen}
           setUpdateProfileModalOpen={setUpdateProfileModalOpen}
         />
