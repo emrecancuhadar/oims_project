@@ -15,7 +15,7 @@ function Applicant({ applicant, onApprove, onDisapprove}) {
   };
 
   const showApplicationLetter = () => {
-    const documentBase64 = applicant.content;
+    const documentBase64 = applicant.applicationLetter;
 
     if (!documentBase64) {
       console.error("Document base64 data is missing");
@@ -29,7 +29,7 @@ function Applicant({ applicant, onApprove, onDisapprove}) {
       bytes[i] = binaryString.charCodeAt(i);
     }
 
-    const pdfBlob = new Blob([bytes], { type: "application/pdf" });
+    const pdfBlob = new Blob([bytes], { type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document" });
     const pdfUrl = URL.createObjectURL(pdfBlob);
     window.open(pdfUrl, "_blank");
   };
