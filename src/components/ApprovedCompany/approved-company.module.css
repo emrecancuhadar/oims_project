@@ -1,0 +1,81 @@
+.card {
+    display: flex;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    background: #fff;
+    margin: 15px;
+    cursor:pointer;
+    
+  }
+  
+  .card h2 {
+    font-size: 24px;
+    font-weight: bolder;
+    margin: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width:230px; /* some width */
+  }
+  
+  .card p {
+    margin: 0;
+  }
+  
+  .left {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .buttons button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .banBtn {
+    background-color: #d82638;
+  }
+  
+  .banBtn:hover {
+    background-color: #db3445;
+  }
+  
+  .buttons button:last-child {
+    margin-right: 0;
+  }
+  
+  .feedbackBtn:hover {
+    background-color: rgb(224, 131, 55);
+  }
+  
+  .feedbackBtn {
+    background-color: rgb(238, 109, 3);
+  }
+  
+  .altTextInfo {
+    display: flex;
+    gap: 5px;
+    margin: 0;
+    width: fit-content;
+  
+  }
+  
+  .companyUpperDiv {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .left {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  

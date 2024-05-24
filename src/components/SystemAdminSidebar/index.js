@@ -18,6 +18,12 @@ function SystemAdminSidebar() {
             Home
           </button>
           <button
+            onClick={() => navigate("/admin/companies")}
+            className="btn btn-light w-100 mt-2 pt-2 pb-2"
+          >
+            Companies
+          </button>
+          <button
             onClick={() => navigate("/admin/registrationrequests")}
             className="btn btn-light w-100 mt-2 pt-2 pb-2"
           >

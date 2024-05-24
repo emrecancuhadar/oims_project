@@ -22,6 +22,7 @@ import SPCHomepage from "./Pages/SPCHomepage";
 import SPCApplicationForms from "./Pages/SPCApplicationForms";
 import DepSecHomepage from "./Pages/DepSecHomepage";
 import DepSecEligibleStudents from "./Pages/DepSecEligibleStudents";
+import AdminCompanies from "./Pages/AdminCompanies";
 
 function App() {
   return (
@@ -69,6 +70,10 @@ function App() {
           <Route
             path="/admin/registrationrequests"
             element={<AdminRegistrationRequests />}
+          />
+          <Route
+            path="/admin/companies"
+            element={<AdminCompanies />}
           />
           <Route path="/spc/home" element={<SPCHomepage />} />
           <Route
