@@ -79,7 +79,12 @@ function CompanyAnnouncement({ announcement, onDelete }) {
         setEditPopupOpen(true);
         setOpen(false);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        if (error.response && error.response.status === 400) {
+          setError(error.response.data);
+        }
+        console.error("Error uploading the announcement:", error);
+      });
   };
 
   const handleDelete = () => {
