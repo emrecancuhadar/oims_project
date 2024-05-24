@@ -39,37 +39,37 @@ function AdminAnnouncementRequests() {
       });
   };
 
-  const approveAnnouncement = (id) => {
+  const approveAnnouncement = (documentId) => {
     axios
       .put(
-        `${process.env.REACT_APP_API_URL}/systemadmin/document/${id}/approve`
+        `${process.env.REACT_APP_API_URL}/systemadmin/document/${documentId}/approve`
       )
       .then((response) => {
         
         // Update the state to remove the approved announcement
-        setAnnouncementRequests((prevRequests) =>
-          prevRequests.filter((request) => request.id !== id)
+        setAnnouncementRequests((prevAnnouncementRequest) =>
+          prevAnnouncementRequest.filter((announcementRequest) => announcementRequest.documentId !== documentId)
         );
       })
       .catch((error) => console.log(error));
   };
 
-  const disapproveAnnouncement = (id) => {
+  const disapproveAnnouncement = (documentId) => {
     axios
       .put(
-        `${process.env.REACT_APP_API_URL}/systemadmin/document/${id}/disapprove`
+        `${process.env.REACT_APP_API_URL}/systemadmin/document/${documentId}/disapprove`
       )
       .then((response) => {
         
         // Update the state to remove the disapproved announcement
-        setAnnouncementRequests((prevRequests) =>
-          prevRequests.filter((request) => request.id !== id)
+        setAnnouncementRequests((prevAnnouncementRequest) =>
+          prevAnnouncementRequest.filter((announcementRequest) => announcementRequest.documentId !== documentId)
         );
       })
       .catch((error) => console.log(error));
   };
 
-  const banCompany = (companyId) => {
+  const banCompany = (companyId, documentId) => {
     axios
       .put(
         `${process.env.REACT_APP_API_URL}/systemadmin/company/${companyId}/ban`
@@ -77,8 +77,8 @@ function AdminAnnouncementRequests() {
       .then((response) => {
         
         // Optionally, you could also remove announcements by the banned company
-        setAnnouncementRequests((prevRequests) =>
-          prevRequests.filter((request) => request.companyId !== companyId)
+        setAnnouncementRequests((prevAnnouncementRequest) =>
+          prevAnnouncementRequest.filter((announcementRequest) => announcementRequest.documentId !== documentId)
         );
       })
       .catch((error) => console.log(error));
@@ -99,7 +99,6 @@ function AdminAnnouncementRequests() {
                 onApprove={approveAnnouncement}
                 onDisapprove={disapproveAnnouncement}
                 onBan={banCompany}
-                user={user}
               />
             ))}
           </div>

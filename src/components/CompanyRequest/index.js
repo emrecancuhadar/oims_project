@@ -22,8 +22,8 @@ function CompanyRequest({ companyRequest, onApprove, onDisapprove, onBan }) {
   };
 
   const banCompanyRequest = () => {
-    onBan(companyRequest.id);
     setBanPopupOpen(true);
+    onBan(companyRequest.id);
   };
 
   return (

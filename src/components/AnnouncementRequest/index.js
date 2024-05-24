@@ -10,7 +10,6 @@ function AnnouncementRequest({
   onApprove,
   onDisapprove,
   onBan,
-  user,
 }) {
   const [isModalOpen, setModalOpen] = useState(false);
   const [approvePopupOpen, setApprovePopupOpen] = useState(false);
@@ -54,7 +53,7 @@ function AnnouncementRequest({
   };
 
   const banAnnouncementRequest = () => {
-    onBan(announcementRequest.companyId);
+    onBan(announcementRequest.companyId, announcementRequest.id);
     setBanPopupOpen(true);
   };
 
