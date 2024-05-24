@@ -20,7 +20,7 @@ function AppliedInternship({ internship }) {
     event.stopPropagation();
     const formData = new FormData();
     formData.append("studentId", user.id);
-    formData.append("companyEmail", internship.companyEmail);
+    formData.append("announcementId", internship.id);
     axios
       .post(
         `${process.env.REACT_APP_API_URL}/internship-registration/register`,
@@ -104,14 +104,19 @@ function AppliedInternship({ internship }) {
           </p>
         </div>
 
-        {internship.status === "ACCEPTED" && (
-          <button
-            onClick={handleRegisterInitiate}
-            className={styles.registerBtn}
-          >
-            Register
-          </button>
-        )}
+        {internship.status === "ACCEPTED" &&
+          (internship.registrationStatus === "ACCEPTED" ? (
+            <p className={styles.acceptedApplicationStatus}>Registered</p>
+          ) : internship.registrationStatus === "REJECTED" ? (
+            <p className={styles.acceptedApplicationStatus}>Rejected</p>
+          ) : (
+            <button
+              onClick={handleRegisterInitiate}
+              className={styles.registerBtn}
+            >
+              Register
+            </button>
+          ))}
         {registerPopupOpen && (
           <Popup
             content={<RegistrationConfirmationContent />}

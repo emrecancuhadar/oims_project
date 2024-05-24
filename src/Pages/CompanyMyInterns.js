@@ -1,12 +1,10 @@
 // Main page
-import Modal from "@mui/material/Modal";
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import styles from "../CSS/CompanyMyInterns.module.css";
 import CompanySidebar from "../components/CompanySidebar";
 import Header from "../components/Header";
 import InternCard from "../components/InternCard";
-import Popup from "../components/Popup";
 import StatusFilterAccordion from "../components/StatusFilterAccordion";
 import { UserContext } from "../context/UserProvider";
 
@@ -83,48 +81,12 @@ function CompanyMyInterns() {
           <div className={styles.titleContainer}>
             <h1>My Interns</h1>
           </div>
-          <div className={styles.addInternContainer}>
-            <button className={styles.addInternBtn} onClick={handleOpen}>
-              Add Intern
-            </button>
-          </div>
           <StatusFilterAccordion
             data={interns}
             ItemComponent={({ item }) => <InternCard student={item} />}
           />
         </div>
       </div>
-      <Modal open={open} onClose={handleClose}>
-        <form onSubmit={handleSubmit} className={styles.modal}>
-          <h1>Enter the e-mail of the intern</h1>
-          <input
-            type="text"
-            placeholder="Enter intern email"
-            className={styles.emailInput}
-            value={email}
-            onChange={handleEmailChange}
-            title="Please enter a valid email address."
-            required
-          />
-          <button type="submit" className={styles.sendButton}>
-            Add Intern
-          </button>
-          {popupOpen && (
-            <Popup
-              content={"Intern added successfully"}
-              isOpen={popupOpen}
-              setIsOpen={setPopupOpen}
-            />
-          )}
-          {errorPopupOpen && (
-            <Popup
-              content={errorMessage}
-              isOpen={errorPopupOpen}
-              setIsOpen={setErrorPopupOpen}
-            />
-          )}
-        </form>
-      </Modal>
     </div>
   );
 }

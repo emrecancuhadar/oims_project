@@ -111,12 +111,14 @@ function Header({ username }) {
   return (
     <div className={styles.header}>
       <span className={styles.username}>{username}</span>
-      <button
-        className={styles.updateBtn}
-        onClick={() => setUpdateProfileModalOpen(true)}
-      >
-        <EditIcon style={{ color: "#757575" }} />
-      </button>
+      {user.role === "company" && (
+        <button
+          className={styles.updateBtn}
+          onClick={() => setUpdateProfileModalOpen(true)}
+        >
+          <EditIcon style={{ color: "#757575" }} />
+        </button>
+      )}
       <Notification />
       <button
         className={styles.logoutBtn}

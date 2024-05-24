@@ -13,12 +13,6 @@ function StudentAppliedInternships() {
   const { user } = useContext(UserContext);
   const [appliedInternships, setAppliedInternships] = useState([]);
 
-  const [visibleSections, setVisibleSections] = useState({
-    accepted: true,
-    pending: true,
-    rejected: true,
-  });
-
   const [emailModalOpen, setEmailModalOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [popupOpen, setPopupOpen] = useState(false);
@@ -33,10 +27,6 @@ function StudentAppliedInternships() {
     event.preventDefault();
     setPopupOpen(true);
     setEmail("");
-  };
-
-  const toggleSection = (section) => {
-    setVisibleSections((prev) => ({ ...prev, [section]: !prev[section] }));
   };
 
   useEffect(() => {
@@ -58,6 +48,7 @@ function StudentAppliedInternships() {
                 ? application.company.email
                 : application.announcement.company.email,
               applicationDate: application.applicationDate,
+              registrationStatus: application.internshipRegistration?.status,
             };
           })
         );
@@ -72,12 +63,6 @@ function StudentAppliedInternships() {
         <div className={styles.page}>
           <div className={styles.titleContainer}>
             <h1>Applied Internships</h1>
-            <button
-              onClick={handleEmailModalOpen}
-              className={styles.sendEmailButton}
-            >
-              Send Email
-            </button>
           </div>
           <Modal open={emailModalOpen} onClose={handleEmailModalClose}>
             <form onSubmit={sendEmail} className={styles.modal}>
