@@ -19,7 +19,9 @@ function UpdateProfileModal({
 
   const saveProfile = (event) => {
     event.preventDefault();
-    updateProfile(name, email);
+    updateProfile(name, email)
+      .then(() => setUpdatedPopupOpen(true))
+      .catch((error) => console.error("Error updating profile:", error));
   };
 
   return (
