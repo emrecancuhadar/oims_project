@@ -124,7 +124,7 @@ function AnnouncementRequest({
       <FeedbackModal
         isModalOpen={isModalOpen}
         closeModal={() => setModalOpen(false)}
-        receiver={{ id: user.id, name: user.role }}
+        receiver={{ id: announcementRequest.id, name: "announcement" }}
       />
       {approvePopupOpen && (
           <Popup
