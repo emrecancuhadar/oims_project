@@ -15,11 +15,14 @@ const StyledBadge = styled(Badge)(() => ({
   },
 }));
 
-function NotificationItem({ notification }) {
+function NotificationItem({ notification, onClose }) {
   return (
     <div className={styles.notificationItem}>
-      {notification}
-      <CloseIcon style={{ marginLeft: "auto" }} />
+      <span>{notification.topic}</span>
+      <span>{notification.content}</span>
+      <button onClick={() => onClose(notification.id)}>
+        <CloseIcon style={{ marginLeft: "auto" }} />
+      </button>
     </div>
   );
 }
@@ -43,9 +46,9 @@ function Notification() {
         .then((response) => {
           const notificationData = response.data;
           setNotifications(
-            notificationData.map(({ id, role, content }) => ({
+            notificationData.map(({ id, topic, content }) => ({
               id,
-              role,
+              topic,
               content,
             }))
           );
@@ -53,6 +56,13 @@ function Notification() {
         .catch((error) => console.log(error));
     }
   }, [user]);
+
+  const onClose = (id) => {
+    axios
+      .put(`${process.env.REACT_APP_API_URL}/feedback/${user.role}/hide/${id}`)
+      .then((response) => console.log(response))
+      .catch((error) => console.log(error));
+  };
 
   return (
     <div className={styles.notificationIcon}>
@@ -75,8 +85,8 @@ function Notification() {
             <>
               <NotificationItem
                 key={notification.id}
-                
-                notification={notification.content}
+                notification={notification}
+                onClose={onClose}
               />
               {index !== notifications.length - 1 && <hr />}
             </>

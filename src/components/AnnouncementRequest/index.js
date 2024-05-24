@@ -1,11 +1,16 @@
 import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import axios from "axios";
 import React, { useState } from "react";
 import FeedbackModal from "../FeedbackModal";
 import styles from "./announcement-request.module.css";
 
-function AnnouncementRequest({ announcementRequest, onApprove, onDisapprove, onBan, user }) {
+function AnnouncementRequest({
+  announcementRequest,
+  onApprove,
+  onDisapprove,
+  onBan,
+  user,
+}) {
   const [isModalOpen, setModalOpen] = useState(false);
 
   const showAnnouncementRequest = () => {
@@ -35,11 +40,11 @@ function AnnouncementRequest({ announcementRequest, onApprove, onDisapprove, onB
   };
 
   const approveAnnouncementRequest = () => {
-    onApprove(announcementRequest.id);
+    onApprove(announcementRequest.documentId);
   };
 
   const disapproveAnnouncementRequest = () => {
-    onDisapprove(announcementRequest.id);
+    onDisapprove(announcementRequest.documentId);
   };
 
   const banCompanyRequest = () => {
@@ -119,4 +124,3 @@ function AnnouncementRequest({ announcementRequest, onApprove, onDisapprove, onB
 }
 
 export default AnnouncementRequest;
- 

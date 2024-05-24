@@ -3,9 +3,9 @@ import React, { useContext, useEffect, useState } from "react";
 import styles from "../CSS/AdminAnnouncementRequests.module.css";
 import AnnouncementRequest from "../components/AnnouncementRequest";
 import Header from "../components/Header";
+import Popup from "../components/Popup";
 import SystemAdminSidebar from "../components/SystemAdminSidebar";
 import { UserContext } from "../context/UserProvider";
-import Popup from "../components/Popup";
 
 function AdminAnnouncementRequests() {
   const [announcementRequests, setAnnouncementRequests] = useState([]);
@@ -24,24 +24,29 @@ function AdminAnnouncementRequests() {
       .then((response) => {
         const data = response.data;
         setAnnouncementRequests(
-          data.map(({ announcementId, title, deadline, document, company }) => ({
-            id: announcementId,
-            title,
-            deadline,
-            content: document.content,
-            companyId: company.id,
-            companyName: company.companyName
-          }))
+          data.map(
+            ({ announcementId, title, deadline, document, company }) => ({
+              id: announcementId,
+              title,
+              deadline,
+              content: document.content,
+              companyId: company.id,
+              companyName: company.companyName,
+              documentId: document.documentId,
+            })
+          )
         );
       })
       .catch((error) => {
-        console.error('Error fetching announcement requests:', error);
+        console.error("Error fetching announcement requests:", error);
       });
   };
 
   const approveAnnouncement = (id) => {
     axios
-      .put(`${process.env.REACT_APP_API_URL}/systemadmin/document/${id}/approve`)
+      .put(
+        `${process.env.REACT_APP_API_URL}/systemadmin/document/${id}/approve`
+      )
       .then((response) => {
         setApprovePopupOpen(true);
         // Update the state to remove the approved announcement
@@ -54,7 +59,9 @@ function AdminAnnouncementRequests() {
 
   const disapproveAnnouncement = (id) => {
     axios
-      .put(`${process.env.REACT_APP_API_URL}/systemadmin/document/${id}/disapprove`)
+      .put(
+        `${process.env.REACT_APP_API_URL}/systemadmin/document/${id}/disapprove`
+      )
       .then((response) => {
         setDisapprovePopupOpen(true);
         // Update the state to remove the disapproved announcement
@@ -67,7 +74,9 @@ function AdminAnnouncementRequests() {
 
   const banCompany = (companyId) => {
     axios
-      .put(`${process.env.REACT_APP_API_URL}/systemadmin/company/${companyId}/ban`)
+      .put(
+        `${process.env.REACT_APP_API_URL}/systemadmin/company/${companyId}/ban`
+      )
       .then((response) => {
         setBanPopupOpen(true);
         // Optionally, you could also remove announcements by the banned company
@@ -92,33 +101,33 @@ function AdminAnnouncementRequests() {
                 announcementRequest={announcementRequest}
                 onApprove={approveAnnouncement}
                 onDisapprove={disapproveAnnouncement}
-                onBan={(banCompany)}
+                onBan={banCompany}
                 user={user}
               />
             ))}
           </div>
         </div>
         {approvePopupOpen && (
-        <Popup
-          content={'Announcement is approved'}
-          isOpen={approvePopupOpen}
-          setIsOpen={setApprovePopupOpen}
-        />
-      )}
+          <Popup
+            content={"Announcement is approved"}
+            isOpen={approvePopupOpen}
+            setIsOpen={setApprovePopupOpen}
+          />
+        )}
         {disapprovePopupOpen && (
-        <Popup
-          content={'Announcement is disapproved'}
-          isOpen={disapprovePopupOpen}
-          setIsOpen={setDisapprovePopupOpen}
-        />
-      )}
+          <Popup
+            content={"Announcement is disapproved"}
+            isOpen={disapprovePopupOpen}
+            setIsOpen={setDisapprovePopupOpen}
+          />
+        )}
         {banPopupOpen && (
-        <Popup
-          content={'Company is banned'}
-          isOpen={banPopupOpen}
-          setIsOpen={setBanPopupOpen}
-        />
-      )}
+          <Popup
+            content={"Company is banned"}
+            isOpen={banPopupOpen}
+            setIsOpen={setBanPopupOpen}
+          />
+        )}
       </div>
     </div>
   );
