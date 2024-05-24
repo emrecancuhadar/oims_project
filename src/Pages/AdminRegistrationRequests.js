@@ -5,10 +5,14 @@ import CompanyRequest from "../components/CompanyRequest";
 import Header from "../components/Header";
 import SystemAdminSidebar from "../components/SystemAdminSidebar";
 import { UserContext } from "../context/UserProvider";
+import Popup from "../components/Popup";
 
 function AdminRegistrationRequests() {
   const [companyRequests, setCompanyRequests] = useState([]);
   const { user } = useContext(UserContext);
+  const [isApprovePopupOpen, setApprovePopupOpen] = useState(false);
+  const [isDisapprovePopupOpen, setDisapprovePopupOpen] = useState(false);
+  const [isBanPopupOpen, setBanPopupOpen] = useState(false);
 
   useEffect(() => {
     fetchCompanyRequests();
@@ -32,6 +36,7 @@ function AdminRegistrationRequests() {
     axios
       .put(`${process.env.REACT_APP_API_URL}/systemadmin/company/${id}/approve`)
       .then((response) => {
+        setApprovePopupOpen(true);
         // Update the state to remove the approved company request
         setCompanyRequests((prevRequests) =>
           prevRequests.filter((request) => request.id !== id)
@@ -46,6 +51,7 @@ function AdminRegistrationRequests() {
         `${process.env.REACT_APP_API_URL}/systemadmin/company/${id}/disapprove`
       )
       .then((response) => {
+        setDisapprovePopupOpen(true);
         // Update the state to remove the disapproved company request
         setCompanyRequests((prevRequests) =>
           prevRequests.filter((request) => request.id !== id)
@@ -58,6 +64,7 @@ function AdminRegistrationRequests() {
     axios
       .put(`${process.env.REACT_APP_API_URL}/systemadmin/company/${id}/ban`)
       .then((response) => {
+        setBanPopupOpen(true);
         // Update the state to remove the banned company request
         setCompanyRequests((prevRequests) =>
           prevRequests.filter((request) => request.id !== id)
@@ -88,6 +95,27 @@ function AdminRegistrationRequests() {
           </div>
         </div>
       </div>
+      {isApprovePopupOpen && (
+        <Popup
+          content={"Company is approved"}
+          isOpen={isApprovePopupOpen}
+          setIsOpen={setApprovePopupOpen}
+        />
+      )}
+      {isDisapprovePopupOpen && (
+        <Popup
+          content={"Company is disapproved"}
+          isOpen={isDisapprovePopupOpen}
+          setIsOpen={setDisapprovePopupOpen}
+        />
+      )}
+      {isBanPopupOpen && (
+        <Popup
+          content={"Company is banned"}
+          isOpen={isBanPopupOpen}
+          setIsOpen={setBanPopupOpen}
+        />
+      )}
     </div>
   );
 }

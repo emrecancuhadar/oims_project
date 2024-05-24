@@ -3,26 +3,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import FeedbackModal from "../FeedbackModal";
 import styles from "./company-request.module.css";
-import Popup from "../Popup";
 
 function CompanyRequest({ companyRequest, onApprove, onDisapprove, onBan }) {
   const [isModalOpen, setModalOpen] = useState(false);
-  const [isApprovePopupOpen, setApprovePopupOpen] = useState(false);
-  const [isDisapprovePopupOpen, setDisapprovePopupOpen] = useState(false);
-  const [isBanPopupOpen, setBanPopupOpen] = useState(false);
 
   const approveCompanyRequest = () => {
     onApprove(companyRequest.id);
-    setApprovePopupOpen(true);
   };
 
   const disapproveCompanyRequest = () => {
     onDisapprove(companyRequest.id);
-    setDisapprovePopupOpen(true);
   };
 
   const banCompanyRequest = () => {
-    setBanPopupOpen(true);
     onBan(companyRequest.id);
   };
 
@@ -80,28 +73,6 @@ function CompanyRequest({ companyRequest, onApprove, onDisapprove, onBan }) {
         closeModal={() => setModalOpen(false)}
         receiver={{ id: companyRequest.id, name: "company" }}
       />
-
-      {isApprovePopupOpen && (
-        <Popup
-          content={"Company is approved"}
-          isOpen={isApprovePopupOpen}
-          setIsOpen={setApprovePopupOpen}
-        />
-      )}
-      {isDisapprovePopupOpen && (
-        <Popup
-          content={"Company is disapproved"}
-          isOpen={isDisapprovePopupOpen}
-          setIsOpen={setDisapprovePopupOpen}
-        />
-      )}
-      {isBanPopupOpen && (
-        <Popup
-          content={"Company is banned"}
-          isOpen={isBanPopupOpen}
-          setIsOpen={setBanPopupOpen}
-        />
-      )}
     </>
   );
 }

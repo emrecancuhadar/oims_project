@@ -2,20 +2,16 @@ import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import styles from "./applicant.module.css";
-import Popup from "../Popup";
 
 function Applicant({ applicant, onApprove, onDisapprove}) {
-  const [isApprovePopupOpen, setApprovePopupOpen] = useState(false);
-  const [isDisapprovePopupOpen, setDisapprovePopupOpen] = useState(false);
+
 
   const approveApplicant = () => {
     onApprove(applicant.id);
-    setApprovePopupOpen(true);
   };
 
   const disapproveApplicant = () => {
     onDisapprove(applicant.id);
-    setDisapprovePopupOpen(true);
   };
 
   const showApplicationLetter = () => {
@@ -69,20 +65,6 @@ function Applicant({ applicant, onApprove, onDisapprove}) {
           />
         </div>
       </div>
-      {isApprovePopupOpen && (
-        <Popup
-          content={"Applicant is approved"}
-          isOpen={isApprovePopupOpen}
-          setIsOpen={setApprovePopupOpen}
-        />
-      )}
-      {isDisapprovePopupOpen && (
-        <Popup
-          content={"Applicant is disapproved"}
-          isOpen={isDisapprovePopupOpen}
-          setIsOpen={setDisapprovePopupOpen}
-        />
-      )}
     </>
   );
 }
