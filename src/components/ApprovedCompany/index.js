@@ -9,7 +9,7 @@ function ApprovedCompany({
   const [isModalOpen, setModalOpen] = useState(false);
 
   const banApprovedCompany = () => {
-    onBan(approvedCompany.companyId, approvedCompany.id);
+    onBan(approvedCompany.companyId);
   };
 
   const giveFeedback = () => {

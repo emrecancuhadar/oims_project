@@ -8,57 +8,49 @@ import Popup from "../components/Popup";
 import ApprovedCompany from "../components/ApprovedCompany";
 
 function AdminCompanies() {
-    const [approvedCompanies, setApprovedCompanies] = useState([
-        {
-            companyId: 1,
-            companyName: 'CompanyName',
-            email: 'companymail@gmail.com'
-        }
-    ]);
-    const { user } = useContext(UserContext);
-    const [banPopupOpen, setBanPopupOpen] = useState(false);
+  const [approvedCompanies, setApprovedCompanies] = useState([]);
+  const { user } = useContext(UserContext);
+  const [banPopupOpen, setBanPopupOpen] = useState(false);
 
-    useEffect(() => {
-        fetchApprovedCompanies();
-      }, []);
-    
-      const fetchApprovedCompanies= () => {
-        axios
-          .get(`${process.env.REACT_APP_API_URL}/company/approvedList`)
-          .then((response) => {
-            const data = response.data;
-            setApprovedCompanies(
-              data.map(
-                ({ id, email, companyName }) => ({
-                  companyId: id,
-                  companyName,
-                  email,
-                })
-              )
-            );
-          })
-          .catch((error) => {
-            console.error("Error fetching companies:", error);
-          });
-      };
-
-      const banCompany = (companyId) => {
-        axios
-          .put(
-            `${process.env.REACT_APP_API_URL}/systemadmin/company/${companyId}/ban`
+  useEffect(() => {
+      fetchApprovedCompanies();
+    }, []);
+  
+  const fetchApprovedCompanies= () => {
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/company/approvedList`)
+      .then((response) => {
+        const data = response.data;
+        setApprovedCompanies(
+          data.map(
+            ({ id, email, companyName }) => ({
+              companyId: id,
+              companyName,
+              email,
+            })
           )
-          .then((response) => {
-            setBanPopupOpen(true);
-            // Optionally, you could also remove announcements by the banned company
-            setApprovedCompanies((prevApprovedCompanies) =>
-                prevApprovedCompanies.filter((companyId) => companyId !== companyId)
-            );
-          })
-          .catch((error) => console.log(error));
-      };
+        );
+      })
+      .catch((error) => {
+        console.error("Error fetching companies:", error);
+      });
+  };
+
+  const banCompany = (companyId) => {
+    axios
+      .put(
+        `${process.env.REACT_APP_API_URL}/systemadmin/company/${companyId}/ban`
+      )
+      .then((response) => {
+        setBanPopupOpen(true);
+        // Optionally, you could also remove announcements by the banned company
+        setApprovedCompanies((prevApprovedCompanies) =>
+            prevApprovedCompanies.filter((approvedCompany) => approvedCompany.companyId !== companyId)
+        );
+      })
+      .catch((error) => console.log(error));
+  };
     
-
-
   return (
     <div className={styles.adminCompanies}>
       <SystemAdminSidebar />
@@ -67,10 +59,10 @@ function AdminCompanies() {
         <div className={styles.companies}>
           <h1 className={styles.pageTitle}>Companies</h1>
           <div className={styles.companiesContainer}>
-            {approvedCompanies.map((company, index) => (
+            {approvedCompanies.map((approvedCompany, index) => (
               <ApprovedCompany
                 key={index}
-                approvedCompany={company}
+                approvedCompany={approvedCompany}
                 onBan={banCompany}
               />
             ))}
