@@ -4,17 +4,13 @@
   import Popup from "../Popup";
   import styles from "./internship-opportunity.module.css";
 
-  function InternshipOpportunity({ opportunity, onApply }) {
-    const { user } = useContext(UserContext);
+  function InternshipOpportunity({ announcement, onApply }) {
     const [popupOpen, setPopupOpen] = useState(false);
     const [confirmationPopupOpen, setConfirmationPopupOpen] = useState(false);
     
-  
-    const applyAnnouncement = () => {
-      onApply(opportunity.id)
-    }
+
     const showAnnouncement = () => {
-      const documentBase64 = opportunity.content;
+      const documentBase64 = announcement.content;
 
       if (!documentBase64) {
         console.error("Document base64 data is missing");
@@ -40,33 +36,31 @@
       window.open(pdfUrl, "_blank");
     };
 
-    const handleApplyLogic = (event) => {
-      event.stopPropagation();
-      setPopupOpen(true);
+    const applyAnnouncement = () => {
+      onApply(announcement.id);
     };
-
-    const handleCancel = (event) => {
-      event.stopPropagation();
-      setPopupOpen(false);
-    };
-
-    const handleConfirmationClose = () => {
-      setConfirmationPopupOpen(false);
-    };
-
+  
     const PopupContent = () => (
       <div
         className={styles.popupContent}
         onClick={(event) => event.stopPropagation()}
       >
-        <h1>Are you sure you want to apply to {opportunity.companyName}?</h1>
+        <h1>Are you sure you want to apply to {announcement.companyName}?</h1>
         <div className={styles.btns}>
-          <button className={styles.popupCancelBtn} onClick={handleCancel}>
+          <button 
+          className={styles.popupCancelBtn}
+           onClick={(event) => {
+          event.stopPropagation();
+          setPopupOpen(false);
+        }}>
             Cancel
           </button>
-          <button className={styles.popupApplyBtn} 
+          <button 
+          className={styles.popupApplyBtn} 
           onClick={(event) => {
             event.stopPropagation();
+            setPopupOpen(false);
+            setConfirmationPopupOpen(true);
             applyAnnouncement();
           }}>
             Apply
@@ -80,8 +74,13 @@
         className={styles.popupContent}
         onClick={(event) => event.stopPropagation()}
       >
-        <h1>Applied to {opportunity.companyName}</h1>
-        <button className={styles.popupCnfBtn} onClick={handleConfirmationClose}>
+        <h1>Applied to {announcement.companyName}</h1>
+        <button 
+        className={styles.popupCnfBtn} 
+        onClick={(event) => {
+          event.stopPropagation();
+          setConfirmationPopupOpen(false);
+        }}>
           Done
         </button>
       </div>
@@ -90,19 +89,25 @@
     return (
       <div className={styles.card} onClick={showAnnouncement}>
         <div className={styles.content}>
-          <h2>{opportunity.companyName}</h2>
+          <h2>{announcement.companyName}</h2>
           <div>
             <p>
-              <strong>Position:</strong> {opportunity.title}
+              <strong>Position:</strong> {announcement.title}
             </p>
             <p>
-              <strong>Mail:</strong> {opportunity.email}
+              <strong>Mail:</strong> {announcement.email}
             </p>
             <p>
-              <strong>Deadline:</strong> {opportunity.deadline}
+              <strong>Deadline:</strong> {announcement.deadline}
             </p>
           </div>
-          <button onClick={handleApplyLogic} className={styles.applyBtn}>
+          <button 
+          className={styles.applyBtn} 
+          onClick={(event) => {
+          event.stopPropagation();
+          setPopupOpen(true);
+          }}>
+
             Apply
           </button>
         </div>

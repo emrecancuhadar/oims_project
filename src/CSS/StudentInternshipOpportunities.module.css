@@ -140,3 +140,15 @@
   width: 20vw;
   text-align: center;
 }
+
+.popupCnfBtn {
+  border: none;
+  border-radius: 10px;
+  margin-top: 25px;
+  cursor: pointer;
+  color: white;
+  background-color: #9a0e20;
+  padding: 8px;
+  width: 40%;
+  align-self: center;
+}
