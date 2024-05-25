@@ -17,7 +17,7 @@ function ApplicationFormRequest({
   };
 
   const showApplicationFormRequest = () => {
-    console.log("clicked");
+    console.log(applicationFormRequest, "request");
     const documentBase64 = applicationFormRequest.content;
 
     if (!documentBase64) {
@@ -34,12 +34,12 @@ function ApplicationFormRequest({
     }
 
     // Create a Blob from the binary data
-    const pdfBlob = new Blob([bytes], {
-      type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    const blob = new Blob([bytes], {
+      type: applicationFormRequest.contentType,
     });
 
     // Generate a URL for the Blob
-    const pdfUrl = URL.createObjectURL(pdfBlob);
+    const pdfUrl = URL.createObjectURL(blob);
 
     // Open the PDF in a new browser tab
     window.open(pdfUrl, "_blank");

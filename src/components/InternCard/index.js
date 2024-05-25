@@ -63,6 +63,7 @@ function FileUploader({
       </button>
       <input
         type="file"
+        accept="application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/pdf"
         onChange={handleChange}
         ref={hiddenFileInput}
         style={{ display: "none" }}

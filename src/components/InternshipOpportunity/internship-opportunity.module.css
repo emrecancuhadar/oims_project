@@ -1,116 +1,62 @@
 .card {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    background: #fff;
-    margin: 20px;
-    gap: 20px;
-    cursor:pointer;
-    width: 350px;
-    height: 225px;
-    justify-content: flex-start;
-  }
-
-  .content {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 17px;
-  }
-  
-  .card h2 {
-    margin-top: 0;
-    margin-bottom: 0;
-    font-weight: 650;
-    font-size: 25px;
-    line-height: 1.2;
-    color: var(--bs-heading-color);
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    width:300px; /* some width */
-    
-  }
-
-  .card h1 {
-    font-size: 18px;
-    margin: 0;
-    margin-top: auto;
-  }
-  
-  .card p {
-    margin: 0;
-    
-  }
-  
-
-  .applyBtn{
-    padding: 10px 20px;
-    border: none;
-    color: white;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 16px;
-    background-color:#9a0e20;
-    align-self: center;
-  }
-
-  .applyBtn:hover {
-    background-color: #d12d2d;
-  }
-
-.popupContent{
   display: flex;
   flex-direction: column;
-  position: absolute;  /* Absolute positioning relative to the nearest positioned ancestor */
-  top: 50%;            /* Center vertically */
-  left: 50%;           /* Center horizontally */
-  transform: translate(-50%, -50%); /* Ensures exact centering */
-  background-color: white;
-  border: 1px solid black;
+  border: 1px solid #ccc;
   border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  z-index: 1050;  /* Ensure it is above other content */
-  width: 20vw;
-  text-align: center;
+  background: #fff;
+  margin: 20px;
+  gap: 20px;
+  cursor: pointer;
+  width: 350px;
+  height: 225px;
+  justify-content: flex-start;
 }
 
-.btns {
+.content {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 17px;
 }
 
-.popupCancelBtn {
+.card h2 {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-weight: 650;
+  font-size: 25px;
+  line-height: 1.2;
+  color: var(--bs-heading-color);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 300px; /* some width */
+}
+
+.card h1 {
+  font-size: 18px;
+  margin: 0;
+  margin-top: auto;
+}
+
+.card p {
+  margin: 0;
+}
+
+.applyBtn {
+  padding: 10px 20px;
   border: none;
-  border-radius: 10px;
-  margin-top: 25px;
-  cursor: pointer;
   color: white;
-  background-color: #9a0e20;
-  padding: 8px;
-}
-
-.popupCancelBtn:hover {
-  background-color: #d12d2d;
-}
-
-.popupApplyBtn {
-  border: none;
-  border-radius: 10px;
-  margin-top: 25px;
   cursor: pointer;
-  color: white;
+  border-radius: 5px;
+  font-size: 16px;
   background-color: #9a0e20;
-  padding: 8px;
+  align-self: center;
 }
 
-.popupApplyBtn:hover {
+.applyBtn:hover {
   background-color: #d12d2d;
 }
 
@@ -125,78 +71,77 @@
   width: 40%;
   align-self: center;
 }
-  .modal {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1050;
-    width: 80%;
-    max-width: 600px;
-    background: white; /* Ensures the modal background is white */
-    border: 2px solid black; /* Adds a black border around the modal */
-    padding: 20px; /* Adds some padding inside the modal */
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Optional: Adds shadow for better visibility */
-    align-items: center;
-  }
-  
-  .backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4); /* Lighter backdrop */
-    backdrop-filter: blur(5px); /* Reduced blur effect */
-    z-index: 1040;
-  }
-  
-  .emailInput {
-    width: 100%; /* Full width of the modal */
-    padding: 10px; /* Padding for better text visibility */
-    margin-top: 20px; /* Space between the header and the input field */
-    border: 1px solid #ccc; /* Subtle border for the input */
-    box-sizing: border-box; /* Ensures padding doesn't affect the width */
-  }
-  
-  .sendButton {
-    display: block; /* Makes the button a block element */
-    width: 50%; /* Full width of the modal */
-    padding: 10px 0; /* Padding top and bottom */
-    margin-top: 10px; /* Space between the input and the button */
-    background-color: #9a0e20;; /* Example: Blue background */
-    color: white; /* White text */
-    border: none; /* No border */
-    cursor: pointer; /* Pointer cursor on hover */
-    justify-self: center;
-  }
-  
-  .sendButton:hover {
-    background-color: #d12d2d;
-  }
+.modal {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1050;
+  width: 80%;
+  max-width: 600px;
+  background: white; /* Ensures the modal background is white */
+  border: 2px solid black; /* Adds a black border around the modal */
+  padding: 20px; /* Adds some padding inside the modal */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Adds shadow for better visibility */
+  align-items: center;
+}
 
-  .modal h1 {
-    font-size: 24px;
-  }
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* Lighter backdrop */
+  backdrop-filter: blur(5px); /* Reduced blur effect */
+  z-index: 1040;
+}
 
-  .altText {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    width: 100%;
-    margin: 0;
+.emailInput {
+  width: 100%; /* Full width of the modal */
+  padding: 10px; /* Padding for better text visibility */
+  margin-top: 20px; /* Space between the header and the input field */
+  border: 1px solid #ccc; /* Subtle border for the input */
+  box-sizing: border-box; /* Ensures padding doesn't affect the width */
+}
 
-  }
-  .altTextEntry {
-    display: flex;
-    flex-direction: row;
-    margin: 0;
-    gap: 5px;
-  }
-  .altTextEntry p {
-    margin: 0;
-    font-weight: bold;
-    margin-right: 2%;
-  }
+.sendButton {
+  display: block; /* Makes the button a block element */
+  width: 50%; /* Full width of the modal */
+  padding: 10px 0; /* Padding top and bottom */
+  margin-top: 10px; /* Space between the input and the button */
+  background-color: #9a0e20; /* Example: Blue background */
+  color: white; /* White text */
+  border: none; /* No border */
+  cursor: pointer; /* Pointer cursor on hover */
+  justify-self: center;
+}
+
+.sendButton:hover {
+  background-color: #d12d2d;
+}
+
+.modal h1 {
+  font-size: 24px;
+}
+
+.altText {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  width: 100%;
+  margin: 0;
+}
+.altTextEntry {
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  gap: 5px;
+}
+.altTextEntry p {
+  margin: 0;
+  font-weight: bold;
+  margin-right: 2%;
+}

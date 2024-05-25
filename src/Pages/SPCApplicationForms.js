@@ -27,12 +27,13 @@ function SPCApplicationForms() {
             ({
               applicationId,
               student: { fullName, email },
-              applicationForm: { documentId, content },
+              applicationForm: { documentId, content, contentType },
             }) => ({
               id: documentId,
               owner: fullName,
               email,
               content,
+              contentType,
             })
           )
         );
