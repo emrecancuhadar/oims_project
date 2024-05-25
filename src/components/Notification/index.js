@@ -16,7 +16,6 @@ const StyledBadge = styled(Badge)(() => ({
 }));
 
 function NotificationItem({ notification, onClose }) {
-  console.log(notification);
   return (
     <div className={styles.notificationItem}>
       <div className={styles.notificationContent}>
@@ -27,6 +26,16 @@ function NotificationItem({ notification, onClose }) {
           </>
         )}
         <span>{notification.content}</span>
+        <span
+          style={{
+            color: "#757575",
+            fontSize: 10,
+            marginTop: "10px",
+            marginLeft: "auto",
+          }}
+        >
+          {notification.time}
+        </span>
       </div>
       <button
         onClick={() => onClose(notification.id, notification.title)}
@@ -64,10 +73,13 @@ function Notification() {
         .get(`${process.env.REACT_APP_API_URL}/feedback/${receiver}/${user.id}`)
         .then((response) => {
           const notificationData = response.data;
-          const notificationsList = notificationData.map(({ id, content }) => ({
-            id,
-            content,
-          }));
+          const notificationsList = notificationData.map(
+            ({ id, content, feedbackDate }) => ({
+              id,
+              content,
+              time: feedbackDate,
+            })
+          );
 
           if (user.role === "company") {
             axios
@@ -77,10 +89,11 @@ function Notification() {
               .then((response) => {
                 const companyNotificationData = response.data;
                 const companyNotifications = companyNotificationData.map(
-                  ({ id, content, announcement: { title } }) => ({
+                  ({ id, content, feedbackDate, announcement: { title } }) => ({
                     id,
                     title,
                     content,
+                    time: feedbackDate,
                   })
                 );
                 setNotifications([

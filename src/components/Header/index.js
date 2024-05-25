@@ -15,13 +15,28 @@ function UpdateProfileModal({
 }) {
   const [name, setName] = useState(user.name);
   const [email, setEmail] = useState(user.email);
+  const [error, setError] = useState("");
   const [updatedPopupOpen, setUpdatedPopupOpen] = useState(false);
+  const [updateErrorPopupOpen, setUpdateErrorPopupOpen] = useState(false);
 
   const saveProfile = (event) => {
     event.preventDefault();
     updateProfile(name, email)
-      .then(() => setUpdatedPopupOpen(true))
-      .catch((error) => console.error("Error updating profile:", error));
+      .then((response) => {
+        if (response.ok) {
+          setUpdatedPopupOpen(true);
+        } else if (response.status === 400) {
+          setError(response.data); // Display specific error message from backend
+          setUpdateErrorPopupOpen(true);
+        } else {
+          setError(response.data.error || "An unexpected error occurred");
+          setUpdateErrorPopupOpen(true);
+        }
+      })
+      .catch((error) => {
+        setError(error.message);
+        setUpdateErrorPopupOpen(true);
+      });
   };
 
   return (
@@ -72,6 +87,13 @@ function UpdateProfileModal({
               content={"Profile updated successfully!"}
               isOpen={updatedPopupOpen}
               setIsOpen={setUpdatedPopupOpen}
+            />
+          )}
+          {updateErrorPopupOpen && (
+            <Popup
+              content={error}
+              isOpen={updateErrorPopupOpen}
+              setIsOpen={setUpdateErrorPopupOpen}
             />
           )}
         </form>

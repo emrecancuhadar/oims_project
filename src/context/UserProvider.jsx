@@ -24,7 +24,8 @@ export const UserProvider = ({ children }) => {
       const formData = new FormData();
       formData.append("name", newName);
       formData.append("email", newEmail);
-      const updatedCompany = await axios.put(
+
+      const response = await axios.put(
         `${process.env.REACT_APP_API_URL}/company/changeInformation/${user.id}`,
         formData,
         {
@@ -34,15 +35,29 @@ export const UserProvider = ({ children }) => {
         }
       );
 
+      console.log(response);
+
       setUser({
-        id: updatedCompany.data.id,
-        name: updatedCompany.data.companyName,
-        email: updatedCompany.data.email,
-        registrationStatus: updatedCompany.data.registrationStatus,
+        id: response.data.id,
+        name: response.data.companyName,
+        email: response.data.email,
+        registrationStatus: response.data.registrationStatus,
         role: "company",
       });
+
+      return { ok: true, status: response.status, data: response.data };
     } catch (error) {
-      console.log("Error updating profile:", error);
+      if (error.response) {
+        // Server responded with a status other than 2xx
+        return {
+          ok: false,
+          status: error.response.status,
+          data: error.response.data,
+        };
+      } else {
+        // Network error or other issues
+        return { ok: false, status: 500, data: { error: error.message } };
+      }
     }
   };
 
