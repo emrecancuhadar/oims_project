@@ -5,12 +5,13 @@ import Popup from "../components/Popup";
 import { UserContext } from "../context/UserProvider";
 
 function Login() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
   const { loginUser } = useContext(UserContext);
   const [popupOpen, setPopupOpen] = useState(false);
   const [wrongPopupOpen, wrongSetPopupOpen] = useState(false);
+  const [error, setError] = useState("");
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -28,23 +29,25 @@ function Login() {
       );
 
       if (response.ok) {
-        response.json().then((data) => {
-          loginUser({
-            id: data.id,
-            name: data.companyName,
-            email: data.email,
-            registrationStatus: data.registrationStatus,
-            role: "company",
-          });
+        const data = await response.json();
+        loginUser({
+          id: data.id,
+          name: data.companyName,
+          email: data.email,
+          registrationStatus: data.registrationStatus,
+          role: "company",
         });
         setPopupOpen(true);
         setTimeout(() => {
           navigate("/company/home");
         }, 1000);
       } else {
+        const errorData = await response.json(); // Parse the error response
+        setError(errorData.error);
         wrongSetPopupOpen(true);
       }
     } catch (error) {
+      setError(error.message);
       console.error("Error:", error);
     }
   };
@@ -56,17 +59,10 @@ function Login() {
     </div>
   );
 
-  const WrongPopupContent = () => (
-    <div className={styles.popupContent}>
-      <button
-        className={styles.closeBtn}
-        onClick={() => wrongSetPopupOpen(false)}
-      >
-        &times;
-      </button>
-      <p>The email or password you entered is incorrect.</p>
-      <p>Check your credentials or sign up for an account.</p>
-    </div>
+  const WrongPopupContent = ({ error }) => (
+    <>
+      <p style={{ margin: 0 }}>{error}</p>
+    </>
   );
 
   return (
@@ -122,7 +118,7 @@ function Login() {
       ;
       {wrongPopupOpen && (
         <Popup
-          content={<WrongPopupContent />}
+          content={error}
           isOpen={wrongPopupOpen}
           setIsOpen={wrongSetPopupOpen}
         />

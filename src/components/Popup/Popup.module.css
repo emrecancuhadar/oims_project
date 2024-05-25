@@ -1,18 +1,19 @@
 .popupContent {
   display: flex;
   flex-direction: column;
-  position: absolute;  /* Absolute positioning relative to the nearest positioned ancestor */
-  top: 50%;            /* Center vertically */
-  left: 50%;           /* Center horizontally */
+  position: absolute; /* Absolute positioning relative to the nearest positioned ancestor */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
   transform: translate(-50%, -50%); /* Ensures exact centering */
   background-color: white;
   border: 1px solid black;
   padding: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   align-items: center;
-  z-index: 1050;  /* Ensure it is above other content */
+  z-index: 1050; /* Ensure it is above other content */
   border-radius: 10px;
   justify-content: space-evenly;
+  text-align: center;
 }
 
 .popupButton {
@@ -41,4 +42,3 @@
   align-items: center;
   z-index: 50; /* Ensure it's below the popup content but above everything else */
 }
-
