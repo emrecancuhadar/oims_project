@@ -1,14 +1,22 @@
 import axios from "axios";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { UserContext } from "../../context/UserProvider";
 import Popup from "../Popup";
 import styles from "./applied-internship.module.css";
 
-function AppliedInternship({ internship, handleRegisterInitiate, registerPopupOpen, setRegisterPopupOpen, confirmationPopupOpen, setConfirmationPopupOpen, fetchAppliedInternships }) {
+function AppliedInternship({ internship, fetchAppliedInternships }) {
   const { user } = useContext(UserContext);
+  const [registerPopupOpen, setRegisterPopupOpen] = useState(false);
+  const [confirmationPopupOpen, setConfirmationPopupOpen] = useState(false);
+
+  const handleRegisterInitiate = (event) => {
+    event.stopPropagation();
+    setRegisterPopupOpen(true);
+  };
 
   const handleRegisterConfirm = (event) => {
     event.stopPropagation();
+    console.log("Registering to", internship.id);
     const formData = new FormData();
     formData.append("studentId", user.id);
     formData.append("announcementId", internship.id);
@@ -23,7 +31,6 @@ function AppliedInternship({ internship, handleRegisterInitiate, registerPopupOp
         }
       )
       .then((response) => {
-        console.log("Registering to:", internship.companyName);
         fetchAppliedInternships();
         setRegisterPopupOpen(false);
         setConfirmationPopupOpen(true);
@@ -83,9 +90,15 @@ function AppliedInternship({ internship, handleRegisterInitiate, registerPopupOp
       <div className={styles.content}>
         <h2>{internship.companyName}</h2>
         <div>
-          <p><strong>Position:</strong> {internship.position}</p>
-          <p><strong>E-mail:</strong> {internship.companyEmail}</p>
-          <p><strong>Application Date:</strong> {internship.applicationDate}</p>
+          <p>
+            <strong>Position:</strong> {internship.position}
+          </p>
+          <p>
+            <strong>E-mail:</strong> {internship.companyEmail}
+          </p>
+          <p>
+            <strong>Application Date:</strong> {internship.applicationDate}
+          </p>
         </div>
 
         {internship.status === "ACCEPTED" &&

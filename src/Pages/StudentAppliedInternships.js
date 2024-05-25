@@ -19,17 +19,25 @@ function StudentAppliedInternships() {
 
   const fetchAppliedInternships = () => {
     axios
-      .get(`${process.env.REACT_APP_API_URL}/students/${user.id}/applied-internships`)
+      .get(
+        `${process.env.REACT_APP_API_URL}/students/${user.id}/applied-internships`
+      )
       .then((response) => {
-        setAppliedInternships(response.data.map((application) => ({
-          id: application.applicationId,
-          companyName: application.company ? application.company.companyName : application.announcement.company.companyName,
-          position: application.announcement.title,
-          companyEmail: application.company ? application.company.email : application.announcement.company.email,
-          applicationDate: application.applicationDate,
-          status: application.status,
-          registrationStatus: application.internshipRegistration?.status
-        })));
+        setAppliedInternships(
+          response.data.map((application) => ({
+            id: application.applicationId,
+            companyName: application.company
+              ? application.company.companyName
+              : application.announcement.company.companyName,
+            position: application.announcement.title,
+            companyEmail: application.company
+              ? application.company.email
+              : application.announcement.company.email,
+            applicationDate: application.applicationDate,
+            status: application.status,
+            registrationStatus: application.internshipRegistration?.status,
+          }))
+        );
       });
   };
 
@@ -51,11 +59,6 @@ function StudentAppliedInternships() {
             ItemComponent={({ item }) => (
               <AppliedInternship
                 internship={item}
-                handleRegisterInitiate={handleRegisterInitiate}
-                registerPopupOpen={registerPopupOpen}
-                setRegisterPopupOpen={setRegisterPopupOpen}
-                confirmationPopupOpen={confirmationPopupOpen}
-                setConfirmationPopupOpen={setConfirmationPopupOpen}
                 fetchAppliedInternships={fetchAppliedInternships}
               />
             )}
