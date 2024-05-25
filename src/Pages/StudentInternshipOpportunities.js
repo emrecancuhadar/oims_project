@@ -136,10 +136,7 @@ function StudentInternshipOpportunities() {
         </div>
       </div>
       {loading && (
-        <ConstantPopup
-          content={"Filling the application letter..."}
-          isOpen={loading}
-        />
+        <ConstantPopup content={"Apply to announcement..."} isOpen={loading} />
       )}
     </div>
   );
