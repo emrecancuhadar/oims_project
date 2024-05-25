@@ -29,12 +29,13 @@ function CompanyMyInterns() {
         const data = response.data;
         setInterns(
           data.map(
-            ({ student: { id, fullName, email, contactNumber }, status }) => ({
+            ({ internshipRegistrationId, student: { id, fullName, email, contactNumber }, status }) => ({
               id,
               name: fullName,
               mail: email,
               phoneNumber: contactNumber,
               status,
+              internshipRegistrationId
             })
           )
         );
@@ -83,7 +84,7 @@ function CompanyMyInterns() {
           </div>
           <StatusFilterAccordion
             data={interns}
-            ItemComponent={({ item }) => <InternCard student={item} />}
+            ItemComponent={({ item }) => <InternCard student={item} internshipRegistrationId={item.internshipRegistrationId} />}
           />
         </div>
       </div>

@@ -5,7 +5,7 @@ import { UserContext } from "../../context/UserProvider";
 import Popup from "../Popup";
 import styles from "./intern-card.module.css";
 
-function FileUploader({ companyId, studentEmail, setPopupOpen, setError}) {
+function FileUploader({ internshipRegistrationId, companyId, studentEmail, setPopupOpen, setError}) {
   // Create a reference to the hidden file input element
   const hiddenFileInput = useRef(null);
 
@@ -19,6 +19,7 @@ function FileUploader({ companyId, studentEmail, setPopupOpen, setError}) {
     const formData = new FormData();
     formData.append("companyId", companyId);
     formData.append("studentEmail", studentEmail);
+    formData.append("internshipRegistrationId", internshipRegistrationId)
     formData.append("file", fileUploaded);
 
     axios
@@ -64,7 +65,7 @@ function FileUploader({ companyId, studentEmail, setPopupOpen, setError}) {
   );
 }
 
-function InternCard({ student, isPending }) {
+function InternCard({ student, isPending, internshipRegistrationId }) {
   const { user } = useContext(UserContext);
   const [popupOpen, setPopupOpen] = useState(false);
   const [error, setError] = useState("");
@@ -73,6 +74,7 @@ function InternCard({ student, isPending }) {
     const formData = new FormData();
     formData.append("companyId", user.id);
     formData.append("studentEmail", student.mail);
+    formData.append("internshipRegistrationId", internshipRegistrationId );
 
     axios
       .post(
