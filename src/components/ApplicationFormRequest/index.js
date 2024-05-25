@@ -10,6 +10,7 @@ function ApplicationFormRequest({
   onDisapprove,
 }) {
   const [isModalOpen, setModalOpen] = useState(false);
+  const [eligibility, setEligibility] = useState(0);
 
   const giveFeedback = () => {
     setModalOpen(true);
@@ -45,11 +46,20 @@ function ApplicationFormRequest({
   };
 
   const approveApplicationFormRequest = () => {
-    onApprove(applicationFormRequest.id);
+    onApprove(
+      applicationFormRequest.id,
+      applicationFormRequest.email,
+      eligibility
+    );
   };
 
   const disapproveApplicationFormRequest = () => {
     onDisapprove(applicationFormRequest.id);
+  };
+
+  const changeEligibility = (event) => {
+    event.stopPropagation();
+    setEligibility(eligibility === 0 ? 1 : 0);
   };
 
   return (
@@ -82,26 +92,39 @@ function ApplicationFormRequest({
           </div>
         </div>
         <div className={styles.right}>
-          <FontAwesomeIcon
-            icon={faCheck}
-            color="green"
-            size="2x"
-            style={{ cursor: "pointer" }}
-            onClick={(event) => {
-              event.stopPropagation(); // Stop event propagation
-              approveApplicationFormRequest();
-            }}
-          />
-          <FontAwesomeIcon
-            icon={faXmark}
-            color="red"
-            size="2x"
-            style={{ cursor: "pointer" }}
-            onClick={(event) => {
-              event.stopPropagation(); // Stop event propagation
-              disapproveApplicationFormRequest();
-            }}
-          />
+          <button
+            style={
+              eligibility === 1
+                ? { borderColor: "green", color: "green" }
+                : { borderColor: "red", color: "red" }
+            }
+            className={styles.eligibilityBtn}
+            onClick={changeEligibility}
+          >
+            {eligibility === 1 ? "Eligible" : "Not Eligible"}
+          </button>
+          <div className={styles.rightBtnContainer}>
+            <FontAwesomeIcon
+              icon={faCheck}
+              color="green"
+              size="2x"
+              style={{ cursor: "pointer" }}
+              onClick={(event) => {
+                event.stopPropagation(); // Stop event propagation
+                approveApplicationFormRequest();
+              }}
+            />
+            <FontAwesomeIcon
+              icon={faXmark}
+              color="red"
+              size="2x"
+              style={{ cursor: "pointer" }}
+              onClick={(event) => {
+                event.stopPropagation(); // Stop event propagation
+                disapproveApplicationFormRequest();
+              }}
+            />
+          </div>
         </div>
       </div>
       <FeedbackModal

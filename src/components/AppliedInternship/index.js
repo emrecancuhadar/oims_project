@@ -4,7 +4,7 @@ import { UserContext } from "../../context/UserProvider";
 import Popup from "../Popup";
 import styles from "./applied-internship.module.css";
 
-function AppliedInternship({ internship }) {
+function AppliedInternship({ internship, fetchAppliedInternships }) {
   const { user } = useContext(UserContext);
   const [registerPopupOpen, setRegisterPopupOpen] = useState(false);
   const [confirmationPopupOpen, setConfirmationPopupOpen] = useState(false);
@@ -33,6 +33,7 @@ function AppliedInternship({ internship }) {
       )
       .then((response) => {
         console.log("Registering to:", internship.companyName);
+        fetchAppliedInternships();
         setRegisterPopupOpen(false);
         setConfirmationPopupOpen(true);
       })

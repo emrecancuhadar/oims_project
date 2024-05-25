@@ -37,7 +37,9 @@ function StudentMyDocuments() {
     console.log("handle");
     event.stopPropagation();
     axios
-      .get(`${process.env.REACT_APP_API_URL}/students/${user.id}/ssi`)
+      .get(`${process.env.REACT_APP_API_URL}/students/${user.id}/ssi`, {
+        responseType: "blob",
+      })
       .then((response) => {
         let fileName = "SSI Certificate";
 

@@ -30,6 +30,10 @@ function StudentAppliedInternships() {
   };
 
   useEffect(() => {
+    fetchAppliedInternships();
+  }, []);
+
+  const fetchAppliedInternships = () => {
     axios
       .get(
         `${process.env.REACT_APP_API_URL}/students/${user.id}/applied-internships`
@@ -53,7 +57,7 @@ function StudentAppliedInternships() {
           })
         );
       });
-  }, []);
+  };
 
   return (
     <div className={styles.appliedInternships}>
@@ -91,7 +95,10 @@ function StudentAppliedInternships() {
           <StatusFilterAccordion
             data={appliedInternships}
             ItemComponent={({ item }) => (
-              <AppliedInternship internship={item} />
+              <AppliedInternship
+                internship={item}
+                fetchAppliedInternships={fetchAppliedInternships}
+              />
             )}
           />
         </div>

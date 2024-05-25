@@ -29,7 +29,7 @@ function NotificationItem({ notification, onClose }) {
         <span>{notification.content}</span>
       </div>
       <button
-        onClick={() => onClose(notification.id)}
+        onClick={() => onClose(notification.id, notification.title)}
         className={styles.removeBtn}
       >
         <CloseIcon style={{ marginLeft: "auto" }} />
@@ -48,6 +48,10 @@ function Notification() {
   }, [notifications]);
 
   useEffect(() => {
+    fetchNotifications();
+  }, [user]);
+
+  const fetchNotifications = () => {
     if (user) {
       let receiver = "";
       if (user.role === "student") {
@@ -60,42 +64,66 @@ function Notification() {
         .get(`${process.env.REACT_APP_API_URL}/feedback/${receiver}/${user.id}`)
         .then((response) => {
           const notificationData = response.data;
-          setNotifications(
-            notificationData.map(({ id, content }) => ({
-              id,
-              content,
-            }))
-          );
+          const notificationsList = notificationData.map(({ id, content }) => ({
+            id,
+            content,
+          }));
+
+          if (user.role === "company") {
+            axios
+              .get(
+                `${process.env.REACT_APP_API_URL}/feedback/announcement/${user.id}`
+              )
+              .then((response) => {
+                const companyNotificationData = response.data;
+                const companyNotifications = companyNotificationData.map(
+                  ({ id, content, announcement: { title } }) => ({
+                    id,
+                    title,
+                    content,
+                  })
+                );
+                setNotifications([
+                  ...notificationsList,
+                  ...companyNotifications,
+                ]);
+              })
+              .catch((error) => console.log(error));
+          } else {
+            setNotifications(notificationsList);
+          }
         })
         .catch((error) => console.log(error));
-
-      if (user.role === "company") {
-        axios
-          .get(
-            `${process.env.REACT_APP_API_URL}/feedback/announcement/${user.id}`
-          )
-          .then((response) => {
-            const notificationData = response.data;
-            setNotifications(
-              notificationData.map(
-                ({ id, content, announcement: { title } }) => ({
-                  id,
-                  title,
-                  content,
-                })
-              )
-            );
-          })
-          .catch((error) => console.log(error));
-      }
     }
-  }, [user]);
+  };
 
-  const onClose = (id) => {
-    axios
-      .put(`${process.env.REACT_APP_API_URL}/feedback/${user.role}/hide/${id}`)
-      .then((response) => console.log(response))
-      .catch((error) => console.log(error));
+  const onClose = (id, isAnnouncement) => {
+    let receiver = "";
+    if (user.role === "student") {
+      receiver = "iztech-user";
+    } else {
+      receiver = user.role;
+    }
+
+    if (isAnnouncement) {
+      axios
+        .put(
+          `${process.env.REACT_APP_API_URL}/feedback/announcement/hide/${id}`
+        )
+        .then((response) => {
+          console.log(response);
+          fetchNotifications();
+        })
+        .catch((error) => console.log(error));
+    } else {
+      axios
+        .put(`${process.env.REACT_APP_API_URL}/feedback/${receiver}/hide/${id}`)
+        .then((response) => {
+          console.log(response);
+          fetchNotifications();
+        })
+        .catch((error) => console.log(error));
+    }
   };
 
   return (
@@ -114,13 +142,16 @@ function Notification() {
         className={styles.notificationContainer}
         style={{ opacity: isOpen ? 1 : 0 }}
       >
-        {notifications &&
+        {notifications.length > 0 ? (
           notifications.map((notification, index) => (
             <React.Fragment key={index}>
               <NotificationItem notification={notification} onClose={onClose} />
               {index !== notifications.length - 1 && <hr />}
             </React.Fragment>
-          ))}
+          ))
+        ) : (
+          <p style={{ margin: 0 }}>You have no new messages.</p>
+        )}
       </div>
     </div>
   );

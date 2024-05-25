@@ -3,9 +3,9 @@ import React, { useContext, useEffect, useState } from "react";
 import styles from "../CSS/SPCApplicationForms.module.css";
 import ApplicationFormRequest from "../components/ApplicationFormRequest";
 import Header from "../components/Header";
+import Popup from "../components/Popup";
 import SPCSidebar from "../components/SPCSideBar";
 import { UserContext } from "../context/UserProvider";
-import Popup from "../components/Popup";
 
 function SPCApplicationForms() {
   const [applicationFormRequests, setApplicationFormRequests] = useState([]);
@@ -15,7 +15,7 @@ function SPCApplicationForms() {
 
   useEffect(() => {
     fetchApplicationForms();
-  }, [])
+  }, []);
 
   const fetchApplicationForms = () => {
     axios
@@ -39,10 +39,15 @@ function SPCApplicationForms() {
       });
   };
 
-  const approveApplicationFormRequest = (id) => {
+  const approveApplicationFormRequest = (id, email, eligibility) => {
+    const formData = new FormData();
+    formData.append("studentEmail", email);
+    formData.append("isEligible", eligibility);
     axios
       .put(
-        `${process.env.REACT_APP_API_URL}/spc/document/${id}/approve`
+        `${process.env.REACT_APP_API_URL}/spc/document/${id}/approve`,
+        formData,
+        { headers: { "Content-Type": "multipart/form-data" } }
       )
       .then((response) => {
         console.log(response);
@@ -56,9 +61,7 @@ function SPCApplicationForms() {
 
   const disapproveApplicationFormRequest = (id) => {
     axios
-      .put(
-        `${process.env.REACT_APP_API_URL}/spc/document/${id}/disapprove`
-      )
+      .put(`${process.env.REACT_APP_API_URL}/spc/document/${id}/disapprove`)
       .then((response) => {
         setDisapprovePopupOpen(true);
         console.log(response);

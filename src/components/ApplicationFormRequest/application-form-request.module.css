@@ -26,9 +26,9 @@
 
 .right {
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  gap: 15px;
 }
 
 .formOwnerTitle {
@@ -55,4 +55,17 @@
 
 .buttons button:last-child {
   margin-right: 0;
+}
+
+.eligibilityBtn {
+  background: none;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid;
+}
+
+.rightBtnContainer {
+  display: flex;
+  gap: 15px;
+  margin-top: auto;
 }
