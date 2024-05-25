@@ -24,8 +24,9 @@ function CompanyMyApplicants() {
           const data = response.data;
           setMyApplicants(
             data.map(
-              ({ applicationId, applicationLetter: {content}, student: {fullName, email, contactNumber} }) => ({
-                id: applicationId,
+              ({ applicationId, announcement: {title}, applicationLetter: {content}, student: {fullName, email, contactNumber} }) => ({
+                id: applicationId,  
+                title,
                 name : fullName,
                 mail : email,
                 phoneNumber : contactNumber,

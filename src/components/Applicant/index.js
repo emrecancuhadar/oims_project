@@ -39,6 +39,7 @@ function Applicant({ applicant, onApprove, onDisapprove}) {
       <div className={styles.card} onClick={showApplicationLetter}>
         <div className={styles.left}>
             <h2>{applicant.name}</h2>
+            <p><strong>Position:</strong> {applicant.title}</p>
             <p><strong>Mail:</strong> {applicant.mail}</p>
             <p><strong>Contact:</strong> {applicant.phoneNumber}</p>
         </div>
