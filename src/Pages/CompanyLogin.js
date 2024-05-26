@@ -24,7 +24,7 @@ function Login() {
           password,
         })
         .then((response) => {
-          if (response.ok) {
+          if (response.status == 200) {
             const data = response.data;
             loginUser({
               id: data.id,

@@ -31,7 +31,7 @@ function Signup() {
           password,
         })
         .then((response) => {
-          if (response.ok) {
+          if (response.status == 200) {
             setShowPasswordCriteriaMessage(false);
             setTimeout(() => {
               navigate("/company/login");
