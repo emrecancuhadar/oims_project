@@ -130,7 +130,7 @@ function ApplicationFormRequest({
       <FeedbackModal
         isModalOpen={isModalOpen}
         closeModal={() => setModalOpen(false)}
-        receiver={{ id: applicationFormRequest.id, name: "company" }}
+        receiver={{ id: companyId, name: "company" }}
       />
     </div>
   );

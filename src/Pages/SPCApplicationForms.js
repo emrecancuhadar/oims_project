@@ -27,6 +27,7 @@ function SPCApplicationForms() {
             ({
               applicationId,
               student: { fullName, email },
+              company: { id: companyId },
               applicationForm: { documentId, content, contentType },
             }) => ({
               id: documentId,
@@ -34,6 +35,7 @@ function SPCApplicationForms() {
               email,
               content,
               contentType,
+              companyId,
             })
           )
         );
