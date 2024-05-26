@@ -42,7 +42,14 @@ function Signup() {
             setErrorPopupOpen(true);
           }
         })
-        .catch((error) => console.log(error));
+        .catch((error) => {
+          if (error.response) {
+            if (error.response.status == 500) {
+              setErrorMessage(error.response.data);
+              setErrorPopupOpen(true);
+            }
+          }
+        });
     } catch (error) {
       console.error("Error:", error);
       setErrorMessage("An unexpected error occurred. Please try again later.");

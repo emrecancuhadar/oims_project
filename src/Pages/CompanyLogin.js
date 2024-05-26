@@ -38,12 +38,20 @@ function Login() {
               navigate("/company/home");
             }, 1000);
           } else {
-            const errorData = response.data;
-            setError(errorData.error);
+            const errorData = response.error;
+            console.log("data", errorData);
+            setError(errorData);
             wrongSetPopupOpen(true);
           }
         })
-        .catch((error) => console.log(error));
+        .catch((error) => {
+          if (error.response) {
+            if (error.response.status == 500) {
+              setError(error.response.data.error);
+              wrongSetPopupOpen(true);
+            }
+          }
+        });
     } catch (error) {
       setError(error.message);
       console.error("Error:", error);
