@@ -42,7 +42,8 @@ function Login() {
             setError(errorData.error);
             wrongSetPopupOpen(true);
           }
-        });
+        })
+        .catch((error) => console.log(error));
     } catch (error) {
       setError(error.message);
       console.error("Error:", error);

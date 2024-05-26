@@ -1,7 +1,8 @@
+import axios from "axios";
 import React, { useState } from "react";
+import PasswordChecklist from "react-password-checklist";
 import { useNavigate } from "react-router-dom";
 import styles from "../CSS/CompanySignup.module.css";
-import PasswordChecklist from "react-password-checklist";
 import Popup from "../components/Popup";
 
 function Signup() {
@@ -10,7 +11,8 @@ function Signup() {
   const [password, setPassword] = useState("");
   const [passwordAgain, setPasswordAgain] = useState("");
   const [isPasswordValid, setIsPasswordValid] = useState(false);
-  const [showPasswordCriteriaMessage, setShowPasswordCriteriaMessage] = useState(false);
+  const [showPasswordCriteriaMessage, setShowPasswordCriteriaMessage] =
+    useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [errorPopupOpen, setErrorPopupOpen] = useState(false);
   const navigate = useNavigate();
@@ -22,27 +24,25 @@ function Signup() {
       return;
     }
     try {
-      const response = await fetch(
-        `${process.env.REACT_APP_API_URL}/company/signUp`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ companyName, email, password }),
-        }
-      );
-
-      if (response.ok) {
-        setShowPasswordCriteriaMessage(false);
-        setTimeout(() => {
-          navigate("/company/login");
-        }, 3000);
-      } else {
-        const errorMessage = await response.text();
-        setErrorMessage(errorMessage);
-        setErrorPopupOpen(true);
-      }
+      axios
+        .post(`${process.env.REACT_APP_API_URL}/company/signUp`, {
+          companyName,
+          email,
+          password,
+        })
+        .then((response) => {
+          if (response.ok) {
+            setShowPasswordCriteriaMessage(false);
+            setTimeout(() => {
+              navigate("/company/login");
+            }, 3000);
+          } else {
+            const errorMessage = response.data.error;
+            setErrorMessage(errorMessage);
+            setErrorPopupOpen(true);
+          }
+        })
+        .catch((error) => console.log(error));
     } catch (error) {
       console.error("Error:", error);
       setErrorMessage("An unexpected error occurred. Please try again later.");
