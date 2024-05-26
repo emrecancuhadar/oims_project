@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "../CSS/CompanyLogin.module.css"; // Updated import
@@ -17,35 +18,31 @@ function Login() {
     e.preventDefault();
 
     try {
-      const response = await fetch(
-        `${process.env.REACT_APP_API_URL}/company/login`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, password }),
-        }
-      );
-
-      if (response.ok) {
-        const data = await response.json();
-        loginUser({
-          id: data.id,
-          name: data.companyName,
-          email: data.email,
-          registrationStatus: data.registrationStatus,
-          role: "company",
+      await axios
+        .post(`${process.env.REACT_APP_API_URL}/company/login`, {
+          email,
+          password,
+        })
+        .then((response) => {
+          if (response.ok) {
+            const data = response.data;
+            loginUser({
+              id: data.id,
+              name: data.companyName,
+              email: data.email,
+              registrationStatus: data.registrationStatus,
+              role: "company",
+            });
+            setPopupOpen(true);
+            setTimeout(() => {
+              navigate("/company/home");
+            }, 1000);
+          } else {
+            const errorData = response.data;
+            setError(errorData.error);
+            wrongSetPopupOpen(true);
+          }
         });
-        setPopupOpen(true);
-        setTimeout(() => {
-          navigate("/company/home");
-        }, 1000);
-      } else {
-        const errorData = await response.json(); // Parse the error response
-        setError(errorData.error);
-        wrongSetPopupOpen(true);
-      }
     } catch (error) {
       setError(error.message);
       console.error("Error:", error);
